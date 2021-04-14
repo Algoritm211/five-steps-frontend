@@ -1,37 +1,62 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { loginUser } from '../store/auth-reducer/auth-thunks'
+import {useHistory} from 'react-router-dom'
 
 const Login = () => {
+	const history = useHistory()
+	const dispatch = useDispatch()
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+
+	const onSubmit = () => {
+		dispatch(loginUser(email, password))
+		history.push('/main')
+	}
+
 	return (
 		<React.Fragment>
 
-			<nav className='navbar navbar-expand-lg navbar-dark fixed-top' id='mainNav'>
-				<div className='container'>
-					<a className='navbar-brand js-scroll-trigger' href='#page-top'><p style={{ color: 'white' }}>5
-						steps</p></a>
-					<button className='navbar-toggler navbar-toggler-right' type='button' data-toggle='collapse'
-									data-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='false'
-									aria-label='Toggle navigation'>
-						Menu
-						<i className='fas fa-bars ml-1' />
-					</button>
-					<div className='collapse navbar-collapse' id='navbarResponsive'>
-						<ul className='navbar-nav text-uppercase ml-auto'>
-							<li className='nav-item'><a className='nav-link js-scroll-trigger' href='form\LogIn.html'>Log In</a></li>
-							<li className='nav-item'><a className='nav-link js-scroll-trigger' href='form\SignUp.html'>Sign Up</a>
-							</li>
-						</ul>
+			<div className="main">
+				<h1>Log In</h1>
+				<div className="container">
+					<div className="sign-up-content">
+						<div className="signup-form">
+							<h2 className="form-title">What type of user are you ?</h2>
+
+							<div className="form-textbox">
+								<label htmlFor="email">Email</label>
+								<input
+									value={email}
+									onChange={(event) => setEmail(event.target.value)}
+									type="email"
+									name="email"
+									id="email" />
+							</div>
+
+							<div className="form-textbox">
+								<label htmlFor="pass">Password</label>
+								<input
+									value={password}
+									onChange={(event) => setPassword(event.target.value)}
+									type="password"
+									name="pass"
+									id="pass" />
+							</div>
+
+							<div className="form-textbox">
+								<button onClick={onSubmit} name="submit" id="submit" className="submit">
+									Log in
+								</button>
+							</div>
+						</div>
+
+						<p className="loginhere">
+							Don't have an account ?<a href="SignUp.html" className="loginhere-link"> Sign up</a>
+						</p>
 					</div>
 				</div>
-			</nav>
-
-			<header className='masthead'>
-				<div className='container'>
-					<div className='masthead-subheading'>Welcome To 5 steps!</div>
-					<div className='masthead-heading text-uppercase'>Let's start the adventure</div>
-					<a className='btn btn-primary btn-xl text-uppercase js-scroll-trigger'
-						 href='form\SignUp.html'>Registration</a>
-				</div>
-			</header>
+			</div>
 		</React.Fragment>
 )
 }

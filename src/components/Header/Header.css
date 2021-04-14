@@ -172,6 +172,7 @@
   .navbar-right .dropdown .dropdown ul {
     left: -90%;
   }
+
   .navbar-right .dropdown .dropdown:hover > ul {
     left: -100%;
   }
@@ -197,6 +198,7 @@
   .mobile-nav-toggle {
     display: block;
   }
+
   .navbar ul {
     display: none;
   }
@@ -289,4 +291,12 @@
 
 .input:focus {
   border: 1px solid #f26c4f;
+}
+
+.personIcon {
+  align-items: center;
+  line-height: 40px;
+  font-size: 24px;
+  margin: 0 15px;
+  cursor: pointer;
 }
