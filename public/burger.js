@@ -58,7 +58,6 @@
         this.classList.toggle('fas fa-bars')
         this.classList.toggle('fas fa-times')
       }
-      scrollto(this.hash)
     }
   }, true)
 
