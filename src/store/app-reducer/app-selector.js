@@ -1,5 +1,3 @@
-
-
 export const isAppReady = (state) => {
-  return state.appReducer.isAppReady
+	return state.appReducer.isAppReady
 }
