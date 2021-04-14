@@ -53,7 +53,9 @@ const Header = () => {
 											<Link to={'/main'} onClick={onLogout}>Вихід</Link>
 										)}
 									</li>
-									<li><a href='#'>Реєстрація</a></li>
+									<li>
+										{!isAuth && <a href='#'>Реєстрація</a>}
+									</li>
 								</ul>
 							</li>
 						</ul>
