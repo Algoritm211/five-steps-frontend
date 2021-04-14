@@ -11,6 +11,7 @@ const Header = () => {
 	const [searchText, setSearchText] = useState('')
 	const isAuth = useSelector(getIsAuth)
 	const [isMobile, setIsMobile] = useState(false)
+	const [isActiveSearch, setIsActiveSearch] = useState(false)
 
 	const onLogout = () => {
 		dispatch(logout())
@@ -38,11 +39,12 @@ const Header = () => {
 						value={searchText}
 						onChange={(event) => setSearchText(event.target.value)}
 						type={'text'}
-						className={'input'}
+						className={`${isActiveSearch ? 'input-active' : 'input'}`}
 						placeholder={'Поиск'} />
 					<nav id='navbar-right' className='navbar-right order-last order-lg-0'
 							 style={{ marginLeft: 'auto!important' }}>
 						<ul>
+							<i class="fas fa-search personIcon" onClick={() => setIsActiveSearch(prev => !prev)} />
 							<li className='dropdown'>
 								<i className='fas fa-user-circle personIcon' />
 								<ul>
