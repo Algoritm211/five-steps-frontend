@@ -10,6 +10,7 @@ const Header = () => {
 	const dispatch = useDispatch()
 	const [searchText, setSearchText] = useState('')
 	const isAuth = useSelector(getIsAuth)
+	const [isMobile, setIsMobile] = useState(false)
 
 	const onLogout = () => {
 		dispatch(logout())
@@ -22,14 +23,13 @@ const Header = () => {
 					<div className='logo me-auto'>
 						<h1><Link to={'/main'} style={{ lineHeight: '40px' }}>Logo</Link></h1>
 					</div>
-					<nav id='navbar' className='navbar order-last order-lg-0'>
+					<nav id='navbar' className={`order-last order-lg-0 ${isMobile ? 'navbar-mobile' : 'navbar'}`}>
 						<ul>
 							<li><a className='nav-link' href='#'>Професії</a></li>
 							<li><a className='nav-link' href='#'>Спеціалісти</a></li>
 							<li><a className='nav-link' href='#'>Профорієнтація</a></li>
 							<li><a className='nav-link' href='#'>Тарифи</a></li>
 						</ul>
-						<i className='bi bi-list mobile-nav-toggle' />
 					</nav>
 				</div>
 
@@ -57,6 +57,10 @@ const Header = () => {
 										{!isAuth && <a href='#'>Реєстрація</a>}
 									</li>
 								</ul>
+							</li>
+							<li>
+								<i className={`mobile-nav-toggle ${!isMobile ? 'fas fa-bars' : 'fa fa-times'}`}
+									 onClick={() => setIsMobile(prev => !prev)} />
 							</li>
 						</ul>
 					</nav>

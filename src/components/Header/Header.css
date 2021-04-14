@@ -190,8 +190,9 @@
   transition: 0.5s;
 }
 
-.mobile-nav-toggle.bi-x {
-  color: #fff;
+.mobile-nav-toggle.fa-times {
+  color: black;
+  z-index: 999;
 }
 
 @media (max-width: 991px) {
@@ -207,13 +208,13 @@
 .navbar-mobile {
   position: fixed;
   overflow: hidden;
-  top: 0;
+  top: 70px;
   right: 0;
   left: 0;
   bottom: 0;
   background: rgba(33, 38, 42, 0.9);
   transition: 0.3s;
-  z-index: 999;
+  z-index: 700;
 }
 
 .navbar-mobile .mobile-nav-toggle {
