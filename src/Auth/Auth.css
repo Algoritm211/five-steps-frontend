@@ -1,5 +1,4 @@
 
-
 a:focus, a:active {
   text-decoration: none;
   outline: none;
@@ -70,11 +69,36 @@ a:focus, a:active {
 .clear {
   clear: both; }
 
+.logoReg{
+    font-size: 28px;
+    margin: 0;
+    margin-right: 30px;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    padding-top: 40px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+.logoReg h1 a{
+    color: #384046;
+}
+
+.AuthTitle{
+    font-size: 18px;
+    margin: 0;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 40px;
+    letter-spacing: 1px;
+}
 
 .main {
-  padding: 150px 0;
+  padding: 50px 0;
   position: relative;
-  background: #f26c4f;
+  background: #e7f0fd;
 }
 
 .containerReg {
@@ -101,45 +125,48 @@ a:focus, a:active {
   text-align: center;
   margin: 0 -10px;
   margin-bottom: 40px; }
-.form-radio .inputAuth {
-  width: 0;
-  height: 0;
-  position: absolute;
-  left: -9999px; }
-.form-radio .inputAuth + label {
+
+.form-radio .inputRadio {
+  visibility: hidden; }
+
+.form-radio .inputRadio + label {
   margin: 0 8px;
   padding: 11px 31px;
   box-sizing: border-box;
   position: relative;
   display: inline-block;
-  border: solid 2px #ebebeb;
+  border: solid 2px #dadce0;
   background-color: #FFF;
   font-size: 14px;
   font-weight: 600;
-  color: #888;
+  color: #384046;
   text-align: center;
   transition: border-color .15s ease-out,  color .25s ease-out,  background-color .15s ease-out, box-shadow .15s ease-out;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px; }
-.form-radio .inputAuth:checked + label {
+  border-radius: 999px;}
+
+.form-radio .inputRadioChecked {
+  visibility: hidden; }
+
+.form-radio .inputRadioChecked + label {
+  margin: 0 8px;
+  padding: 11px 31px;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-block;
+  border: solid 2px #1da0f2;
   background-color: #1da0f2;
+  font-size: 14px;
+  font-weight: 600;
   color: #FFF;
-  border-color: #1da0f2;
-  z-index: 1; }
-.form-radio .inputAuth:focus + label {
-  outline: none; }
-.form-radio .inputAuth:hover {
-  background-color: #1da0f2;
-  color: #FFF;
-  border-color: #1da0f2; }
+  text-align: center;
+  transition: border-color .15s ease-out,  color .25s ease-out,  background-color .15s ease-out, box-shadow .15s ease-out;
+  border-radius: 999px;}
 
 .inputAuth {
-  border: solid 2px #ebebeb;
+  border: solid 2px #dadce0;
   box-sizing: border-box;
   width: 100%;
+  border-radius: 999px;
   font-weight: 700;
   font-size: 14px;
   font-family: Poppins;
@@ -150,30 +177,9 @@ a:focus, a:active {
   padding-bottom: 15px;
 }
 .form-textbox label {
-  /*position: absolute;*/
-  left: 28px;
-  top: 50%;
-  transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
   font-weight: 600;
-  color: #888;
+  color: #384046;
   font-size: 14px; }
-
-#name {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px; }
-
-#pass {
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px; }
-
-/*#email {
-  border: none;
-  border-left: solid 2px #ebebeb;
-  border-right: solid 2px #ebebeb; }*/
 
 .inputAuth[type=checkbox]:not(old) {
   width: 2em;
@@ -193,7 +199,7 @@ a:focus, a:active {
   height: 12px;
   margin-right: 15px;
   margin-bottom: 5px;
-  border: 2px solid #ebebeb;
+  border: 1px solid #dadce0;
   border-radius: 2px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
@@ -236,23 +242,21 @@ a:focus, a:active {
 .submit {
   background: #1da0f2;
   color: #FFF;
+  transition: all 0.5s;
   border: none;
   padding: 15px 20px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   font-family: Poppins;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px; }
+  border-radius: 999px;
+ }
 .submit:hover {
   background: #0c85d0; }
 
 .loginhere {
   text-align: center;
   color: #888;
-  margin-top: 63px; }
+  margin-top: 50px; }
 
 .loginhere-link {
   color: #1da0f2;
@@ -262,6 +266,81 @@ a:focus, a:active {
 
 .inputAuth:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px white inset; }
+
+.social-button{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+}
+
+.social-il{
+  border: none;
+}
+
+.btn-google {
+  color: #384046;
+  background-color: #ffffff;
+  width: 100%;
+  height: 50px;
+  font-size: 14px;
+  border: 1px solid #dadce0;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  font-family: Poppins;
+  border-radius: 999px;
+  transition: all 0.5s;
+}
+
+.btn-google:hover {
+  color: #384046;
+  background-color: #f8faff;
+  border: 1px solid #d2e3fc;
+}
+
+.btn-facebook {
+  color: #fff;
+  background-color: #1877F2;
+  width: 100%;
+  height: 50px;
+  font-size: 14px;
+  border: 1px solid #1877F2;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  font-family: Poppins;
+  border-radius: 999px;
+  transition: all 0.5s;
+}
+
+.btn-facebook:hover {
+  color: #fff;
+  background-color: #08499D;
+  border: 1px solid #08499D;
+}
+
+.or-container {
+  align-items: center;
+  color: #dadce0;
+  display: flex;
+  margin: 25px 0
+}
+
+.line-separator {
+  background-color: #dadce0;
+  flex-grow: 5;
+  height: 1px
+}
+
+.or-label {
+  flex-grow: 1;
+  margin: 0 15px;
+  text-align: center
+}
 
 @media screen and (max-width: 768px) {
   .container {

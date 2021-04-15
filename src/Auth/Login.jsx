@@ -18,9 +18,10 @@ const Login = () => {
 	return (
 		<React.Fragment>
 			<div className='main'>
-
-				<h1 style={{ textAlign: 'center', color: 'white' }}>Log In</h1>
 				<div className='containerReg'>
+					<div className='logoReg'>
+						<h1><Link to={'/main'} style={{ lineHeight: '40px' }}>Logo</Link></h1>
+					</div>
 					<div className='sign-up-content'>
 						<div method='POST' className='signup-form'>
 							{/*<h2 className='form-title'>What type of user are you ?</h2>*/}
@@ -32,6 +33,7 @@ const Login = () => {
 							{/*	<label htmlFor='average'>Expert</label>*/}
 
 							{/*</div>*/}
+							<h1 className='AuthTitle'>Увійдіть, щоб побачити більше</h1>
 							<div className='form-textbox'>
 								<label htmlFor='email'>Email</label>
 								<input
@@ -63,8 +65,30 @@ const Login = () => {
 							</div>
 						</div>
 
+						<div className='form-textbox' style={{textAlign: 'center'}}>
+							<div className='or-container'>
+                                <div className='line-separator'></div>
+                                <div className='or-label'>or</div>
+                                <div className='line-separator'></div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-12">
+									<Link className="btn btn-lg btn-google btn-block btn-outline" to="#">
+										<img src="https://img.icons8.com/color/16/000000/google-logo.png" /> Login Using Google
+									</Link>
+								</div>
+                            </div>
+							<div className="row">
+                                <div className="col-md-12">
+									<Link className="btn btn-lg btn-facebook btn-block btn-outline" to="#">
+										<i class="fab fa-facebook" /> Login Using Facebook
+									</Link>
+								</div>
+                            </div>
+						</div>
+
 						<p className='loginhere'>
-							Don't have an account ?
+							Don't have an account?&nbsp;
 							<Link to={'/registration'} className='loginhere-link cup'>Sign up</Link>
 						</p>
 					</div>

@@ -7,6 +7,7 @@ import { registerUser } from '../store/auth-reducer/auth-thunks'
 const Registration = () => {
 	const history = useHistory()
 	const dispatch = useDispatch()
+	const [isExpert, setIsExpert] = useState(false)
 	const [userData, setUserData] = useState({
 		email: '',
 		password: '',
@@ -39,20 +40,22 @@ const Registration = () => {
 	return (
 		<React.Fragment>
 			<div className='main'>
-				<h1 style={{ textAlign: 'center', color: 'white' }}>Sign up</h1>
 				<div className='containerReg'>
+					<div className='logoReg'>
+						<h1><Link to={'/main'} style={{ lineHeight: '40px' }}>Logo</Link></h1>
+					</div>
 					<div className='sign-up-content'>
 						<form method='POST' className='signup-form'>
-							{/*<h2 className='form-title'>What type of user are you ?</h2>*/}
-							{/*<div className='form-radio'>*/}
-							{/*	<input type='radio' name='member_level' value='newbie' id='newbie' checked='checked' />*/}
-							{/*	<label htmlFor='newbie'>Student</label>*/}
+							<h1 className='AuthTitle'>Реєструйтеся, щоб побачити більше</h1>
+							<div className='form-radio'>
+								<input className={`${isExpert ? 'inputRadio' : 'inputRadioChecked'}`} type='radio' name='member_level' value='student' id='student'
+								onClick={() => setIsExpert(false)} />
+								<label htmlFor='student'>Student</label>
 
-							{/*	<input type='radio' name='member_level' value='average' id='average' />*/}
-							{/*	<label htmlFor='average'>Expert</label>*/}
-
-							{/*</div>*/}
-
+								<input className={`${isExpert ? 'inputRadioChecked' : 'inputRadio'}`} type='radio' name='member_level' value='expert' id='expert'
+								onClick={() => setIsExpert(true)} />
+								<label htmlFor='expert'>Expert</label>
+							</div>
 							<div className='form-textbox'>
 								<label htmlFor='name'>Full name</label>
 								<input
@@ -95,14 +98,35 @@ const Registration = () => {
 								<button
 									onClick={onSubmitRegistration}
 									name='submit' id='submit' className='submit' style={{width: '100%'}}>
-									Create account
+									Sign Up
 								</button>
 							</div>
+							<div className='form-textbox' style={{textAlign: 'center'}}>
+							<div className='or-container'>
+                                <div className='line-separator'></div>
+                                <div className='or-label'>or</div>
+                                <div className='line-separator'></div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-12">
+									<Link className="btn btn-lg btn-google btn-block btn-outline" to="#">
+										<img src="https://img.icons8.com/color/16/000000/google-logo.png" /> Sign Up Using Google
+									</Link>
+								</div>
+                            </div>
+							<div className="row">
+                                <div className="col-md-12">
+									<Link className="btn btn-lg btn-facebook btn-block btn-outline" to="#">
+										<i className="fab fa-facebook" /> Sign Up Using Facebook
+									</Link>
+								</div>
+                            </div>
+						</div>
 
 						</form>
 
 						<p className='loginhere'>
-							Already have an account ?
+							Already have an account?&nbsp; 
 							<Link to={'/login'} className='loginhere-link'>Log in</Link>
 						</p>
 					</div>

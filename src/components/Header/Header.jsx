@@ -21,7 +21,7 @@ const Header = () => {
 		<header id='header' className='fixed-top d-flex align-items-center'>
 			<div className='container d-flex align-items-center justify-content-between'>
 				<div className={'d-flex'}>
-					<div className='logo me-auto'>
+					<div className='logo'>
 						<h1><Link to={'/main'} style={{ lineHeight: '40px' }}>Logo</Link></h1>
 					</div>
 					<nav id='navbar' className={`order-last order-lg-0 ${isMobile ? 'navbar-mobile' : 'navbar'}`}>
