@@ -318,6 +318,13 @@
   box-shadow: 0 0 10px rgba(242,108,79,0.8);
 }
 
+.accDropIcon {
+  align-items: center;
+  line-height: 40px;
+  font-size: 24px;
+  margin: 0 15px 0 0;
+}
+
 .personIcon {
   align-items: center;
   line-height: 40px;
@@ -329,4 +336,30 @@
 
 .personIcon:hover{
   color:#f26c4f;
+}
+
+.dropdown-divider{
+  height: 0;
+  margin: .5rem 0;
+  overflow: hidden;
+  border-top: 1px solid #eae7f5;
+}
+
+.accDropBlock{
+  /* justify-content: center; */
+  padding: 10px 20px;
+  cursor: default;
+}
+
+.text-muted {
+  color: #a8a3b9!important;
+  line-height: 12px;
+  font-size: 12px;
+}
+
+.accDropTitle{
+  margin-top: 5px;
+  color: #384046;
+  line-height: 14px;
+  font-size: 14px;
 }

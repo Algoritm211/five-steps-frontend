@@ -48,12 +48,26 @@ const Header = () => {
 							<li className='dropdown'>
 								<i className='fas fa-user-circle personIcon' />
 								<ul>
+									{isAuth &&
+										<div>
+											<div class="d-flex accDropBlock">
+												<i className='fas fa-user-circle accDropIcon' />
+												<div class="ml-3 lh-1">
+													<p class="mb-1 accDropTitle">Account name</p>
+													<p class="mb-0 text-muted">algoritm211@gmail.com</p>
+												</div>
+											</div>
+											<div class="dropdown-divider"></div>
+										</div>
+									}
 									<li>
 										{!isAuth ? (
 											<Link to='/login'>Вхід</Link>
 										) : (
 											<>
-												<Link to={'/profile'}>Профіль</Link>
+												<Link to={'/profile'}>Акаунт</Link>
+												<Link to={'/profile'}>Мої Професії</Link>
+												<div class="dropdown-divider"></div>
 												<Link to={'/main'} onClick={onLogout}>Вихід</Link>
 											</>
 										)}
@@ -61,6 +75,7 @@ const Header = () => {
 									<li>
 										{!isAuth && <Link to={'/registration'}>Реєстрація</Link>}
 									</li>
+									
 								</ul>
 							</li>
 							<li>
