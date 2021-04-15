@@ -1,9 +1,9 @@
 import { instanceAxios } from './api-config'
 
 export const authAPI = {
-	registration: async (email, password) => {
+	registration: async (userData) => {
 		return await instanceAxios
-			.post('/auth/registration', { email, password })
+			.post('/auth/registration', { ...userData })
 			.then((data) => data.data)
 	},
 

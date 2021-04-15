@@ -8,12 +8,12 @@ import {
 	setUserAuthData,
 } from './auth-reducer'
 
-export const registerUser = (email, password) => async (dispatch) => {
+export const registerUser = (userData) => async (dispatch) => {
 	try {
-		const data = await authAPI.registration(email, password)
+		const data = await authAPI.registration(userData)
 
 		dispatch(registrationSuccess())
-		dispatch(loginUser(email, password))
+		dispatch(loginUser(userData.email, userData.password))
 	} catch (error) {
 		console.log(error)
 		dispatch(setRegistrationError(error.response.data.message))

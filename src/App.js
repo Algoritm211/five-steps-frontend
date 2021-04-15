@@ -5,8 +5,9 @@ import { getIsAuth } from './store/auth-reducer/auth-selector'
 import { isAppReady } from './store/app-reducer/app-selector'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import MainPage from './components/MainPage/MainPage'
-import Login from './Login/Login'
 import { authUser } from './store/auth-reducer/auth-thunks'
+import Registration from './Auth/Registration'
+import Login from './Auth/Login'
 
 function App() {
 	const dispatch = useDispatch()
@@ -14,9 +15,9 @@ function App() {
 	const isAuth = useSelector(getIsAuth)
 	const isReady = useSelector(isAppReady)
 
-	// useEffect(() => {
-	// 	dispatch(authUser())
-	// }, [])
+	useEffect(() => {
+		dispatch(authUser())
+	}, [])
 
 	return (
 		<div className='App'>
@@ -24,6 +25,7 @@ function App() {
 				<Route path={'/profile'} component={() => <div>Profile</div>} />
 				<Route path={'/main'} component={MainPage} />
 				<Route path={'/login'} component={Login} />
+				<Route path={'/registration'} component={Registration} />
 				<Redirect to={'/main'} />
 			</Switch>
 		</div>

@@ -191,16 +191,22 @@
   transition: 0.5s;
 }
 
+.mobile-nav-toggle.fa-bars:hover, .mobile-nav-toggle.fa-times:hover {
+  color:#f26c4f;
+}
+
 .mobile-nav-toggle.fa-bars {
   color: #444444;
   width: 25px;
   z-index: 999;
+  transition: all 0.4s ease;
 }
 
 .mobile-nav-toggle.fa-times {
   color: #444444;
   width: 25px;
   z-index: 999;
+  transition: all 0.4s ease;
 }
 
 @media (max-width: 991px) {
@@ -293,6 +299,7 @@
 .input{
   transition: all 0.5s;
   opacity: 0;
+  border: none;
 }
 
 .input-active {
@@ -317,6 +324,7 @@
   font-size: 24px;
   margin: 0 15px 0 0;
   cursor: pointer;
+  transition: all 0.4s ease;
 }
 
 .personIcon:hover{

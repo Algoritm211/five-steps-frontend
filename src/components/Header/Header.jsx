@@ -44,7 +44,7 @@ const Header = () => {
 					<nav id='navbar-right' className='navbar-right order-last order-lg-0'
 							 style={{ marginLeft: 'auto!important' }}>
 						<ul>
-							<i class="fas fa-search personIcon" onClick={() => setIsActiveSearch(prev => !prev)} />
+							<i className='fas fa-search personIcon' onClick={() => setIsActiveSearch(prev => !prev)} />
 							<li className='dropdown'>
 								<i className='fas fa-user-circle personIcon' />
 								<ul>
@@ -52,11 +52,14 @@ const Header = () => {
 										{!isAuth ? (
 											<Link to='/login'>Вхід</Link>
 										) : (
-											<Link to={'/main'} onClick={onLogout}>Вихід</Link>
+											<>
+												<Link to={'/profile'}>Профіль</Link>
+												<Link to={'/main'} onClick={onLogout}>Вихід</Link>
+											</>
 										)}
 									</li>
 									<li>
-										{!isAuth && <a href='#'>Реєстрація</a>}
+										{!isAuth && <Link to={'/registration'}>Реєстрація</Link>}
 									</li>
 								</ul>
 							</li>

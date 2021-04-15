@@ -10,24 +10,19 @@ const CoursesContainer = () => {
 		likesCount: '135',
 		authorAvatar: 'https://image.flaticon.com/icons/png/512/147/147144.png',
 		position: 'Экс-Эдуард-президент в компании PashelNahui Corp.',
-		authorName: 'Наталья Горбенко'
+		authorName: 'Наталья Горбенко',
 	}
 
 	return (
-		<div className={'d-flex justify-content-between coursePage'}>
-			<div className=''>
-				Filters
-			</div>
-			<div>
-				<div className={'courseContainer'}>
-					<CourseCard course={course} />
-					<CourseCard course={course} />
-					<CourseCard course={course} />
-					<CourseCard course={course} />
-					<CourseCard course={course} />
-					<CourseCard course={course} />
-					<CourseCard course={course} />
-				</div>
+		<div className={'d-flex justify-content-center coursePage'}>
+			<div className={'courseContainer'}>
+				<CourseCard course={course} />
+				<CourseCard course={course} />
+				<CourseCard course={course} />
+				<CourseCard course={course} />
+				<CourseCard course={course} />
+				<CourseCard course={course} />
+				<CourseCard course={course} />
 			</div>
 		</div>
 	)
