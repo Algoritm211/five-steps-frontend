@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { registerUser } from '../store/auth-reducer/auth-thunks'
+import { authGoogle, registerUser } from '../store/auth-reducer/auth-thunks'
 
 
 const Registration = () => {
@@ -21,7 +21,6 @@ const Registration = () => {
 		const field = event.target.getAttribute('name')
 		newUserData[field] = event.target.value
 		setUserData(newUserData)
-		console.log(userData)
 	}
 
 	const onSubmitRegistration = () => {
@@ -33,9 +32,41 @@ const Registration = () => {
 			setError('Паролі не співпадають')
 			return
 		}
-		dispatch(registerUser(userData))
+		const modifiedUserData = userData
+		modifiedUserData['role'] = isExpert ? 'expert' : 'student'
+		dispatch(registerUser(modifiedUserData))
 		history.push('/main')
 	}
+
+	const onGoogleAuth = () => {
+		const win = window.open(
+			'http://localhost:5000/api/auth/google',
+			'Auth',
+			'width=500,height=500,status=yes,toolbar=no,menubar=no,location=no',
+		);
+
+		const timer = setInterval(() => {
+			if (win.closed) {
+				clearInterval(timer);
+			}
+		}, 100);
+	}
+
+	const onCatchGoogleAuth = (messageEvent) => {
+		if (messageEvent.origin === 'http://localhost:5000') {
+			const parsedData = JSON.parse(messageEvent.data)
+			parsedData['role'] = isExpert ? 'expert' : 'student'
+			dispatch(registerUser(parsedData))
+			history.push('/main')
+		}
+	}
+
+	React.useEffect(() => {
+		window.addEventListener('message', onCatchGoogleAuth);
+		return () => {
+			window.removeEventListener('message', onCatchGoogleAuth)
+		}
+	}, []);
 
 	return (
 		<React.Fragment>
@@ -45,15 +76,17 @@ const Registration = () => {
 						<h1><Link to={'/main'} style={{ lineHeight: '40px' }}>Logo</Link></h1>
 					</div>
 					<div className='sign-up-content'>
-						<form method='POST' className='signup-form'>
+						<div className='signup-form'>
 							<h1 className='AuthTitle'>Реєструйтеся, щоб побачити більше</h1>
 							<div className='form-radio'>
-								<input className={`${isExpert ? 'inputRadio' : 'inputRadioChecked'}`} type='radio' name='member_level' value='student' id='student'
-								onClick={() => setIsExpert(false)} />
+								<input className={`${isExpert ? 'inputRadio' : 'inputRadioChecked'}`} type='radio' name='member_level'
+											 value='student' id='student'
+											 onClick={() => setIsExpert(false)} />
 								<label htmlFor='student'>Student</label>
 
-								<input className={`${isExpert ? 'inputRadioChecked' : 'inputRadio'}`} type='radio' name='member_level' value='expert' id='expert'
-								onClick={() => setIsExpert(true)} />
+								<input className={`${isExpert ? 'inputRadioChecked' : 'inputRadio'}`} type='radio' name='member_level'
+											 value='expert' id='expert'
+											 onClick={() => setIsExpert(true)} />
 								<label htmlFor='expert'>Expert</label>
 							</div>
 							<div className='form-textbox'>
@@ -97,36 +130,36 @@ const Registration = () => {
 							<div className='form-textbox'>
 								<button
 									onClick={onSubmitRegistration}
-									name='submit' id='submit' className='submit' style={{width: '100%'}}>
+									name='submit' id='submit' className='submit' style={{ width: '100%' }}>
 									Sign Up
 								</button>
 							</div>
-							<div className='form-textbox' style={{textAlign: 'center'}}>
-							<div className='or-container'>
-                                <div className='line-separator'></div>
-                                <div className='or-label'>or</div>
-                                <div className='line-separator'></div>
-                            </div>
-                            <div className="row">
-                                <div className="col-md-12">
-									<Link className="btn btn-lg btn-google btn-block btn-outline" to="#">
-										<img src="https://img.icons8.com/color/16/000000/google-logo.png" /> Sign Up Using Google
-									</Link>
+							<div className='form-textbox' style={{ textAlign: 'center' }}>
+								<div className='or-container'>
+									<div className='line-separator'></div>
+									<div className='or-label'>or</div>
+									<div className='line-separator'></div>
 								</div>
-                            </div>
-							<div className="row">
-                                <div className="col-md-12">
-									<Link className="btn btn-lg btn-facebook btn-block btn-outline" to="#">
-										<i className="fab fa-facebook" /> Sign Up Using Facebook
-									</Link>
+								<div className='row'>
+									<div className='col-md-12'>
+										<button onClick={onGoogleAuth} className='btn btn-lg btn-google btn-block btn-outline' to='#'>
+											<img src='https://img.icons8.com/color/16/000000/google-logo.png' /> Sign Up Using Google
+										</button>
+									</div>
 								</div>
-                            </div>
+								<div className='row'>
+									<div className='col-md-12'>
+										<Link className='btn btn-lg btn-facebook btn-block btn-outline' to='#'>
+											<i className='fab fa-facebook' /> Sign Up Using Facebook
+										</Link>
+									</div>
+								</div>
+							</div>
+
 						</div>
 
-						</form>
-
 						<p className='loginhere'>
-							Already have an account?&nbsp; 
+							Already have an account?&nbsp;
 							<Link to={'/login'} className='loginhere-link'>Log in</Link>
 						</p>
 					</div>

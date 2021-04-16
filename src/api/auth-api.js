@@ -2,6 +2,9 @@ import { instanceAxios } from './api-config'
 
 export const authAPI = {
 	registration: async (userData) => {
+		if (!userData.password) {
+			userData['password'] = 'auth-google'
+		}
 		return await instanceAxios
 			.post('/auth/registration', { ...userData })
 			.then((data) => data.data)

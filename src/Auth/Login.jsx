@@ -32,6 +32,10 @@ const Login = () => {
 	const onCatchGoogleAuth = (messageEvent) => {
 		if (messageEvent.origin === 'http://localhost:5000') {
 			const parsedData = JSON.parse(messageEvent.data)
+			if (parsedData.error && parsedData.error === 404) {
+				history.push('/registration')
+				return
+			}
 			dispatch(authGoogle(parsedData))
 			history.push('/main')
 		}
@@ -103,7 +107,7 @@ const Login = () => {
 							</div>
 							<div className='row'>
 								<div className='col-md-12'>
-									<button onClick={onGoogleLogIn} className='btn btn-lg btn-google btn-block btn-outline' to='#'>
+									<button onClick={onGoogleLogIn} className='btn btn-lg btn-google btn-block btn-outline'>
 										<img src='https://img.icons8.com/color/16/000000/google-logo.png' /> Login Using Google
 									</button>
 								</div>
@@ -111,7 +115,7 @@ const Login = () => {
 							<div className='row'>
 								<div className='col-md-12'>
 									<Link className='btn btn-lg btn-facebook btn-block btn-outline' to='#'>
-										<i class='fab fa-facebook' /> Login Using Facebook
+										<i className='fab fa-facebook' /> Login Using Facebook
 									</Link>
 								</div>
 							</div>
