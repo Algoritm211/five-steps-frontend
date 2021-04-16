@@ -192,7 +192,7 @@
 }
 
 .mobile-nav-toggle.fa-bars:hover, .mobile-nav-toggle.fa-times:hover {
-  color:#f26c4f;
+  color: #f26c4f;
 }
 
 .mobile-nav-toggle.fa-bars {
@@ -296,7 +296,7 @@
   display: block;
 }
 
-.input{
+.input {
   transition: all 0.5s;
   opacity: 0;
   border: none;
@@ -314,8 +314,18 @@
   opacity: 1;
 }
 
-.input-active:active, .input-active:focus{
-  box-shadow: 0 0 10px rgba(242,108,79,0.8);
+@media (max-width: 520px) {
+  .input-active {
+    position: fixed;
+    top: 70px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+  }
+}
+
+.input-active:active, .input-active:focus {
+  box-shadow: 0 0 10px rgba(242, 108, 79, 0.8);
 }
 
 .accDropIcon {
@@ -334,32 +344,33 @@
   transition: all 0.4s ease;
 }
 
-.personIcon:hover{
-  color:#f26c4f;
+.personIcon:hover {
+  color: #f26c4f;
 }
 
-.dropdown-divider{
+.dropdown-divider {
   height: 0;
   margin: .5rem 0;
   overflow: hidden;
   border-top: 1px solid #eae7f5;
 }
 
-.accDropBlock{
+.accDropBlock {
   /* justify-content: center; */
   padding: 10px 20px;
   cursor: default;
 }
 
 .text-muted {
-  color: #a8a3b9!important;
+  color: #a8a3b9 !important;
   line-height: 12px;
   font-size: 12px;
 }
 
-.accDropTitle{
+.accDropTitle {
   margin-top: 5px;
   color: #384046;
   line-height: 14px;
   font-size: 14px;
 }
+
