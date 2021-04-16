@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../Header/Header'
 import CoursesContainer from '../CoursesContainer/CoursesContainer'
 import styles from './MainPage.module.css'
+import MainPlates from "../MainPlates/MainPlates";
 
 const MainPage = () => {
 	return (
@@ -10,7 +11,8 @@ const MainPage = () => {
 				<Header />
 			</div>
 			<main className={styles.main}>
-				<CoursesContainer />
+				<MainPlates />
+				{/*<CoursesContainer />*/}
 			</main>
 		</React.Fragment>
 	)
