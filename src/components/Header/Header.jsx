@@ -40,8 +40,8 @@ const Header = () => {
 						value={searchText}
 						onChange={(event) => setSearchText(event.target.value)}
 						type={'text'}
-						className={`${isActiveSearch ? 'input-active' : 'input'}`}
-						placeholder={'Поиск'} />
+						className={`${isActiveSearch ? 'input-active' : 'input-deactive'}`}
+						placeholder={'Пошук'} />
 					<nav id='navbar-right' className='navbar-right order-last order-lg-0'
 							 style={{ marginLeft: 'auto!important' }}>
 						<ul>

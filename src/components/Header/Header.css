@@ -227,7 +227,7 @@
   left: 0;
   bottom: 0;
   background: rgba(33, 38, 42, 0.9);
-  transition: 0.3s;
+  transition: all 0.3s ease-out;
   z-index: 700;
 }
 
@@ -238,16 +238,11 @@
 }
 
 .navbar-mobile ul {
-  display: block;
-  position: absolute;
-  top: 55px;
-  right: 15px;
-  bottom: 15px;
-  left: 15px;
   padding: 10px 0;
   background-color: #fff;
+  border-top: 1px solid #384046;
   overflow-y: auto;
-  transition: 0.3s;
+  transition: all 1s ease-out;
 }
 
 .navbar-mobile a {
@@ -257,7 +252,7 @@
 }
 
 .navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover > a {
-  color: #3498db;
+  color: #f26c4f;
 }
 
 .navbar-mobile .getstarted {
@@ -272,9 +267,12 @@
   z-index: 99;
   opacity: 1;
   visibility: visible;
+  transition: all 1s ease-out;
   background: #fff;
   box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
 }
+
+
 
 .navbar-mobile .dropdown ul li {
   min-width: 200px;
@@ -297,7 +295,7 @@
 }
 
 .input {
-  transition: all 0.5s;
+  transition: 1s ease-out 0.5s;
   opacity: 0;
   border: none;
 }
@@ -310,17 +308,35 @@
   border: none;
   width: 230px;
   background-color: #f1f3f5;
-  transition: all 0.5s;
+  transition: 1s ease-out 0.5s;
   opacity: 1;
+}
+
+.input-deactive{
+  transition: 1s ease-out 0.5s;
+  opacity: 0;
+  border: none;
+  display: none;
 }
 
 @media (max-width: 520px) {
   .input-active {
     position: fixed;
-    top: 70px;
+    transition: top 1s ease-out 0.5s;
+    top: 80px;
     margin: 0 auto;
+    width: calc( 100% - 30px);
     left: 0;
     right: 0;
+    opacity: 1;
+  }
+  .input-deactive{
+    transition: 1s ease-out 0.5s;
+    opacity: 0;
+    top: 70px;
+    border: none;
+    opacity: 0;
+    display: none;
   }
 }
 
