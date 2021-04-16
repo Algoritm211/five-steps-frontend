@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { loginUser } from '../store/auth-reducer/auth-thunks'
+import { authGoogle, loginUser } from '../store/auth-reducer/auth-thunks'
 import { Link, useHistory } from 'react-router-dom'
 import './Auth.css'
 
@@ -14,6 +14,36 @@ const Login = () => {
 		dispatch(loginUser(email, password))
 		history.push('/main')
 	}
+
+	const onGoogleLogIn = () => {
+		const win = window.open(
+			'http://localhost:5000/api/auth/google',
+			'Auth',
+			'width=500,height=500,status=yes,toolbar=no,menubar=no,location=no',
+		);
+
+		const timer = setInterval(() => {
+			if (win.closed) {
+				clearInterval(timer);
+			}
+		}, 100);
+	}
+
+	const onCatchGoogleAuth = (messageEvent) => {
+		if (messageEvent.origin === 'http://localhost:5000') {
+			const parsedData = JSON.parse(messageEvent.data)
+			dispatch(authGoogle(parsedData))
+			history.push('/main')
+		}
+	}
+
+	React.useEffect(() => {
+		window.addEventListener('message', onCatchGoogleAuth);
+		return () => {
+			window.removeEventListener('message', onCatchGoogleAuth)
+		}
+	}, []);
+
 
 	return (
 		<React.Fragment>
@@ -59,32 +89,32 @@ const Login = () => {
 							<div className='form-textbox'>
 								<button
 									onClick={onSubmit}
-									type='submit' name='submit' id='submit' className='submit' value='Log in' style={{width: '100%'}}>
+									type='submit' name='submit' id='submit' className='submit' value='Log in' style={{ width: '100%' }}>
 									Log in
 								</button>
 							</div>
 						</div>
 
-						<div className='form-textbox' style={{textAlign: 'center'}}>
+						<div className='form-textbox' style={{ textAlign: 'center' }}>
 							<div className='or-container'>
-                                <div className='line-separator'></div>
-                                <div className='or-label'>or</div>
-                                <div className='line-separator'></div>
-                            </div>
-                            <div className="row">
-                                <div className="col-md-12">
-									<Link className="btn btn-lg btn-google btn-block btn-outline" to="#">
-										<img src="https://img.icons8.com/color/16/000000/google-logo.png" /> Login Using Google
+								<div className='line-separator'></div>
+								<div className='or-label'>or</div>
+								<div className='line-separator'></div>
+							</div>
+							<div className='row'>
+								<div className='col-md-12'>
+									<button onClick={onGoogleLogIn} className='btn btn-lg btn-google btn-block btn-outline' to='#'>
+										<img src='https://img.icons8.com/color/16/000000/google-logo.png' /> Login Using Google
+									</button>
+								</div>
+							</div>
+							<div className='row'>
+								<div className='col-md-12'>
+									<Link className='btn btn-lg btn-facebook btn-block btn-outline' to='#'>
+										<i class='fab fa-facebook' /> Login Using Facebook
 									</Link>
 								</div>
-                            </div>
-							<div className="row">
-                                <div className="col-md-12">
-									<Link className="btn btn-lg btn-facebook btn-block btn-outline" to="#">
-										<i class="fab fa-facebook" /> Login Using Facebook
-									</Link>
-								</div>
-                            </div>
+							</div>
 						</div>
 
 						<p className='loginhere'>

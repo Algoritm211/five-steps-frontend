@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './Header.css'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getIsAuth } from '../../store/auth-reducer/auth-selector'
+import { getIsAuth, getUserData } from '../../store/auth-reducer/auth-selector'
 import { logout } from '../../store/auth-reducer/auth-reducer'
 
 
@@ -10,6 +10,7 @@ const Header = () => {
 	const dispatch = useDispatch()
 	const [searchText, setSearchText] = useState('')
 	const isAuth = useSelector(getIsAuth)
+	const user = useSelector(getUserData)
 	const [isMobile, setIsMobile] = useState(false)
 	const [isActiveSearch, setIsActiveSearch] = useState(false)
 
@@ -50,14 +51,14 @@ const Header = () => {
 								<ul>
 									{isAuth &&
 										<div>
-											<div class="d-flex accDropBlock">
+											<div className="d-flex accDropBlock">
 												<i className='fas fa-user-circle accDropIcon' />
-												<div class="ml-3 lh-1">
-													<p class="mb-1 accDropTitle">Account name</p>
-													<p class="mb-0 text-muted">algoritm211@gmail.com</p>
+												<div className="ml-3 lh-1">
+													<p className="mb-1 accDropTitle">{user.name}</p>
+													<p className="mb-0 text-muted">{user.email}</p>
 												</div>
 											</div>
-											<div class="dropdown-divider"></div>
+											<div className="dropdown-divider"></div>
 										</div>
 									}
 									<li>
@@ -67,7 +68,7 @@ const Header = () => {
 											<>
 												<Link to={'/profile'}>Акаунт</Link>
 												<Link to={'/profile'}>Мої Професії</Link>
-												<div class="dropdown-divider"></div>
+												<div className="dropdown-divider"></div>
 												<Link to={'/main'} onClick={onLogout}>Вихід</Link>
 											</>
 										)}
@@ -75,7 +76,7 @@ const Header = () => {
 									<li>
 										{!isAuth && <Link to={'/registration'}>Реєстрація</Link>}
 									</li>
-									
+
 								</ul>
 							</li>
 							<li>

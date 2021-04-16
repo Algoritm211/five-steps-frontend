@@ -45,7 +45,26 @@ export const authUser = () => async (dispatch) => {
 		console.log(error)
 		localStorage.removeItem('authToken')
 		setIsAuth({ isAuth: false })
-		setAuthError(error.response.data.message)
+		setAuthError(error.response?.data?.message)
+		// alert(error.response.data.message)
+		dispatch(setAppReady(true))
+	} finally {
+		dispatch(setAppReady(true))
+	}
+}
+
+export const authGoogle = (userData) => async (dispatch) => {
+	try {
+		console.log(userData)
+		dispatch(setAppReady(false))
+		dispatch(setUserAuthData(userData.user))
+		localStorage.setItem('authToken', userData.token)
+		dispatch(setAppReady(true))
+	} catch (error) {
+		console.log(error)
+		localStorage.removeItem('authToken')
+		setIsAuth({ isAuth: false })
+		setAuthError(error.response?.data?.message)
 		// alert(error.response.data.message)
 		dispatch(setAppReady(true))
 	} finally {
