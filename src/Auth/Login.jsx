@@ -54,7 +54,7 @@ const Login = () => {
 			<div className='main'>
 				<div className='containerReg'>
 					<div className='logoReg'>
-						<h1><Link to={'/main'} style={{ lineHeight: '40px' }}>Logo</Link></h1>
+						<h1><Link to={'/main'} style={{ lineHeight: '40px', fontWeight: '600' }}>Logo</Link></h1>
 					</div>
 					<div className='sign-up-content'>
 						<div method='POST' className='signup-form'>

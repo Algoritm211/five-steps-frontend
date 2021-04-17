@@ -90,7 +90,7 @@ h3{
     }
 }
 @media (max-width: 710px) {
-    .courseContainer {
+    .mainContainer {
         grid-template-columns: 1fr;
     }
     .subGrid{

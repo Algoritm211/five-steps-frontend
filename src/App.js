@@ -8,6 +8,7 @@ import MainPage from './components/MainPage/MainPage'
 import { authUser } from './store/auth-reducer/auth-thunks'
 import Registration from './Auth/Registration'
 import Login from './Auth/Login'
+import MyProf from './components/MyProfession/MyProf';
 
 function App() {
 	const dispatch = useDispatch()
@@ -26,6 +27,7 @@ function App() {
 				<Route path={'/main'} component={MainPage} />
 				<Route path={'/login'} component={Login} />
 				<Route path={'/registration'} component={Registration} />
+				<Route path={'/myprof'} component={MyProf} />
 				<Redirect to={'/main'} />
 			</Switch>
 		</div>

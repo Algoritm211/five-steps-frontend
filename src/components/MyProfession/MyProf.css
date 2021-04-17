@@ -14,7 +14,7 @@
 }
 
 .card:hover {
-  box-shadow: 0 0 10px rgba(0,0,0,0.8);
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
 .card-title {
@@ -41,16 +41,8 @@
  font-size: 12px;
 }
 
-@media (max-width: 991px) {
-
-}
-
-@media (max-width: 710px) {
-
-}
-
-@media (max-width: 510px) {
-  .card{
-    width: 100%;
-  }
+.myProfTitle h1{
+  font-size: 24px;
+  color: #4f5a62;
+  padding: 50px 0 0 0;
 }
