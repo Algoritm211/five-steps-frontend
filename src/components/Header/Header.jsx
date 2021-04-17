@@ -27,7 +27,7 @@ const Header = () => {
 					</div>
 					<nav id='navbar' className={`order-last order-lg-0 ${isMobile ? 'navbar-mobile' : 'navbar'}`}>
 						<ul>
-							<li><a className='nav-link' href='#'>Професії</a></li>
+							<li><a className='nav-link' href='myprof'>Професії</a></li>
 							<li><a className='nav-link' href='#'>Спеціалісти</a></li>
 							<li><a className='nav-link' href='#'>Профорієнтація</a></li>
 							<li><a className='nav-link' href='#'>Тарифи</a></li>

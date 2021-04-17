@@ -1,5 +1,6 @@
 import React from 'react'
 import './MainPlates.css'
+import {Link} from "react-router-dom";
 
 const MainPlates = () => {
     return (
@@ -42,7 +43,7 @@ const MainPlates = () => {
                 <div className="item N6 d-flex align-items-center">
                     <div>
                         <h3 className="text-black">Всі професії</h3>
-                        <a href=""><h6 className="text-white">Дослідження</h6></a>
+                        <Link to="/myprof"><h6 className="text-white">Перейти</h6></Link>
                     </div>
                 </div>
                 <div className="smallGrid">

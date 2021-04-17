@@ -1,46 +1,6 @@
 /**
-* Card CSS
+* MyProf CSS
 */
-.card{
-  padding: 25px;
-  max-width: 314px;
-  /*margin-left: 15px;*/
-  /*margin-bottom: 20px;*/
-  height: 251px;
-  border-radius: 15px;
-  /*box-shadow: 0 0 10px rgba(0,0,0,0.5);*/
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.card:hover {
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
-}
-
-.card-title {
-  font-size: 18px;
-}
-
-.card-tag{
-  background-color: #0d8502;
-}
-.card-tag-text{
-  font-size: 16px;
-  color: #ffffff;
-  font-weight: bold;
-  font-family: "Open Sans", serif;
-}
-.like-text{
-  font-size: 16px;
-  color: #000000;
-  font-weight: bold;
-  font-family: "Open Sans", serif;
-}
-
-.author-info {
- font-size: 12px;
-}
-
 .myProfTitle h1{
   font-size: 24px;
   color: #4f5a62;
