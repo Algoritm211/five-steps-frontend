@@ -16,7 +16,7 @@ const MainPage = () => {
 				<main className={styles.main}>
 					{/*<MainPlates />*/}
 					<CoursesContainer />
-					<CourseEditor />
+					{/*<CourseEditor />*/}
 				</main>
 		</React.Fragment>
 	)

@@ -15,7 +15,7 @@ const CoursesContainer = () => {
 	}
 
 	return (
-		<div className={'d-flex justify-content-center coursePage'}>
+		<div className={'container d-flex coursePage'}>
 			<div className={'courseContainer'}>
 				<CourseCard course={course} />
 				<CourseCard course={course} />

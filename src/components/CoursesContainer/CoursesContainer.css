@@ -8,12 +8,12 @@
 
 .courseContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   /*margin-top: 20px;*/
   grid-gap: 20px;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1200px) {
   .courseContainer {
     grid-template-columns: 1fr 1fr 1fr;
   }
