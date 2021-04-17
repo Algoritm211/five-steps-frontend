@@ -11,8 +11,8 @@ const MainPage = () => {
 				<Header />
 			</div>
 			<main className={styles.main}>
-				<MainPlates />
-				{/*<CoursesContainer />*/}
+				{/*<MainPlates />*/}
+				<CoursesContainer />
 			</main>
 		</React.Fragment>
 	)
