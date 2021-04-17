@@ -50,6 +50,9 @@
   .author-info {
     font-size: 10px;
   }
+  .author-info {
+    font-size: 10px;
+  }
 }
 
 @media (max-width: 510px) {
@@ -57,7 +60,7 @@
     width: 100%;
   }
   .author-info {
-    font-size: 14px;
+    font-size: 10px;
   }
   .card-title{
     margin-bottom: 30px;
