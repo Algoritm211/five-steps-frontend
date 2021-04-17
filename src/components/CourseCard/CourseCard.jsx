@@ -32,8 +32,8 @@ const CourseCard = (props) => {
 				<div className="col-2 pe-0 ps-0">
 					<img src={authorAvatar} className="img-fluid" alt="" />
 				</div>
-				<div className="col-10">
-					<h6 className={'author-info'}>{authorName}, <br /> {position}</h6>
+				<div className="col-10 d-flex" style={{alignItems: 'center'}}>
+					<h6 className={'author-info mb-0'}>{authorName}, <br /> {position}</h6>
 				</div>
 			</div>
 		</div>

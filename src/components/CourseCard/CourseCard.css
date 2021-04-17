@@ -37,19 +37,26 @@
 }
 
 .author-info {
- font-size: 12px;
+ font-size: 14px;
 }
 
 @media (max-width: 991px) {
-
+  .author-info {
+    font-size: 10px;
+  }
 }
 
 @media (max-width: 710px) {
-
+  .author-info {
+    font-size: 10px;
+  }
 }
 
 @media (max-width: 510px) {
   .card{
     width: 100%;
+  }
+  .author-info {
+    font-size: 14px;
   }
 }

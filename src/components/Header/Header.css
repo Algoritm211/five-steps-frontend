@@ -37,6 +37,7 @@
 */
 .navbar {
   padding: 0;
+  transition: all ease-in-out 3s;
 }
 
 .navbar ul {
@@ -45,6 +46,7 @@
   display: flex;
   list-style: none;
   align-items: center;
+  transition: all ease-in-out 3s;
 }
 
 .navbar li {
