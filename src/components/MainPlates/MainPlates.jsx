@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './MainPlates.css'
 import {Link} from "react-router-dom";
 
 const MainPlates = () => {
+
     return (
         <div className="mainContainer">
             <div className="item N1">
@@ -43,7 +44,7 @@ const MainPlates = () => {
                 <div className="item N6 d-flex align-items-center">
                     <div>
                         <h3 className="text-black">Всі професії</h3>
-                        <Link to="/myprof"><h6 className="text-white">Перейти</h6></Link>
+                        <Link to="/professions" ><h6 className="text-white">Перейти</h6></Link>
                     </div>
                 </div>
                 <div className="smallGrid">

@@ -6,6 +6,7 @@ import CourseCard from '../CourseCard/CourseCard'
 
 const MyProf = () => {
 	const course = {
+		_id: 'dasdasdassdaasd',
 		category: 'IT',
 		title: 'Тестувальник програмного забезпечення',
 		likesCount: '135',

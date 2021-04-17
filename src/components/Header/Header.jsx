@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './Header.css'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getIsAuth, getUserData } from '../../store/auth-reducer/auth-selector'
 import { logout } from '../../store/auth-reducer/auth-reducer'
+import { MainPageStepContext } from '../MainPage/MainPage'
 
 
 const Header = () => {
@@ -27,7 +28,7 @@ const Header = () => {
 					</div>
 					<nav id='navbar' className={`order-last order-lg-0 ${isMobile ? 'navbar-mobile' : 'navbar'}`}>
 						<ul>
-							<li><a className='nav-link' href='myprof'>Професії</a></li>
+							<li><a className='nav-link'>Професії</a></li>
 							<li><a className='nav-link' href='#'>Спеціалісти</a></li>
 							<li><a className='nav-link' href='#'>Профорієнтація</a></li>
 							<li><a className='nav-link' href='#'>Тарифи</a></li>
@@ -42,7 +43,7 @@ const Header = () => {
 						type={'text'}
 						className={`${isActiveSearch ? 'input-active' : 'input-deactive'}`}
 						placeholder={'Пошук'} />
-					<nav id='navbar-right' className='navbar-right order-last order-lg-0'
+					<nav id='navbar-right' className={`navbar-right order-last order-lg-0`}
 							 style={{ marginLeft: 'auto!important' }}>
 						<ul>
 							<i className='fas fa-search personIcon' onClick={() => setIsActiveSearch(prev => !prev)} />
@@ -54,8 +55,8 @@ const Header = () => {
 											<div className="d-flex accDropBlock">
 												<i className='fas fa-user-circle accDropIcon' />
 												<div className="ml-3 lh-1">
-													<p className="mb-1 accDropTitle">{user.name}</p>
-													<p className="mb-0 text-muted">{user.email}</p>
+													<p className="mb-1 accDropTitle">{user?.name}</p>
+													<p className="mb-0 text-muted">{user?.email}</p>
 												</div>
 											</div>
 											<div className="dropdown-divider"></div>
@@ -67,7 +68,7 @@ const Header = () => {
 										) : (
 											<>
 												<Link to={'/profile'}>Акаунт</Link>
-												<Link to={'/profile'}>Мої Професії</Link>
+												<Link to={`/myprof/${user.id}`}>Мої Професії</Link>
 												<div className="dropdown-divider"></div>
 												<Link to={'/main'} onClick={onLogout}>Вихід</Link>
 											</>

@@ -35,27 +35,22 @@ export const loginUser = (email, password) => async (dispatch) => {
 }
 
 export const authUser = () => async (dispatch) => {
-	try {
-		dispatch(setAppReady(false))
-		const data = await authAPI.auth()
-		dispatch(setUserAuthData(data.user))
-		localStorage.setItem('authToken', data.token)
+	dispatch(setAppReady(false))
+	const data = await authAPI.auth()
+	if (data.message) {
+		setAuthError(data.message)
 		dispatch(setAppReady(true))
-	} catch (error) {
-		console.log(error)
 		localStorage.removeItem('authToken')
 		setIsAuth({ isAuth: false })
-		setAuthError(error.response?.data?.message)
-		// alert(error.response.data.message)
-		dispatch(setAppReady(true))
-	} finally {
+	} else {
+		dispatch(setUserAuthData(data.user))
+		localStorage.setItem('authToken', data.token)
 		dispatch(setAppReady(true))
 	}
 }
 
 export const authGoogle = (userData) => async (dispatch) => {
 	try {
-		console.log(userData)
 		dispatch(setAppReady(false))
 		dispatch(setUserAuthData(userData.user))
 		localStorage.setItem('authToken', userData.token)

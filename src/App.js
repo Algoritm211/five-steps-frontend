@@ -27,7 +27,8 @@ function App() {
 				<Route path={'/main'} component={MainPage} />
 				<Route path={'/login'} component={Login} />
 				<Route path={'/registration'} component={Registration} />
-				<Route path={'/myprof'} component={MyProf} />
+				<Route path={'/myprof/:id/'} component={MyProf} />
+				<Route path={'/professions'} component={MyProf} />
 				<Redirect to={'/main'} />
 			</Switch>
 		</div>

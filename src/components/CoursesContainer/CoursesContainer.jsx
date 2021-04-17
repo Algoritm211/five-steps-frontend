@@ -4,6 +4,7 @@ import './CoursesContainer.css'
 
 const CoursesContainer = () => {
 
+
 	const course = {
 		category: 'IT',
 		title: 'Тестувальник програмного забезпечення',

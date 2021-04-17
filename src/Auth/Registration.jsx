@@ -52,7 +52,7 @@ const Registration = () => {
 		}, 100);
 	}
 
-	const onCatchGoogleAuth = (messageEvent) => {
+	const onCatchGoogleLogin = (messageEvent) => {
 		if (messageEvent.origin === 'http://localhost:5000') {
 			const parsedData = JSON.parse(messageEvent.data)
 			parsedData['role'] = isExpert ? 'expert' : 'student'
@@ -62,9 +62,9 @@ const Registration = () => {
 	}
 
 	React.useEffect(() => {
-		window.addEventListener('message', onCatchGoogleAuth);
+		window.addEventListener('message', onCatchGoogleLogin);
 		return () => {
-			window.removeEventListener('message', onCatchGoogleAuth)
+			window.removeEventListener('message', onCatchGoogleLogin)
 		}
 	}, []);
 
@@ -136,14 +136,14 @@ const Registration = () => {
 							</div>
 							<div className='form-textbox' style={{ textAlign: 'center' }}>
 								<div className='or-container'>
-									<div className='line-separator'></div>
+									<div className='line-separator'/>
 									<div className='or-label'>or</div>
-									<div className='line-separator'></div>
+									<div className='line-separator'/>
 								</div>
 								<div className='row'>
 									<div className='col-md-12'>
-										<button onClick={onGoogleAuth} className='btn btn-lg btn-google btn-block btn-outline' to='#'>
-											<img src='https://img.icons8.com/color/16/000000/google-logo.png' /> Sign Up Using Google
+										<button onClick={onGoogleAuth} className='btn btn-lg btn-google btn-block btn-outline'>
+											<img src='https://img.icons8.com/color/16/000000/google-logo.png'  alt={'googlesignup'}/> Sign Up Using Google
 										</button>
 									</div>
 								</div>

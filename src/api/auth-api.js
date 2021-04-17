@@ -15,9 +15,10 @@ export const authAPI = {
 			.post('/auth/login', { email, password })
 			.then((data) => data.data)
 	},
-	auth: async () => {
-		return await instanceAxios
+	auth: () => {
+		return instanceAxios
 			.get('/auth/authorization')
 			.then((data) => data.data)
+			.catch(err => err)
 	},
 }

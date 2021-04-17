@@ -51,6 +51,7 @@ const Login = () => {
 
 	return (
 		<React.Fragment>
+
 			<div className='main'>
 				<div className='containerReg'>
 					<div className='logoReg'>
