@@ -1,0 +1,110 @@
+body{
+    margin-top:20px;
+    background:#f8f8f8
+}
+
+.side-elem{
+    padding: .5rem 0!important;
+    text-decoration: none;
+    display: flex;
+}
+.side-elem-active{
+    color: #f26c4f;
+}
+.side-accElem{
+    height: 48px;
+    display: flex;
+    align-items: center;
+}
+
+
+.sidebar-title{
+    font-size: 12px;
+    line-height: 48px;
+    margin-right: 16px;
+    text-transform: uppercase;
+}
+.sidebar-l{
+    display: flex;
+}
+.sidebar-r{
+    display: flex;
+    width: 150px;
+    white-space: pre-wrap;
+}
+.side-accIll{
+    font-size: 14px;
+    margin-right: 16px;
+    align-items: center;
+    line-height: 48px;
+}
+.acc-title{
+    color:#384046;
+    font-size: 20px;
+    font-weight: 600;
+    width: 330px;
+    height: 48px;
+    line-height: 48px;
+    align-items: center;
+}
+.acc-join-title{
+    font-size: 10px;
+    color:#384046;
+    line-height: 48px;
+    align-items: center;
+}
+
+.acc-subtitle{
+    color:#384046;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.acc-info{
+    flex-direction: row;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.avatar-img{
+    height: 80px;
+    width: 80px;
+    justify-content: center;
+    align-items: center;
+    margin-right: 26px;
+    border-radius: 999px;
+}
+.info-title{
+    width: 133px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 2;
+    letter-spacing: .5px;
+    color: #7e919f;
+    margin-right: 19px;
+}
+.avatar-change{
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 26px;
+    color: #f26c4f;
+    text-decoration: underline;
+}
+.avatar-delete{
+    font-size: 12px;
+    color: crimson;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.inputAcc{
+    width: 380px;
+    border: solid 2px #dadce0;
+    box-sizing: border-box;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 10px 20px;
+}
