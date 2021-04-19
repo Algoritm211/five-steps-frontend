@@ -3,10 +3,6 @@ a:focus, a:active {
   text-decoration: none;
   outline: none;
   transition: all 300ms ease 0s;
-  -moz-transition: all 300ms ease 0s;
-  -webkit-transition: all 300ms ease 0s;
-  -o-transition: all 300ms ease 0s;
-  -ms-transition: all 300ms ease 0s;
 }
 
 .inputAuth, select, textarea {
@@ -14,59 +10,10 @@ a:focus, a:active {
   appearance: unset !important;
 }
 
-.inputAuth::-webkit-outer-spin-button, .inputAuth::-webkit-inner-spin-button {
-  appearance: none !important;
-  -moz-appearance: none !important;
-  -webkit-appearance: none !important;
-  -o-appearance: none !important;
-  -ms-appearance: none !important;
-  margin: 0;
-}
-
 .inputAuth:focus, select:focus, textarea:focus {
   outline: none;
   box-shadow: none !important;
-  -moz-box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  -o-box-shadow: none !important;
-  -ms-box-shadow: none !important;
 }
-
-.inputAuth[type=checkbox] {
-  /*appearance: checkbox !important;*/
-  -moz-appearance: checkbox !important;
-  -webkit-appearance: checkbox !important;
-  -o-appearance: checkbox !important;
-  -ms-appearance: checkbox !important;
-}
-
-.inputAuth[type=radio] {
-  /*appearance: radio !important;*/
-  -moz-appearance: radio !important;
-  -webkit-appearance: radio !important;
-  -o-appearance: radio !important;
-  -ms-appearance: radio !important;
-}
-
-/*img {*/
-/*  max-width: 100%;*/
-/*  height: auto; }*/
-
-/*figure {*/
-/*  margin: 0; }*/
-
-/*p {*/
-/*  margin-bottom: 0px; }*/
-
-/*h2 {*/
-/*  margin: 0;*/
-/*  padding: 0;*/
-/*  font-weight: bold;*/
-/*  color: #222;*/
-/*  font-family: Poppins;*/
-/*  font-size: 24px;*/
-/*  text-align: center;*/
-/*  margin-bottom: 40px; }*/
 
 .clear {
   clear: both;
@@ -110,15 +57,7 @@ a:focus, a:active {
   background: #fff;
   margin: 0 auto;
   box-shadow: 0px 10px 9.9px 0.1px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: 0px 10px 9.9px 0.1px rgba(0, 0, 0, 0.05);
-  -webkit-box-shadow: 0px 10px 9.9px 0.1px rgba(0, 0, 0, 0.05);
-  -o-box-shadow: 0px 10px 9.9px 0.1px rgba(0, 0, 0, 0.05);
-  -ms-box-shadow: 0px 10px 9.9px 0.1px rgba(0, 0, 0, 0.05);
   border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -o-border-radius: 10px;
-  -ms-border-radius: 10px;
 }
 
 .sign-up-content {
@@ -218,24 +157,11 @@ a:focus, a:active {
   margin-bottom: 5px;
   border: 1px solid #dadce0;
   border-radius: 2px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -o-border-radius: 2px;
-  -ms-border-radius: 2px;
-  background: white;
-  background-image: -moz-linear-gradient(white, white);
-  background-image: -ms-linear-gradient(white, white);
-  background-image: -o-linear-gradient(white, white);
-  background-image: -webkit-linear-gradient(white, white);
-  background-image: linear-gradient(white, white);
+  background: white linear-gradient(white, white);
   vertical-align: bottom;
 }
 
 .inputAuth[type=checkbox]:not(old):checked + label > span {
-  background-image: -moz-linear-gradient(white, white);
-  background-image: -ms-linear-gradient(white, white);
-  background-image: -o-linear-gradient(white, white);
-  background-image: -webkit-linear-gradient(white, white);
   background-image: linear-gradient(white, white);
 }
 
@@ -292,10 +218,6 @@ a:focus, a:active {
 
 .loginhere-link:hover {
   text-decoration: underline;
-}
-
-.inputAuth:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 30px white inset;
 }
 
 .social-button {

@@ -16,9 +16,9 @@ function App() {
 	const isAuth = useSelector(getIsAuth)
 	const isReady = useSelector(isAppReady)
 
-	useEffect(() => {
-		dispatch(authUser())
-	}, [])
+	// useEffect(() => {
+	// 	dispatch(authUser())
+	// }, [])
 
 	return (
 		<div className='App'>

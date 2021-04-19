@@ -59,7 +59,7 @@ const Header = () => {
 													<p className="mb-0 text-muted">{user?.email}</p>
 												</div>
 											</div>
-											<div className="dropdown-divider"></div>
+											<div className="dropdown-divider"/>
 										</div>
 									}
 									<li>

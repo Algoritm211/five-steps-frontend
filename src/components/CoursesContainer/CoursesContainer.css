@@ -1,9 +1,6 @@
 
 .coursePage {
-  padding-right: .75rem;
-  padding-left: .75rem /*var(--bs-gutter-x,.75rem)*/;
-  padding-bottom: 20px;
-  padding-top: 20px;
+  padding: 20px .75rem;
 }
 
 .courseContainer {
