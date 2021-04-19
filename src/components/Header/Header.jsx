@@ -21,7 +21,7 @@ const Header = () => {
 
 	return (
 		<header id='header' className='fixed-top d-flex align-items-center'>
-			<div className='container d-flex align-items-center justify-content-between'>
+			<div className='container container-header d-flex align-items-center justify-content-between'>
 				<div className={'d-flex'}>
 					<div className='logo'>
 						<h1><Link to={'/main'} style={{ lineHeight: '40px' }}>Logo</Link></h1>
