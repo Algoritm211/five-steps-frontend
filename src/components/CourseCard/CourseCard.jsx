@@ -1,21 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './CourseCard.css'
-import axios from 'axios'
-import { instanceAxios } from '../../api/api-config'
 
 const CourseCard = (props) => {
-	const [authorName, setAuthorName] = useState('')
 	const course = props.course
-	const {category, title, rating, authorAvatar, author} = course
-
-	const getAuthorInfo = async () => {
-		const authorInfo = await instanceAxios.get(`/course/author?id=${author}`).then(data => data.data)
-		setAuthorName(authorInfo.name)
-	}
-
-	useEffect(() => {
-		getAuthorInfo()
-	}, [])
+	const {category, title, rating, author} = course
 
 	return (
 		<div className="container card ">
@@ -42,10 +30,11 @@ const CourseCard = (props) => {
 			</div>
 			<div className="row ms-0 me-0">
 				<div className="col-2 pe-0 ps-0">
-					<img src={authorAvatar || 'https://image.flaticon.com/icons/png/512/147/147144.png'} className="img-fluid" alt="" />
+					<img src={author.avatar || 'https://image.flaticon.com/icons/png/512/147/147144.png'} className="img-fluid" alt="" />
 				</div>
 				<div className="col-10 d-flex" style={{alignItems: 'center'}}>
-					<h6 className={'author-info mb-0'}>{authorName}, <br /> {'position'}</h6>
+					<h6 className={'author-info mb-0'}>{author.name}
+						, <br /> {author.description || ''}</h6>
 				</div>
 			</div>
 		</div>
