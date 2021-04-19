@@ -62,3 +62,10 @@
     margin-bottom: 30px;
   }
 }
+
+.progressLine {
+  background: #0d8502;
+  border-radius: 10px;
+  height: 5px;
+  width: 20%;
+}

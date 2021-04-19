@@ -7,3 +7,7 @@ export const getAllCourses = (state) => {
 export const getIsLoading = (state) => {
 	return state.coursesReducer.isLoading
 }
+
+export const getUserCourses = (state) => {
+	return state.coursesReducer.usersCourses
+}
