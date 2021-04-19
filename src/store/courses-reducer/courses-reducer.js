@@ -5,19 +5,22 @@ const coursesReducer = createSlice({
 	name: 'coursesReducer',
 	initialState: {
 		allCourses: [],
-		isLoading: false
+		isLoading: false,
+		usersCourses: []
 	},
 	reducers: {
 		toggleIsLoading: (state, action) => {
 			state.isLoading = action
 		},
 		setAllCourses: (state, action) => {
-			console.log(action.payload.courses)
 			state.allCourses = action.payload.courses
+		},
+		setUserCourses: (state, action) => {
+			state.usersCourses = action.payload.courses
 		}
 	}
 })
 
-export const {setAllCourses, toggleIsLoading} = coursesReducer.actions
+export const {setAllCourses, toggleIsLoading, setUserCourses} = coursesReducer.actions
 
 export default coursesReducer.reducer
