@@ -14,12 +14,12 @@ const Blog = () => {
                 <h1 className="guid-title">Профорієнтація</h1>
                 <h3 className="guid-subtitle">Цікаві статті для розвитку та пошуку себе</h3>
                 <div className="guid-journal">
-                    <div className="d-flex guid-journal-results mt-5 mb-3">
-                        <div className="d-flex guid-journal-l justify-content-start">
-                            <span className="guid-materials">Показано матеріалів: 6 з </span><span
-                            className="guid-materials">n</span>
+                    <div className="guid-journal-results mt-5 mb-3">
+                        <div className="d-flex guid-journal-l">
+                            <span className="guid-materials">Показано матеріалів: 6 з&nbsp;</span><span
+                            className="guid-materials">12 578</span>
                         </div>
-                        <div className="d-flex guid-journal-r justify-content-end">
+                        <div className="d-flex guid-journal-r">
                             <input className="guid-checkbox" type="checkbox" id="articles" name="articles"/>
                             <label className="guid-label" htmlFor="articles">Статті</label>
                             <input type="checkbox" id="podcasts" name="podcasts"/>
@@ -28,7 +28,7 @@ const Blog = () => {
                             <label className="guid-label" htmlFor="video">Відео</label>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="d-flex row">
                         <div className="col-md-4 col-sm-6 col-12 guid-card-item mb-5">
                             <Link to="#">
                                 <img className="guid-card-img mb-3"
