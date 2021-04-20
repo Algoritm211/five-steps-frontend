@@ -5,8 +5,9 @@ import {
 	setAuthError,
 	setIsAuth,
 	setRegistrationError,
-	setUserAuthData,
+	setUserAuthData, setUserData,
 } from './auth-reducer'
+import { userAPI } from '../../api/user-api'
 
 export const registerUser = (userData) => async (dispatch) => {
 	try {

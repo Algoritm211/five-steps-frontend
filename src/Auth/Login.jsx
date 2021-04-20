@@ -20,13 +20,13 @@ const Login = () => {
 			'http://localhost:5000/api/auth/google',
 			'Auth',
 			'width=500,height=500,status=yes,toolbar=no,menubar=no,location=no',
-		);
+		)
 
 		const timer = setInterval(() => {
 			if (win.closed) {
-				clearInterval(timer);
+				clearInterval(timer)
 			}
-		}, 100);
+		}, 100)
 	}
 
 	const onCatchGoogleAuth = (messageEvent) => {
@@ -42,11 +42,11 @@ const Login = () => {
 	}
 
 	React.useEffect(() => {
-		window.addEventListener('message', onCatchGoogleAuth);
+		window.addEventListener('message', onCatchGoogleAuth)
 		return () => {
 			window.removeEventListener('message', onCatchGoogleAuth)
 		}
-	}, []);
+	}, [])
 
 
 	return (

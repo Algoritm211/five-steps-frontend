@@ -17,6 +17,9 @@ const authReducer = createSlice({
 			state.isAuth = true
 			state.authError = null
 		},
+		setUserData(state, action) {
+			state.userData = action.payload
+		},
 		logout(state) {
 			state.userData = {}
 			state.isAuth = false
@@ -37,6 +40,7 @@ const authReducer = createSlice({
 export const {
 	setIsAuth,
 	logout,
+	setUserData,
 	setAuthError,
 	setUserAuthData,
 	registrationSuccess,

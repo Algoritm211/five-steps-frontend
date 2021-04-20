@@ -8,6 +8,7 @@ const CourseCard = (props) => {
 	const course = props.course
 	const { category, title, rating, author } = course
 	const userInfo = useSelector(getUserData)
+	console.log(userInfo)
 	let courseCompletePercent = 0
 	if (userInfo.lessonsCompleted) {
 		 courseCompletePercent = countEntries(userInfo.lessonsCompleted, course.lessons) * 20
