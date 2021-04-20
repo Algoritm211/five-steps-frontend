@@ -10,6 +10,7 @@ import Registration from './Auth/Registration'
 import Login from './Auth/Login'
 import MyProf from './components/MyProfession/MyProf';
 import MyProfile from './components/MyProfile/MyProfile';
+import Blog from "./components/Blog/Blog";
 
 function App() {
 	const dispatch = useDispatch()
@@ -31,6 +32,7 @@ function App() {
 				<Route path={'/myprof/:id/'} component={MyProf} />
 				<Route path={'/professions'} component={MyProf} />
 				<Route path={'/account'} component={MyProfile} />
+				<Route path={'/blog'} component={Blog} />
 				<Redirect to={'/main'} />
 			</Switch>
 		</div>
