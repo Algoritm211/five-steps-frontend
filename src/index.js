@@ -5,15 +5,18 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { Provider } from 'react-redux'
 import store from './store/store'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
+import { QueryParamProvider } from 'use-query-params'
 
 ReactDOM.render(
 	<BrowserRouter>
 		<Provider store={store}>
-			<App />
+			<QueryParamProvider ReactRouterRoute={Route}>
+				<App />
+			</QueryParamProvider>
 		</Provider>
 	</BrowserRouter>,
-	document.getElementById('root')
+	document.getElementById('root'),
 )
 
 // If you want to start measuring performance in your app, pass a function

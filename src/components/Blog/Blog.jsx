@@ -1,160 +1,126 @@
-import React from 'react';
+import React, { useEffect } from 'react'
 import './Blog.css'
 import Header from '../Header/Header'
-import {Link} from "react-router-dom";
-import styles from "../MainPage/MainPage.module.css";
+import styles from '../MainPage/MainPage.module.css'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+	getArticles,
+	getArticlesCount,
+	getArticlesFilter,
+	getPage,
+} from '../../store/articles-reducer/articles-selector'
+import { addNewArticles, loadPageArticles } from '../../store/articles-reducer/articles-thunks'
+import ArticleCard from './ArticleCard/ArticleCard'
+import ReactPaginate from 'react-paginate'
+import { BooleanParam, NumberParam, StringParam, useQueryParams } from 'use-query-params'
+import { setFilter, setPage } from '../../store/articles-reducer/articles-reducer'
 
 const Blog = () => {
-    return (
-        <React.Fragment>
-            <div className={styles.header}>
-                <Header/>
-            </div>
-            <div className="container mt-5">
-                <h1 className="guid-title">Профорієнтація</h1>
-                <h3 className="guid-subtitle">Цікаві статті для розвитку та пошуку себе</h3>
-                <div className="guid-journal">
-                    <div className="guid-journal-results mt-5 mb-3">
-                        <div className="d-flex guid-journal-l">
-                            <span className="guid-materials">Показано матеріалів: 6 з&nbsp;</span><span
-                            className="guid-materials">12 578</span>
-                        </div>
-                        <div className="d-flex guid-journal-r">
-                            <input className="guid-checkbox" type="checkbox" id="articles" name="articles"/>
-                            <label className="guid-label" htmlFor="articles">Статті</label>
-                            <input type="checkbox" id="podcasts" name="podcasts"/>
-                            <label className="guid-label" htmlFor="podcasts">Подкасти</label>
-                            <input type="checkbox" id="video" name="video"/>
-                            <label className="guid-label" htmlFor="video">Відео</label>
-                        </div>
-                    </div>
-                    <div className="d-flex row">
-                        <div className="col-md-4 col-sm-6 col-12 guid-card-item mb-5">
-                            <Link to="#">
-                                <img className="guid-card-img mb-3"
-                                     src="https://lh3.googleusercontent.com/proxy/2aTy--gUWniJthrzMc-e-V5wnMoSN2buW8ycWcgc2imC_Mt2f2n2iDb_Nn8nv_rfIa-rF2XuerS5GpT9hKXUL_J2uypwLal7jglD6tCthTQNqQfVS_pNPSJxIigCqiPSO-L1gMWJ5ykGFUwfA4NU8gr0pQ"
-                                     alt="guid-card-item"/>
-                            </Link>
-                            <div className="d-flex mb-3 guid-card-article">
-                                <i className="far fa-newspaper guid-card-ill"/>
-                                <span className="guid-card-type">Стаття</span>
-                            </div>
-                            <div className="d-flex mb-3 ">
-                                <Link className="guid-card-title">Как заставить работать людей, если они не хотят</Link>
-                            </div>
-                            <div className="d-flex mb-3">
-                                <Link to="#" className="guid-card-subtitle">Прочитати</Link>
-                                <i className="fas fa-long-arrow-alt-right guid-card-ill"
-                                   style={{fontSize: '12px', color: '#f26c4f'}}/>
-                            </div>
-                        </div>
-                        <div className="col-md-4 col-sm-6 col-12 guid-card-item mb-5">
-                            <Link to="#">
-                                <img className="guid-card-img mb-3"
-                                     src="https://upload.wikimedia.org/wikipedia/ru/2/24/The_Game_Awards_2019_poster.jpg"
-                                     alt="guid-card-item"/>
-                            </Link>
-                            <div className="d-flex mb-3 guid-card-podcast">
-                                <i className="fas fa-microphone-alt guid-card-ill"/>
-                                <span className="guid-card-type">Подкаст</span>
-                            </div>
-                            <div className="d-flex mb-3">
-                                <Link className="guid-card-title">Играть в игры беплатно без регистрации</Link>
-                            </div>
-                            <div className="d-flex mb-3">
-                                <Link to="#" className="guid-card-subtitle">Прослухати</Link>
-                                <i className="fas fa-long-arrow-alt-right guid-card-ill"
-                                   style={{fontSize: '12px', color: '#f26c4f'}}/>
-                            </div>
-                        </div>
-                        <div className="col-md-4 col-sm-6 col-12 guid-card-item mb-5">
-                            <Link to="#">
-                                <img className="guid-card-img mb-3"
-                                     src="https://7themes.su/php/imres/resize.php?width=1920&height=1080&cropratio=16:9&image=/_ph/28/337812698.jpg"
-                                     alt="guid-card-item"/>
-                            </Link>
-                            <div className="d-flex mb-3 guid-card-video">
-                                <i className="fas fa-video guid-card-ill"/>
-                                <span className="guid-card-type">Відео</span>
-                            </div>
-                            <div className="d-flex mb-3">
-                                <Link className="guid-card-title">Как заставить работать людей, если они не хотят</Link>
-                            </div>
-                            <div className="d-flex mb-3">
-                                <Link to="#" className="guid-card-subtitle">Продивитися</Link>
-                                <i className="fas fa-long-arrow-alt-right guid-card-ill"
-                                   style={{fontSize: '12px', color: '#f26c4f'}}/>
-                            </div>
-                        </div>
-                        <div className="col-md-4 col-sm-6 col-12 guid-card-item mb-5">
-                            <Link to="#">
-                                <img className="guid-card-img mb-3"
-                                     src="https://lh3.googleusercontent.com/proxy/2aTy--gUWniJthrzMc-e-V5wnMoSN2buW8ycWcgc2imC_Mt2f2n2iDb_Nn8nv_rfIa-rF2XuerS5GpT9hKXUL_J2uypwLal7jglD6tCthTQNqQfVS_pNPSJxIigCqiPSO-L1gMWJ5ykGFUwfA4NU8gr0pQ"
-                                     alt="guid-card-item"/>
-                            </Link>
-                            <div className="d-flex mb-3 guid-card-article">
-                                <i className="far fa-newspaper guid-card-ill"/>
-                                <span className="guid-card-type">Стаття</span>
-                            </div>
-                            <div className="d-flex mb-3">
-                                <Link className="guid-card-title">Как заставить работать людей, если они не хотят</Link>
-                            </div>
-                            <div className="d-flex mb-3">
-                                <Link to="#" className="guid-card-subtitle">Прочитати</Link>
-                                <i className="fas fa-long-arrow-alt-right guid-card-ill"
-                                   style={{fontSize: '12px', color: '#f26c4f'}}/>
-                            </div>
-                        </div>
-                        <div className="col-md-4 col-sm-6 col-12 guid-card-item mb-5">
-                            <Link to="#">
-                                <img className="guid-card-img mb-3"
-                                     src="https://upload.wikimedia.org/wikipedia/ru/2/24/The_Game_Awards_2019_poster.jpg"
-                                     alt="guid-card-item"/>
-                            </Link>
-                            <div className="d-flex mb-3 guid-card-podcast">
-                                <i className="fas fa-microphone-alt guid-card-ill"/>
-                                <span className="guid-card-type">Подкаст</span>
-                            </div>
-                            <div className="d-flex mb-3">
-                                <Link className="guid-card-title">Играть в игры беплатно без регистрации</Link>
-                            </div>
-                            <div className="d-flex mb-3">
-                                <Link to="#" className="guid-card-subtitle">Прослухати</Link>
-                                <i className="fas fa-long-arrow-alt-right guid-card-ill"
-                                   style={{fontSize: '12px', color: '#f26c4f'}}/>
-                            </div>
-                        </div>
-                        <div className="col-md-4 col-sm-6 col-12 guid-card-item mb-5">
-                            <Link to="#">
-                                <img className="guid-card-img mb-3"
-                                     src="https://7themes.su/php/imres/resize.php?width=1920&height=1080&cropratio=16:9&image=/_ph/28/337812698.jpg"
-                                     alt="guid-card-item"/>
-                            </Link>
-                            <div className="d-flex mb-3 guid-card-video">
-                                <i className="fas fa-video guid-card-ill"/>
-                                <span className="guid-card-type">Відео</span>
-                            </div>
-                            <div className="d-flex mb-3">
-                                <Link className="guid-card-title">Как заставить работать людей, если они не хотят</Link>
-                            </div>
-                            <div className="d-flex mb-3">
-                                <Link to="#" className="guid-card-subtitle">Продивитися</Link>
-                                <i className="fas fa-long-arrow-alt-right guid-card-ill"
-                                   style={{fontSize: '12px', color: '#f26c4f'}}/>
-                            </div>
-                        </div>
-                        <div className="d-flex justify-content-center mb-5">
-                            <Link to="#">
-                                <button className="guid-button">
-                                    Показати більше
-                                </button>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </React.Fragment>
+	const dispatch = useDispatch()
+	const page = useSelector(getPage)
+	let articles = useSelector(getArticles)
+	const articlesCount = useSelector(getArticlesCount)
+	const filter = useSelector(getArticlesFilter)
+	// console.log(filter)
 
-    );
-};
+	const [query, setQuery] = useQueryParams({
+		page: NumberParam,
+		video: BooleanParam,
+		podcast: BooleanParam,
+		article: BooleanParam,
+	})
+
+	useEffect(() => {
+		const queryParams = query
+		console.log(query)
+		const page = queryParams.page || 1
+		dispatch(setPage(page))
+		dispatch(setFilter({
+			article: queryParams.article,
+			video: queryParams.video,
+			podcast: queryParams.podcast,
+		}))
+		dispatch(loadPageArticles(page))
+	}, [])
+
+	useEffect(() => {
+		setQuery({ ...filter, page: page })
+	}, [page, filter])
+
+	const onLoadMore = () => {
+		dispatch(addNewArticles(page + 1))
+	}
+
+	const onPageChange = (pageInfo) => {
+		dispatch(loadPageArticles(pageInfo.selected + 1))
+	}
+
+	const onFilterChange = (event) => {
+		const filterParam = event.target.getAttribute('name')
+		dispatch(setFilter({ [filterParam]: event.target.checked }))
+		setQuery({})
+	}
+
+	articles = filterArticles(articles, filter)
+	const articlesBlock = articles.map((article) => {
+		return <ArticleCard article={article} key={article._id} />
+	})
+
+
+	return (
+		<React.Fragment>
+			<div className={styles.header}>
+				<Header />
+			</div>
+			<div className='container mt-5'>
+				<h1 className='guid-title'>Профорієнтація</h1>
+				<h3 className='guid-subtitle'>Цікаві статті для розвитку та пошуку себе</h3>
+				<div className='guid-journal'>
+					<div className='guid-journal-results mt-5 mb-3'>
+						<div className='d-flex guid-journal-l'>
+							<span className='guid-materials'>Показано матеріалів: {articles.length} з&nbsp;</span><span
+							className='guid-materials'>{articlesCount}</span>
+						</div>
+						<div className='d-flex guid-journal-r'>
+							<input className='guid-checkbox' type='checkbox' onChange={onFilterChange} checked={filter['article']}
+										 id='articles'
+										 name='article' />
+							<label className='guid-label' htmlFor='article'>Статті</label>
+							<input type='checkbox' id='podcasts' name='podcast' onChange={onFilterChange}
+										 checked={filter['podcast']} />
+							<label className='guid-label' htmlFor='podcast'>Подкасти</label>
+							<input type='checkbox' id='video' name='video' onChange={onFilterChange} checked={filter['video']} />
+							<label className='guid-label' htmlFor='video'>Відео</label>
+						</div>
+					</div>
+					<div className='d-flex row'>
+						{articlesBlock}
+						<div className='d-flex justify-content-center mb-5'>
+							<button className='guid-button' onClick={onLoadMore}>
+								Показати більше
+							</button>
+						</div>
+					</div>
+					<ReactPaginate
+						onPageChange={onPageChange}
+						pageCount={Math.ceil(articlesCount / 6)}
+						pageRangeDisplayed={5}
+						marginPagesDisplayed={10} />
+				</div>
+			</div>
+		</React.Fragment>
+
+	)
+}
 export default Blog
+
+
+function filterArticles(articlesArray, filterObj) {
+	const newArticleArray = []
+	articlesArray.forEach((article) => {
+		if (filterObj[article.category]) {
+			newArticleArray.push(article)
+		}
+	})
+	return newArticleArray
+}
