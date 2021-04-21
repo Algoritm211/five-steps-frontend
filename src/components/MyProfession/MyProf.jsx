@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './MyProf.css'
 import Header from '../Header/Header'
-import styles from "../MainPage/MainPage.module.css";
+import styles from "../MainLayout/MainPage.module.css";
 import CourseCard from '../CourseCard/CourseCard'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserCourses } from '../../store/courses-reducer/courses-thunks'
