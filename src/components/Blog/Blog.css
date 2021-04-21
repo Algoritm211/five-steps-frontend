@@ -95,6 +95,32 @@ body{
     font-size: 12px;
     line-height: 24px;
 }
+.pagination-wrap{
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.pagination-container{
+    display: flex;
+    text-decoration: none;
+    list-style-type: none;
+    margin: 0 2rem;
+    padding: 0;
+    color: #363636;
+    font-weight: normal;
+}
+.pagination-page, .pagination-prev, .pagination-next, .pagination-break{
+    margin-right: 1rem;
+}
+.pagination-active{
+    font-weight: bold;
+}
+.pagination-disabled{
+    display: none;
+}
+.pagination-link:hover, .pagination-arrow:hover{
+    color: #f26c4f;
+}
 @media (max-width: 450px) {
     .guid-journal-results{
         display: block;

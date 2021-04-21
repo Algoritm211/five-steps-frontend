@@ -101,11 +101,26 @@ const Blog = () => {
 							</button>
 						</div>
 					</div>
-					<ReactPaginate
-						onPageChange={onPageChange}
-						pageCount={Math.ceil(articlesCount / 6)}
-						pageRangeDisplayed={5}
-						marginPagesDisplayed={10} />
+					<div className='d-flex pagination-wrap mb-5'>
+						<ReactPaginate
+							// onPageChange={onPageChange}
+							// pageCount={Math.ceil(articlesCount / 6)}
+							onPageCount={7}
+							pageRangeDisplayed={3}
+							marginPagesDisplayed={3}
+							pageClassName={'pagination-page'}
+							pageLinkClassName={'pagination-link'}
+							containerClassName={'pagination-container'}
+							previousClassName={'pagination-prev'}
+							previousLabel={<i className="fas fa-long-arrow-alt-left"/>}
+							nextLabel={<i className="fas fa-long-arrow-alt-right"/>}
+							breakLabel={<i className="fas fa-ellipsis-h pagination-break"/>}
+							nextClassName={'pagination-next'}
+							previousLinkClassName={'pagination-arrow'}
+							nextLinkClassName={'pagination-arrow'}
+							disabledClassName={'pagination-disabled'}
+							activeClassName={'pagination-active'} />
+					</div>
 				</div>
 			</div>
 		</React.Fragment>

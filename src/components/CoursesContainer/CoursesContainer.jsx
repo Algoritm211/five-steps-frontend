@@ -6,6 +6,7 @@ import {getAllCourses} from '../../store/courses-reducer/courses-thunks'
 import {getIsLoading} from '../../store/courses-reducer/courses-selector'
 import {getAllCourses as getAllCoursesSelector} from '../../store/courses-reducer/courses-selector'
 import {Link} from "react-router-dom";
+import ReactPaginate from "react-paginate";
 
 const CoursesContainer = () => {
     const dispatch = useDispatch()
@@ -133,6 +134,26 @@ const CoursesContainer = () => {
                             <CourseCard course={course}/>
                             {/*<CourseCard course={course} />*/}
                             {/*{allCoursesBlock}*/}
+                        </div>
+                        <div className='d-flex pagination-wrap mb-5'>
+                            <ReactPaginate
+                                // onPageChange={onPageChange}
+                                // pageCount={Math.ceil(articlesCount / 6)}
+                                pageCount={7}
+                                pageRangeDisplayed={5}
+                                marginPagesDisplayed={5}
+                                pageClassName={'pagination-page'}
+                                pageLinkClassName={'pagination-link'}
+                                containerClassName={'pagination-container'}
+                                previousClassName={'pagination-prev'}
+                                previousLabel={<i className="fas fa-long-arrow-alt-left"/>}
+                                nextLabel={<i className="fas fa-long-arrow-alt-right"/>}
+                                breakLabel={<i className="fas fa-ellipsis-h pagination-break"/>}
+                                nextClassName={'pagination-next'}
+                                previousLinkClassName={'pagination-arrow'}
+                                nextLinkClassName={'pagination-arrow'}
+                                disabledClassName={'pagination-disabled'}
+                                activeClassName={'pagination-active'} />
                         </div>
                     </div>
                 </div>
