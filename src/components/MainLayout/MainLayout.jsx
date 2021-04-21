@@ -6,20 +6,22 @@ import MainPlates from '../MainPlates/MainPlates'
 import CourseEditor from '../Editor/Editor'
 
 
-const MainPage = () => {
+const MainLayout = ({ children }) => {
 
 	return (
 		<React.Fragment>
-				<div className={styles.header}>
-					<Header />
-				</div>
-				<main className={styles.main}>
-					{/*<MainPlates />*/}
-					<CoursesContainer />
-					{/*<CourseEditor />*/}
-				</main>
+			<div className={styles.header}>
+				<Header />
+			</div>
+			<main className={styles.main}>
+				{children}
+				{/*<MainPlates />*/}
+				{/*<CoursesContainer />*/}
+				{/*<CourseEditor />*/}
+			</main>
 		</React.Fragment>
 	)
+
 }
 
-export default MainPage
+export default MainLayout

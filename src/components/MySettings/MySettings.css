@@ -75,14 +75,13 @@ body{
     border-radius: 999px;
 }
 .info-title{
-
+    width: 150px;
     text-align: left;
     font-size: 14px;
     font-weight: 700;
     line-height: 2;
     letter-spacing: .5px;
     color: #7e919f;
-
 }
 .avatar-change{
     font-size: 12px;
@@ -105,13 +104,36 @@ body{
     box-sizing: border-box;
     border-radius: 999px;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 14px;
     padding: 10px 20px;
 }
-.form-select{
-    width: auto;
-    display: inline-block;
+.cont{
+    width: 60%;
+    margin: 0 auto;
 }
-.select-wrap{
-    width: 380px;
+.delete-text{
+    color: red;
+    font-size: 13px;
+    cursor: pointer;
+
+}
+.active{
+    display: flex;
+}
+.modal{
+    background: rgba(33, 38, 42, 0.5);
+    padding-top: calc(100vh / 2 - 190px);
+}
+.modal-dialog{
+
+}
+@media (max-width: 1200px) {
+    .cont{
+        width: 80%;
+    }
+}
+@media (max-width: 1030px) {
+    .cont{
+        width: 100%;
+    }
 }

@@ -2,9 +2,9 @@ import { coursesAPI } from '../../api/courses-api'
 import { setAllCourses, setUserCourses, toggleIsLoading } from './courses-reducer'
 
 
-export const getAllCourses = () => async (dispatch) => {
+export const getAllCourses = (page, filters) => async (dispatch) => {
 	dispatch(toggleIsLoading(true))
-	const data = await coursesAPI.getAllCourses()
+	const data = await coursesAPI.getAllCourses(page, filters)
 	dispatch(setAllCourses(data))
 	dispatch(toggleIsLoading(false))
 }

@@ -2,8 +2,8 @@ import { instanceAxios } from './api-config'
 
 
 export const coursesAPI = {
-	getAllCourses: () => {
-		return instanceAxios.get('course')
+	getAllCourses: (page, filters) => {
+		return instanceAxios.get(`course?page=${page}&filters=${filters.join(',')}`)
 			.then((data) => data.data)
 	},
 

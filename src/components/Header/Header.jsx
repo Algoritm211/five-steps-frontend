@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getIsAuth, getUserData } from '../../store/auth-reducer/auth-selector'
 import { logout } from '../../store/auth-reducer/auth-reducer'
-import { MainPageStepContext } from '../MainPage/MainPage'
+import { MainPageStepContext } from '../MainLayout/MainLayout'
 
 
 const Header = () => {
@@ -28,9 +28,9 @@ const Header = () => {
 					</div>
 					<nav id='navbar' className={`order-last order-lg-0 ${isMobile ? 'navbar-mobile' : 'navbar'}`}>
 						<ul>
-							<li><a className='nav-link'>Професії</a></li>
+							<li><Link className='nav-link' to={'/professions'}>Професії</Link></li>
 							<li><a className='nav-link' href='#'>Спеціалісти</a></li>
-							<li><a className='nav-link' href='#'>Профорієнтація</a></li>
+							<li><Link className='nav-link' to='/blog'>Профорієнтація</Link></li>
 							<li><a className='nav-link' href='#'>Тарифи</a></li>
 						</ul>
 					</nav>
