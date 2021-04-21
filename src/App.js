@@ -11,7 +11,11 @@ import Login from './Auth/Login'
 import MyProf from './components/MyProfession/MyProf';
 import MyProfile from './components/MyProfile/MyProfile';
 import Blog from "./components/Blog/Blog";
-import CoursePage from "./components/CoursePage/CoursePage";
+
+import CoursesContainer from './components/CoursesContainer/CoursesContainer'
+import MainPlates from './components/MainPlates/MainPlates'
+import MySettings from './components/MySettings/MySettings'
+import CoursePage from './components/CoursePage/CoursePage'
 
 function App() {
 	const dispatch = useDispatch()
@@ -30,11 +34,18 @@ function App() {
 				<Route path={'/main'} component={MainPage} />
 				<Route path={'/login'} component={Login} />
 				<Route path={'/registration'} component={Registration} />
-				<Route path={'/myprof/:id/'} component={MyProf} />
-				<Route path={'/professions'} component={MyProf} />
-				<Route path={'/account'} component={MyProfile} />
+
+				<Route path={'/professions'} component={CoursesContainer} />
 				<Route path={'/blog'} component={Blog} />
-				<Route path={'/c'} component={CoursePage} />
+
+
+				<Route path={'/account/:id/'} component={MyProfile} />
+				<Route path={'/myprof/:id/'} component={MyProf} />
+				<Route path={'/settings/:id/'} component={MySettings} />
+
+
+				<Route path={'/course/:id/'} component={CoursePage} />
+
 				<Redirect to={'/main'} />
 			</Switch>
 		</div>
