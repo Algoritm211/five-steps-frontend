@@ -6,6 +6,8 @@ import CourseCard from '../CourseCard/CourseCard'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserCourses } from '../../store/courses-reducer/courses-thunks'
 import { getUserCourses as userCoursesSelector } from '../../store/courses-reducer/courses-selector'
+import MainLayout from '../MainLayout/MainLayout'
+import ProfileNavbar from '../MyProfile/ProfileNavbar/ProfileNavbar'
 
 const MyProf = () => {
 
@@ -33,44 +35,13 @@ const MyProf = () => {
 	})
 
 	return (
-		<React.Fragment>
+		<MainLayout>
 			<div className="container mt-5">
 				<div className="row flex-lg-nowrap">
 					<div className="col-12 col-lg-auto" style={{width: '200px'}}>
 						<div className="cardAcc">
 							<div className="e-navlist">
-								<ul className="nav d-block">
-									<li className="nav-item side-accElem">
-										<a className="nav-link side-elem" href="#">
-											<div className="sidebar-l">
-												<i className="far fa-user-circle side-accIll"/>
-											</div>
-											<div className="sidebar-r">
-												<span className="sidebar-title">Мій профіль</span>
-											</div>
-										</a>
-									</li>
-									<li className="nav-item side-accElem">
-										<a className="nav-item side-elem side-elem-active" href="#">
-											<div className="sidebar-l">
-												<i className="fas fa-briefcase side-accIll"/>
-											</div>
-											<div className="sidebar-r">
-												<span className="sidebar-title">Мої професії</span>
-											</div>
-										</a>
-									</li>
-									<li className="nav-item side-accElem">
-										<a className="nav-item side-elem " href="#">
-											<div className="sidebar-l">
-												<i className="fas fa-cog side-accIll"/>
-											</div>
-											<div className="sidebar-r">
-												<span className="sidebar-title">Налаштування</span>
-											</div>
-										</a>
-									</li>
-								</ul>
+								<ProfileNavbar />
 							</div>
 						</div>
 					</div>
@@ -116,7 +87,7 @@ const MyProf = () => {
 			{/*		{userCoursesBlock}*/}
 			{/*	</div>*/}
 			{/*</div>*/}
-		</React.Fragment>
+		</MainLayout>
 	)
 }
 

@@ -67,7 +67,7 @@ const Header = () => {
 											<Link to='/login'>Вхід</Link>
 										) : (
 											<>
-												<Link to={'/profile'}>Акаунт</Link>
+												<Link to={`/account/${user.id}`}>Акаунт</Link>
 												<Link to={`/myprof/${user.id}`}>Мої Професії</Link>
 												<div className="dropdown-divider"></div>
 												<Link to={'/main'} onClick={onLogout}>Вихід</Link>
