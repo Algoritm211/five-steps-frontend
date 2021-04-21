@@ -139,7 +139,7 @@ const CoursesContainer = () => {
                             <ReactPaginate
                                 // onPageChange={onPageChange}
                                 // pageCount={Math.ceil(articlesCount / 6)}
-                                pageCount={7}
+                                pageCount={5}
                                 pageRangeDisplayed={5}
                                 marginPagesDisplayed={5}
                                 pageClassName={'pagination-page'}

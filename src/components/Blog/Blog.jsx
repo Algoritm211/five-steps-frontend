@@ -93,14 +93,6 @@ const Blog = () => {
 							<label className='guid-label' htmlFor='video'>Відео</label>
 						</div>
 					</div>
-					<div className='d-flex row'>
-						{articlesBlock}
-						<div className='d-flex justify-content-center mb-5'>
-							<button className='guid-button' onClick={onLoadMore}>
-								Показати більше
-							</button>
-						</div>
-					</div>
 					<div className='d-flex pagination-wrap mb-5'>
 						<ReactPaginate
 							// onPageChange={onPageChange}
