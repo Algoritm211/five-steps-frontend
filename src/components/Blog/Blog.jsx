@@ -12,7 +12,7 @@ import {
 import { addNewArticles, loadPageArticles } from '../../store/articles-reducer/articles-thunks'
 import ArticleCard from './ArticleCard/ArticleCard'
 import ReactPaginate from 'react-paginate'
-import { BooleanParam, NumberParam, StringParam, useQueryParams } from 'use-query-params'
+import { NumberParam, StringParam, useQueryParams } from 'use-query-params'
 import { setFilter, setPage } from '../../store/articles-reducer/articles-reducer'
 
 const Blog = () => {
@@ -21,26 +21,25 @@ const Blog = () => {
 	let articles = useSelector(getArticles)
 	const articlesCount = useSelector(getArticlesCount)
 	const filter = useSelector(getArticlesFilter)
-	// console.log(filter)
 
 	const [query, setQuery] = useQueryParams({
 		page: NumberParam,
-		video: BooleanParam,
-		podcast: BooleanParam,
-		article: BooleanParam,
+		video: StringParam,
+		podcast: StringParam,
+		article: StringParam,
 	})
 
 	useEffect(() => {
 		const queryParams = query
-		console.log(query)
 		const page = queryParams.page || 1
 		dispatch(setPage(page))
 		dispatch(setFilter({
-			article: queryParams.article,
-			video: queryParams.video,
-			podcast: queryParams.podcast,
+			article: queryParams.article !== undefined ? Boolean(queryParams.article) : true,
+			video: queryParams.video !== undefined ? Boolean(queryParams.video) : true,
+			podcast: queryParams.podcast !== undefined ? Boolean(queryParams.podcast) : true,
 		}))
-		dispatch(loadPageArticles(page))
+		console.log(query)
+		dispatch(loadPageArticles(filter, page))
 	}, [])
 
 	useEffect(() => {
@@ -52,13 +51,15 @@ const Blog = () => {
 	}
 
 	const onPageChange = (pageInfo) => {
-		dispatch(loadPageArticles(pageInfo.selected + 1))
+		dispatch(loadPageArticles(filter, pageInfo.selected + 1))
 	}
 
 	const onFilterChange = (event) => {
 		const filterParam = event.target.getAttribute('name')
-		dispatch(setFilter({ [filterParam]: event.target.checked }))
-		setQuery({})
+		const newFilter = {...filter}
+		newFilter[filterParam] = event.target.checked
+		dispatch(setFilter(newFilter))
+		dispatch(loadPageArticles(newFilter, 1))
 	}
 
 	articles = filterArticles(articles, filter)
@@ -95,32 +96,21 @@ const Blog = () => {
 					</div>
 					<div className='d-flex row'>
 						{articlesBlock}
-						<div className='d-flex justify-content-center mb-5'>
-							<button className='guid-button' onClick={onLoadMore}>
-								Показати більше
-							</button>
-						</div>
+						{/*{(articlesCount !== articles.length && Math.ceil(articlesCount / 6) !== page) && (*/}
+						{/*	<div className='d-flex justify-content-center mb-5'>*/}
+						{/*		<button className='guid-button' onClick={onLoadMore}>*/}
+						{/*			Показати більше*/}
+						{/*		</button>*/}
+						{/*	</div>*/}
+						{/*)}*/}
 					</div>
-					<div className='d-flex pagination-wrap mb-5'>
-						<ReactPaginate
-							// onPageChange={onPageChange}
-							// pageCount={Math.ceil(articlesCount / 6)}
-							onPageCount={7}
-							pageRangeDisplayed={3}
-							marginPagesDisplayed={3}
-							pageClassName={'pagination-page'}
-							pageLinkClassName={'pagination-link'}
-							containerClassName={'pagination-container'}
-							previousClassName={'pagination-prev'}
-							previousLabel={<i className="fas fa-long-arrow-alt-left"/>}
-							nextLabel={<i className="fas fa-long-arrow-alt-right"/>}
-							breakLabel={<i className="fas fa-ellipsis-h pagination-break"/>}
-							nextClassName={'pagination-next'}
-							previousLinkClassName={'pagination-arrow'}
-							nextLinkClassName={'pagination-arrow'}
-							disabledClassName={'pagination-disabled'}
-							activeClassName={'pagination-active'} />
-					</div>
+					<ReactPaginate
+						onPageChange={onPageChange}
+						previousLabel={Math.ceil(articlesCount / 6) > 1 ? 'Previous' : ''}
+						nextLabel={Math.ceil(articlesCount / 6) > 1 ? 'Next' : ''}
+						pageCount={Math.ceil(articlesCount / 6)}
+						pageRangeDisplayed={5}
+						marginPagesDisplayed={10} />
 				</div>
 			</div>
 		</React.Fragment>

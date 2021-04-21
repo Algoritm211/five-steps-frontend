@@ -4,14 +4,21 @@ import { useSelector } from 'react-redux'
 import { getUserData } from '../../store/auth-reducer/auth-selector'
 import { countEntries } from '../util-funcs/entries-two-arr-counter'
 
+const categoryToUkr = {
+	it: 'IT',
+	design: 'Дизайн',
+	business: 'Бізнес',
+	education: 'Освіта',
+	marketing: 'Маркетинг',
+}
+
 const CourseCard = (props) => {
 	const course = props.course
 	const { category, title, rating, author } = course
 	const userInfo = useSelector(getUserData)
-	console.log(userInfo)
 	let courseCompletePercent = 0
 	if (userInfo.lessonsCompleted) {
-		 courseCompletePercent = countEntries(userInfo.lessonsCompleted, course.lessons) * 20
+		courseCompletePercent = countEntries(userInfo.lessonsCompleted, course.lessons) * 20
 	}
 
 
@@ -19,7 +26,7 @@ const CourseCard = (props) => {
 		<div className='container card '>
 			<div className='row mb-3 ms-0 me-0'>
 				<div className={`col-5 text-center rounded card-tag`}>
-					<p className='text-center m-auto card-tag-text'>{category || 'IT'}</p>
+					<p className='text-center m-auto card-tag-text'>{categoryToUkr[category].toUpperCase()}</p>
 				</div>
 			</div>
 			<div className='row mb-0 ms-0 me-0'>

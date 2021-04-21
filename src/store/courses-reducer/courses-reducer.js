@@ -6,7 +6,10 @@ const coursesReducer = createSlice({
 	initialState: {
 		allCourses: [],
 		isLoading: false,
-		usersCourses: []
+		usersCourses: [],
+		page: 1,
+		coursesCount: 0,
+		filters: [],
 	},
 	reducers: {
 		toggleIsLoading: (state, action) => {
@@ -14,13 +17,22 @@ const coursesReducer = createSlice({
 		},
 		setAllCourses: (state, action) => {
 			state.allCourses = action.payload.courses
+			state.coursesCount = action.payload.coursesCount
 		},
 		setUserCourses: (state, action) => {
 			state.usersCourses = action.payload.courses
-		}
-	}
+		},
+		setFilters: (state, action) => {
+			state.filters = [...action.payload]
+		},
+	},
+
 })
 
-export const {setAllCourses, toggleIsLoading, setUserCourses} = coursesReducer.actions
+export const {
+	setAllCourses,
+	toggleIsLoading,
+	setUserCourses,
+	setFilters } = coursesReducer.actions
 
 export default coursesReducer.reducer
