@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './Blog.css'
 import Header from '../Header/Header'
-import styles from '../MainPage/MainPage.module.css'
+import styles from '../MainLayout/MainPage.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import {
 	getArticles,
@@ -38,7 +38,7 @@ const Blog = () => {
 			video: queryParams.video !== undefined ? Boolean(queryParams.video) : true,
 			podcast: queryParams.podcast !== undefined ? Boolean(queryParams.podcast) : true,
 		}))
-		console.log(query)
+		// console.log(query)
 		dispatch(loadPageArticles(filter, page))
 	}, [])
 

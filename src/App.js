@@ -4,13 +4,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getIsAuth } from './store/auth-reducer/auth-selector'
 import { isAppReady } from './store/app-reducer/app-selector'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import MainPage from './components/MainPage/MainPage'
 import { authUser } from './store/auth-reducer/auth-thunks'
 import Registration from './Auth/Registration'
 import Login from './Auth/Login'
 import MyProf from './components/MyProfession/MyProf';
 import MyProfile from './components/MyProfile/MyProfile';
 import Blog from "./components/Blog/Blog";
+import CoursesContainer from './components/CoursesContainer/CoursesContainer'
+import MainPlates from './components/MainPlates/MainPlates'
+import withMainPageHOC from './components/withMainPageHOC/withMainPageHOC'
 
 function App() {
 	const dispatch = useDispatch()
@@ -25,12 +27,12 @@ function App() {
 	return (
 		<div className='App'>
 			<Switch>
-				<Route path={'/profile'} component={() => <div>Profile</div>} />
-				<Route path={'/main'} component={MainPage} />
+				{/*<Route path={'/profile'} component={() => <div>Profile</div>} />*/}
+				<Route path={'/main'} component={MainPlates} />
 				<Route path={'/login'} component={Login} />
 				<Route path={'/registration'} component={Registration} />
 				<Route path={'/myprof/:id/'} component={MyProf} />
-				<Route path={'/professions'} component={MyProf} />
+				<Route path={'/professions'} component={CoursesContainer} />
 				<Route path={'/account'} component={MyProfile} />
 				<Route path={'/blog'} component={Blog} />
 				<Redirect to={'/main'} />

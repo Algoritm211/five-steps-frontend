@@ -10,6 +10,8 @@ import ReactPaginate from 'react-paginate'
 import { StringParam, useQueryParams } from 'use-query-params'
 import { setFilters } from '../../store/courses-reducer/courses-reducer'
 import { setPage } from '../../store/articles-reducer/articles-reducer'
+import withMainPageHOC from '../MainLayout/MainLayout'
+import MainLayout from '../MainLayout/MainLayout'
 
 const allFiltersOnPage = ['design', 'all', 'business', 'education', 'marketing', 'it']
 
@@ -25,10 +27,8 @@ const CoursesContainer = () => {
 	const [query, setQuery] = useQueryParams({ all: StringParam, filters: StringParam })
 
 	useEffect(() => {
-		const queryParams = query
 		const page = query.page || 1
 		const filters = query.filters ? query.filters.split(',') : allFiltersOnPage
-		console.log(filters)
 		dispatch(setFilters(filters))
 		dispatch(getAllCourses(page, filters))
 	}, [])
@@ -85,7 +85,7 @@ const CoursesContainer = () => {
 	})
 
 	return (
-		<React.Fragment>
+		<MainLayout>
 			<div className='container mt-5'>
 				<h1 className='courses-title'>Професії</h1>
 				<h3 className='courses-subtitle'>Знайди свою професію</h3>
@@ -195,7 +195,7 @@ const CoursesContainer = () => {
 				</div>
 
 			</div>
-		</React.Fragment>
+		</MainLayout>
 	)
 }
 
