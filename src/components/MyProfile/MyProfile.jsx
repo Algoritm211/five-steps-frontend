@@ -11,6 +11,8 @@ import { getIsLoading, getUserData } from '../../store/auth-reducer/auth-selecto
 import { useFormik } from 'formik'
 import { deleteAvatar, updateUserInfo, uploadAvatar } from '../../store/auth-reducer/user-thunks'
 import noUserPhoto from '../../assets/user/nouserphoto.png'
+import Loader from '../Loader/Loader'
+import Error404 from '../Error404/error404'
 
 const MyProfile = () => {
 	const user = useSelector(getUserData)
@@ -24,6 +26,7 @@ const MyProfile = () => {
 			surName: user.surName,
 			role: user.role,
 			city: user.city || '',
+			description: user.description,
 			dayBirth: user?.birthdayDate?.split('-')[0] || 1,
 			monthBirth: user?.birthdayDate?.split('-')[1] || 1,
 			yearBirth: user?.birthdayDate?.split('-')[2] || 2000,
@@ -35,6 +38,7 @@ const MyProfile = () => {
 				surName: values.surName,
 				role: values.role,
 				city: values.city,
+				description: values.description,
 				birthdayDate: [values.dayBirth, values.monthBirth, values.yearBirth].join('-'),
 				gender: values.gender,
 			}
@@ -48,9 +52,18 @@ const MyProfile = () => {
 		console.log()
 	}
 
-	const onDeletePhoto = (event) => {
+	const onDeletePhoto = () => {
 		dispatch(deleteAvatar())
 	}
+
+	if (!localStorage.getItem('authToken')) {
+		return <Error404 />
+	}
+
+	if (!user || Object.entries(user).length === 0) {
+		return <Loader />
+	}
+
 
 	const date = new Date(user.dateRegistration)
 	return (
@@ -88,7 +101,8 @@ const MyProfile = () => {
 														<img className='avatar-img'
 																 src={user.avatar ? `http://localhost:5000/${user.avatar}` : noUserPhoto}
 																 alt='avatar' />
-														<input type={'file'} id={'avatar'} name={'avatar'} onChange={onHandleImage} multiple={false} hidden={true} accept="image/jpeg,image/png"/>
+														<input type={'file'} id={'avatar'} name={'avatar'} onChange={onHandleImage} multiple={false}
+																	 hidden={true} accept='image/jpeg,image/png' />
 														<label htmlFor={'avatar'} className='avatar-change'>Оновити</label>
 														<span onClick={onDeletePhoto} className='avatar-delete'>Видалити</span>
 													</div>
@@ -122,24 +136,33 @@ const MyProfile = () => {
 															id='surname' />
 													</div>
 												</div>
-												<div className='row acc-info d-flex'>
-													<div className='col-12 col-md-3'>
-														<span className='info-title'>Посада</span>
-													</div>
 
-													<div className='col-12 col-md-9'>
-														<textarea className="form-control inputAcc"
-																  placeholder="Розкажіть про себе"
-																  id="floatingTextarea"></textarea>
-														{/*<input*/}
-														{/*			 className={'textArea'}*/}
-														{/*			 value={formik.values.role}*/}
-														{/*			 onChange={formik.handleChange}*/}
-														{/*			 type='role'*/}
-														{/*			 name='role'*/}
-														{/*			 id='role' />*/}
+
+												{user.role === 'expert' && (
+													<div className='row acc-info d-flex'>
+														<div className='col-12 col-md-3'>
+															<span className='info-title'>Посада</span>
+														</div>
+														<div className='col-12 col-md-9'>
+														<textarea
+															value={formik.values.description}
+															onChange={formik.handleChange}
+															className='form-control inputAcc'
+															placeholder='Розкажіть про себе'
+															id='description' />
+														</div>
 													</div>
-												</div>
+												)}
+
+												{/*<input*/}
+												{/*			 className={'textArea'}*/}
+												{/*			 value={formik.values.role}*/}
+												{/*			 onChange={formik.handleChange}*/}
+												{/*			 type='role'*/}
+												{/*			 name='role'*/}
+												{/*			 id='role' />*/}
+
+
 												<div className='row acc-info d-flex'>
 													<div className='col-12 col-md-3'>
 														<span className='info-title'>Місто</span>
@@ -338,27 +361,27 @@ const MyProfile = () => {
 													</div>
 													<div className='col-12 col-md-9'>
 														<div className='custom-controls-stacked px-2'>
-                                                        <span className='form-check'>
-                                                    <input className='form-check-input' type='radio'
-																													 value={'man'}
-																													 checked={formik.values.gender === 'man'}
-																													 onChange={formik.handleChange}
-																													 name='gender' id='flexRadioDefault2' />
-                                                      <label className='form-check-label' htmlFor='flexRadioDefault2'>
-                                                        Чоловіча
-                                                      </label>
-                                                </span>
+														<span className='form-check'>
+														<input className='form-check-input' type='radio'
+																	 value={'man'}
+																	 checked={formik.values.gender === 'man'}
+																	 onChange={formik.handleChange}
+																	 name='gender' id='flexRadioDefault2' />
+														<label className='form-check-label' htmlFor='flexRadioDefault2'>
+														Чоловіча
+														</label>
+														</span>
 															<span className='form-check'>
-                                                    <input
-																											onChange={formik.handleChange}
-																											className='form-check-input' type='radio'
-																											checked={formik.values.gender === 'woman'}
-																											value={'woman'}
-																											name='gender' id='flexRadioDefault3' />
-                                                      <label className='form-check-label' htmlFor='flexRadioDefault3'>
-                                                        Жіноча
-                                                      </label>
-                                                </span>
+														<input
+															onChange={formik.handleChange}
+															className='form-check-input' type='radio'
+															checked={formik.values.gender === 'woman'}
+															value={'woman'}
+															name='gender' id='flexRadioDefault3' />
+														<label className='form-check-label' htmlFor='flexRadioDefault3'>
+														Жіноча
+														</label>
+														</span>
 														</div>
 													</div>
 												</div>
