@@ -1,42 +1,3 @@
-body{
-    background:#f8f8f8
-}
-
-.side-elem{
-    padding: .5rem 0!important;
-    text-decoration: none;
-    display: flex;
-}
-.side-elem-active{
-    color: #f26c4f;
-}
-.side-accElem{
-    height: 48px;
-    display: flex;
-    align-items: center;
-}
-
-
-.sidebar-title{
-    font-size: 12px;
-    line-height: 48px;
-    margin-right: 16px;
-    text-transform: uppercase;
-}
-.sidebar-l{
-    display: flex;
-}
-.sidebar-r{
-    display: flex;
-    width: 150px;
-    white-space: pre-wrap;
-}
-.side-accIll{
-    font-size: 14px;
-    margin-right: 16px;
-    align-items: center;
-    line-height: 48px;
-}
 .acc-title{
     color:#384046;
     font-size: 20px;
@@ -59,12 +20,6 @@ body{
     font-weight: normal;
 }
 
-.acc-info{
-    flex-direction: row;
-    align-items: center;
-    margin-top: 40px;
-}
-
 .avatar-img{
     height: 80px;
     width: 80px;
@@ -73,16 +28,7 @@ body{
     margin-right: 26px;
     border-radius: 999px;
 }
-.info-title{
 
-    text-align: left;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 2;
-    letter-spacing: .5px;
-    color: #7e919f;
-
-}
 .avatar-change{
     font-size: 12px;
     font-weight: 600;

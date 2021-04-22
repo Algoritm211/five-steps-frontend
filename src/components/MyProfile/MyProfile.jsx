@@ -1,5 +1,6 @@
 import React from 'react'
 import './MyProfile.css'
+import '../MyProfile/MyRootStyles.css'
 import Header from '../Header/Header'
 import { Link } from 'react-router-dom'
 import styles from '../MainLayout/MainPage.module.css'

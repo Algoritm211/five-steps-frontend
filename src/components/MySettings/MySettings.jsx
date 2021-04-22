@@ -1,5 +1,6 @@
 import React from 'react'
 import './MySettings.css'
+import '../MyProfile/MyRootStyles.css'
 import Header from '../Header/Header'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
@@ -45,20 +46,24 @@ const MySettings = () => {
 													<button className='btn btn-secondary' type='submit'>Змінити пароль
 													</button>
 												</div>
-												<div className='acc-info d-flex'>
+												<div className='row acc-info d-flex'>
+													<div className="col-12 col-sm-5 col-lg-3">
 													<span className='info-title'>Мова інтерфейсу</span>
-													<span>
-                                                        <select className='form-select'
-																																aria-label='Default select example'>
+													</div>
+													<div className="col-12 col-sm-7 col-lg-9">
+                                                        <select className='form-select' aria-label='Default select example'>
                                                         <option defaultValue>Українська</option>
                                                         <option value='1'>Русский</option>
                                                         <option value='2'>English</option>
                                                     </select>
-                                                    </span>
+													</div>
 
 												</div>
-												<div className='acc-info d-flex'>
+												<div className='row acc-info d-flex align-items-start'>
+													<div className="col-sm-5 col-lg-3">
 													<span className='info-title align-self-start'>Розсилка</span>
+													</div>
+													<div className="col-12 col-sm-7 col-lg-9">
 													<div className='custom-controls-stacked px-2'>
 														<div className='form-check'>
 															<input className='form-check-input' type='checkbox' value=''
@@ -84,6 +89,7 @@ const MySettings = () => {
 																Пропозиції щодо рабства
 															</label>
 														</div>
+													</div>
 													</div>
 												</div>
 												<div className='acc-info d-flex'>
