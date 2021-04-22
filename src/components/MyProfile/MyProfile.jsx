@@ -128,13 +128,16 @@ const MyProfile = () => {
 													</div>
 
 													<div className='col-12 col-md-9'>
-														<input disabled
-																	 className={'inputAcc'}
-																	 value={formik.values.role}
-																	 onChange={formik.handleChange}
-																	 type='role'
-																	 name='role'
-																	 id='role' />
+														<textarea className="form-control inputAcc"
+																  placeholder="Розкажіть про себе"
+																  id="floatingTextarea"></textarea>
+														{/*<input*/}
+														{/*			 className={'textArea'}*/}
+														{/*			 value={formik.values.role}*/}
+														{/*			 onChange={formik.handleChange}*/}
+														{/*			 type='role'*/}
+														{/*			 name='role'*/}
+														{/*			 id='role' />*/}
 													</div>
 												</div>
 												<div className='row acc-info d-flex'>

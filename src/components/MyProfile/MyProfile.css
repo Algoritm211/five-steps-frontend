@@ -53,6 +53,10 @@
     font-size: 13px;
     padding: 10px 20px;
 }
+.form-control{
+    border-radius: 0;
+    height: 100px;
+}
 .form-select{
     width: auto;
     display: inline-block;
