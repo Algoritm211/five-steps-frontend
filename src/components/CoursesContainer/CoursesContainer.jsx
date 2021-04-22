@@ -153,7 +153,7 @@ const CoursesContainer = () => {
 							</div>
 						</div>
 					</div>
-					<div className='col-sm-12 col-md-9 col-lg-9 col-xl-10'>
+					<div className='col-12 col-md-9 col-lg-9 col-xl-10'>
 						<div className='d-flex mb-3'>
 							<span className='course-materials'>Показано матеріалів: {allCourses.length} з&nbsp;</span><span
 							className='course-materials'>{coursesCount}</span>

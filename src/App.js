@@ -15,6 +15,7 @@ import MySettings from './components/MySettings/MySettings'
 import CoursePage from './components/CoursePage/CoursePage'
 import Blog from './components/Blog/Blog'
 import MainPlates from './components/MainPlates/MainPlates'
+import Error404 from "./components/Error404/error404";
 
 function App() {
 	const dispatch = useDispatch()
@@ -44,6 +45,8 @@ function App() {
 
 
 				<Route path={'/course/:id/'} component={CoursePage} />
+
+				<Route path={'/error'} component={Error404} />
 
 				<Redirect to={'/main'} />
 			</Switch>
