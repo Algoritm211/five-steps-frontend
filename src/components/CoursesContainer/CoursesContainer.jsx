@@ -54,7 +54,7 @@ const CoursesContainer = () => {
 			} else {
 				dispatch(setFilters(allFiltersOnPage))
 			}
-			dispatch(getAllCourses(page, newFilters))
+			dispatch(getAllCourses(page, allFiltersOnPage))
 			return
 		} else if (filters.includes(category)) {
 			newFilters = newFilters.filter(item => item !== category)

@@ -50,7 +50,7 @@ const MySettings = () => {
 													<span>
                                                         <select className='form-select'
 																																aria-label='Default select example'>
-                                                        <option selected>Українська</option>
+                                                        <option defaultValue>Українська</option>
                                                         <option value='1'>Русский</option>
                                                         <option value='2'>English</option>
                                                     </select>

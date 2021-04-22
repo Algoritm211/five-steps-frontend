@@ -12,7 +12,7 @@ import MyProfile from './components/MyProfile/MyProfile';
 
 import CoursesContainer from './components/CoursesContainer/CoursesContainer'
 import MySettings from './components/MySettings/MySettings'
-import CoursePage from './components/CoursePage/CoursePage'
+import LessonPage from './components/LessonPage/LessonPage'
 import Blog from './components/Blog/Blog'
 import MainPlates from './components/MainPlates/MainPlates'
 import Error404 from "./components/Error404/error404";
@@ -44,11 +44,12 @@ function App() {
 				<Route path={'/settings/:id/'} component={MySettings} />
 
 
-				<Route path={'/course/:id/'} component={CoursePage} />
+				<Route path={'/lesson/'} component={LessonPage} />
+				{/*<Route path={'/lesson/:id/'} />*/}
 
 				<Route path={'/error'} component={Error404} />
 
-				<Redirect to={'/main'} />
+				<Redirect to={'/error'} />
 			</Switch>
 		</div>
 	)

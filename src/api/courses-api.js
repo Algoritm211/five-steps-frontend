@@ -11,4 +11,5 @@ export const coursesAPI = {
 		return instanceAxios.get('course/user')
 			.then((data) => data.data)
 	}
+
 }
