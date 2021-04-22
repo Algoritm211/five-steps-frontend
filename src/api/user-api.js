@@ -11,5 +11,9 @@ export const userAPI = {
 	deleteAvatar: () => {
 		return instanceAxios.delete('user/avatar')
 			.then((data) => data.data)
+	},
+	updateUser: (updateObj) => {
+		return instanceAxios.patch('user/update/', updateObj)
+			.then(data => data.data)
 	}
 }

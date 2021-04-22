@@ -5,8 +5,53 @@ import { Link } from 'react-router-dom'
 import styles from '../MainLayout/MainPage.module.css'
 import MainLayout from '../MainLayout/MainLayout'
 import ProfileNavbar from './ProfileNavbar/ProfileNavbar'
+import { useDispatch, useSelector } from 'react-redux'
+import { getIsLoading, getUserData } from '../../store/auth-reducer/auth-selector'
+import { useFormik } from 'formik'
+import { deleteAvatar, updateUserInfo, uploadAvatar } from '../../store/auth-reducer/user-thunks'
+import noUserPhoto from '../../assets/user/nouserphoto.png'
 
 const MyProfile = () => {
+	const user = useSelector(getUserData)
+	const dispatch = useDispatch()
+	const isLoading = useSelector(getIsLoading)
+
+	const formik = useFormik({
+		enableReinitialize: true,
+		initialValues: {
+			name: user.name,
+			surName: user.surName,
+			role: user.role,
+			city: user.city || '',
+			dayBirth: user?.birthdayDate?.split('-')[0] || 1,
+			monthBirth: user?.birthdayDate?.split('-')[1] || 1,
+			yearBirth: user?.birthdayDate?.split('-')[2] || 2000,
+			gender: user.gender,
+		},
+		onSubmit: values => {
+			const userData = {
+				name: values.name,
+				surName: values.surName,
+				role: values.role,
+				city: values.city,
+				birthdayDate: [values.dayBirth, values.monthBirth, values.yearBirth].join('-'),
+				gender: values.gender,
+			}
+			dispatch(updateUserInfo(userData))
+			// alert(JSON.stringify(userData, null, 2))
+		},
+	})
+
+	const onHandleImage = (event) => {
+		dispatch(uploadAvatar(event.target.files[0]))
+		console.log()
+	}
+
+	const onDeletePhoto = (event) => {
+		dispatch(deleteAvatar())
+	}
+
+	const date = new Date(user.dateRegistration)
 	return (
 		<MainLayout>
 			<div className='container mt-5'>
@@ -28,10 +73,11 @@ const MyProfile = () => {
 											<div className='row'>
 												<div className='d-flex'>
 													<h1 className='acc-title'>Мій профіль</h1>
-													<span className='acc-join-title'>Приєднався 20 Apr 2021</span>
+													<span
+														className='acc-join-title'>Приєднався {(date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear()}</span>
 												</div>
 											</div>
-											<div className='row pt-3'>
+											<form onSubmit={formik.handleSubmit} className='row pt-3'>
 												<h3 className='acc-subtitle'>Особисті дані</h3>
 												<div className='row acc-info d-flex'>
 													<div className='col-12 col-md-3'>
@@ -39,10 +85,11 @@ const MyProfile = () => {
 													</div>
 													<div className='col-12 col-md-9'>
 														<img className='avatar-img'
-																 src='https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png'
-																 alt='avatar image' />
-														<Link to='' className='avatar-change'>Оновити</Link>
-														<Link to='' className='avatar-delete'>Видалити</Link>
+																 src={user.avatar ? `http://localhost:5000/${user.avatar}` : noUserPhoto}
+																 alt='avatar' />
+														<input type={'file'} id={'avatar'} name={'avatar'} onChange={onHandleImage} multiple={false} hidden={true} accept="image/jpeg,image/png"/>
+														<label htmlFor={'avatar'} className='avatar-change'>Оновити</label>
+														<span onClick={onDeletePhoto} className='avatar-delete'>Видалити</span>
 													</div>
 												</div>
 												<div className='row acc-info d-flex'>
@@ -53,8 +100,8 @@ const MyProfile = () => {
 													<div className='col-12 col-md-9'>
 														<input
 															className={'inputAcc'}
-															// value={Name}
-															// onChange={(event) => setName(event.target.value)}
+															value={formik.values.name}
+															onChange={formik.handleChange}
 															type='name'
 															name='name'
 															id='name' />
@@ -67,10 +114,10 @@ const MyProfile = () => {
 													<div className='col-12 col-md-9'>
 														<input
 															className={'inputAcc'}
-															// value={Surname}
-															// onChange={(event) => setSurname(event.target.value)}
-															type='surname'
-															name='surname'
+															value={formik.values.surName}
+															onChange={formik.handleChange}
+															type='surName'
+															name='surName'
 															id='surname' />
 													</div>
 												</div>
@@ -82,11 +129,11 @@ const MyProfile = () => {
 													<div className='col-12 col-md-9'>
 														<input disabled
 																	 className={'inputAcc'}
-																	 value={'Чертила'}
-															// onChange={(event) => setName(event.target.value)}
-																	 type='position'
-																	 name='position'
-																	 id='position' />
+																	 value={formik.values.role}
+																	 onChange={formik.handleChange}
+																	 type='role'
+																	 name='role'
+																	 id='role' />
 													</div>
 												</div>
 												<div className='row acc-info d-flex'>
@@ -96,8 +143,8 @@ const MyProfile = () => {
 													<div className='col-12 col-md-9'>
 														<input
 															className={'inputAcc'}
-															// value={Surname}
-															// onChange={(event) => setSurname(event.target.value)}
+															value={formik.values.city}
+															onChange={formik.handleChange}
 															type='city'
 															name='city'
 															id='city' />
@@ -109,18 +156,22 @@ const MyProfile = () => {
 													</div>
 													<div className='col-12 col-md-9 justify-content-center'>
 														<div className='select-wrap'>
-															<select className='form-select mr-1 me-2'
-																			aria-label='Default select example'>
+															<select
+																value={formik.values.dayBirth}
+																onChange={formik.handleChange}
+																name={'dayBirth'}
+																className='form-select mr-1 me-2'
+																aria-label='Default select example'>
 																<option defaultValue>День</option>
-																<option value='1'>1</option>
-																<option value='2'>2</option>
-																<option value='3'>3</option>
-																<option value='4'>4</option>
-																<option value='5'>5</option>
-																<option value='6'>6</option>
-																<option value='7'>7</option>
-																<option value='8'>8</option>
-																<option value='9'>9</option>
+																<option value='01'>01</option>
+																<option value='02'>02</option>
+																<option value='03'>03</option>
+																<option value='004'>04</option>
+																<option value='05'>05</option>
+																<option value='06'>06</option>
+																<option value='07'>07</option>
+																<option value='08'>08</option>
+																<option value='09'>09</option>
 																<option value='10'>10</option>
 																<option value='11'>11</option>
 																<option value='12'>12</option>
@@ -146,26 +197,34 @@ const MyProfile = () => {
 															</select>
 
 
-															<select className='form-select mr-1 me-2'
-																			aria-label='Default select example'>
+															<select
+																value={formik.values.monthBirth}
+																onChange={formik.handleChange}
+																name={'monthBirth'}
+																className='form-select mr-1 me-2'
+																aria-label='Default select example'>
 																<option defaultValue>Місяць</option>
-																<option value='1'>Січень</option>
-																<option value='2'>Лютий</option>
-																<option value='3'>Березень</option>
-																<option value='4'>Квітень</option>
-																<option value='5'>Травень</option>
-																<option value='6'>Червень</option>
-																<option value='7'>Липень</option>
-																<option value='8'>Серпень</option>
-																<option value='9'>Вересень</option>
+																<option value='01'>Січень</option>
+																<option value='02'>Лютий</option>
+																<option value='03'>Березень</option>
+																<option value='04'>Квітень</option>
+																<option value='05'>Травень</option>
+																<option value='06'>Червень</option>
+																<option value='07'>Липень</option>
+																<option value='08'>Серпень</option>
+																<option value='09'>Вересень</option>
 																<option value='10'>Жовтень</option>
 																<option value='11'>Листопад</option>
 																<option value='12'>Грудень</option>
 															</select>
 
 
-															<select className='form-select mr-1 me-2'
-																			aria-label='Default select example'>
+															<select
+																value={formik.values.yearBirth}
+																onChange={formik.handleChange}
+																name={'yearBirth'}
+																className='form-select mr-1 me-2'
+																aria-label='Default select example'>
 																<option defaultValue>Рік</option>
 																<option value='2017'>2017</option>
 																<option value='2016'>2016</option>
@@ -277,14 +336,21 @@ const MyProfile = () => {
 														<div className='custom-controls-stacked px-2'>
                                                         <span className='form-check'>
                                                     <input className='form-check-input' type='radio'
-																													 name='flexRadioDefault' id='flexRadioDefault2' />
+																													 value={'man'}
+																													 checked={formik.values.gender === 'man'}
+																													 onChange={formik.handleChange}
+																													 name='gender' id='flexRadioDefault2' />
                                                       <label className='form-check-label' htmlFor='flexRadioDefault2'>
                                                         Чоловіча
                                                       </label>
                                                 </span>
 															<span className='form-check'>
-                                                    <input className='form-check-input' type='radio'
-																													 name='flexRadioDefault' id='flexRadioDefault3' />
+                                                    <input
+																											onChange={formik.handleChange}
+																											className='form-check-input' type='radio'
+																											checked={formik.values.gender === 'woman'}
+																											value={'woman'}
+																											name='gender' id='flexRadioDefault3' />
                                                       <label className='form-check-label' htmlFor='flexRadioDefault3'>
                                                         Жіноча
                                                       </label>
@@ -294,14 +360,14 @@ const MyProfile = () => {
 												</div>
 												<div className='acc-info d-flex'>
 													<div className='col d-flex justify-content-start'>
-														<button className='btn btn-primary' type='submit'>Зберегти
-															налаштування
+														<button className='btn btn-primary' disabled={isLoading} type='submit'>
+															{!isLoading ? 'Зберегти налаштування' : 'Зберігається'}
 														</button>
 													</div>
 
 												</div>
 
-											</div>
+											</form>
 										</div>
 									</div>
 								</div>

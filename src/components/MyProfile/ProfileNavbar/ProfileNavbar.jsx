@@ -9,7 +9,7 @@ const ProfileNavbar = () => {
 	return (
 		<ul className='nav'>
 			<li className='nav-item side-accElem'>
-				<NavLink className='nav-link side-elem' activeClassName={'side-elem-active'} to={`/account/${user.id}`}>
+				<NavLink className='nav-link side-elem' activeClassName={'side-elem-active'} to={`/account/${user._id}`}>
 					<div className='sidebar-l'>
 						<i className='far fa-user-circle side-accIll' />
 					</div>
@@ -19,7 +19,7 @@ const ProfileNavbar = () => {
 				</NavLink>
 			</li>
 			<li className='nav-item side-accElem'>
-				<NavLink className='nav-item side-elem' activeClassName={'side-elem-active'} to={`/myprof/${user.id}`}>
+				<NavLink className='nav-item side-elem' activeClassName={'side-elem-active'} to={`/myprof/${user._id}`}>
 					<div className='sidebar-l'>
 						<i className='fas fa-briefcase side-accIll' />
 					</div>
@@ -29,7 +29,7 @@ const ProfileNavbar = () => {
 				</NavLink>
 			</li>
 			<li className='nav-item side-accElem'>
-				<NavLink className='nav-item side-elem' activeClassName={'side-elem-active'} to={`/settings/${user.id}`}>
+				<NavLink className='nav-item side-elem' activeClassName={'side-elem-active'} to={`/settings/${user._id}`}>
 					<div className='sidebar-l'>
 						<i className='fas fa-cog side-accIll' />
 					</div>

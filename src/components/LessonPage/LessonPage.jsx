@@ -26,7 +26,7 @@ const LessonPage = () => {
 	const currentCourse = useSelector(getCurrentCourse)
 	const error = useSelector(getLessonError)
 
-	console.log(lesson)
+	// console.log(lesson)
 	const [query, setQuery] = useQueryParams({courseId: StringParam, lessonNumber: NumberParam})
 
 	useEffect(() => {

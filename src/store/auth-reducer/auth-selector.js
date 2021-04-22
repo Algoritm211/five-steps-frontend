@@ -13,3 +13,7 @@ export const getAuthError = (state) => {
 export const getRegistrationError = (state) => {
 	return state.authReducer.registrationError
 }
+
+export const getIsLoading = (state) => {
+	return state.authReducer.isLoading
+}

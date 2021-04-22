@@ -7,6 +7,7 @@ const authReducer = createSlice({
 		isAuth: false,
 		authError: null,
 		registrationError: null,
+		isLoading: false
 	},
 	reducers: {
 		setIsAuth(state, action) {
@@ -34,6 +35,9 @@ const authReducer = createSlice({
 		registrationSuccess(state, action) {
 			state.registrationError = null
 		},
+		toggleIsLoading(state, action) {
+			state.isLoading = action.payload
+		}
 	},
 })
 
@@ -45,6 +49,7 @@ export const {
 	setUserAuthData,
 	registrationSuccess,
 	setRegistrationError,
+	toggleIsLoading
 } = authReducer.actions
 
 export default authReducer.reducer

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getIsAuth, getUserData } from '../../store/auth-reducer/auth-selector'
 import { logout } from '../../store/auth-reducer/auth-reducer'
 import { MainPageStepContext } from '../MainLayout/MainLayout'
+import noUserPhoto from '../../assets/user/nouserphoto.png'
 
 
 const Header = () => {
@@ -48,28 +49,43 @@ const Header = () => {
 						<ul>
 							<i className='fas fa-search personIcon' onClick={() => setIsActiveSearch(prev => !prev)} />
 							<li className='dropdown'>
-								<i className='fas fa-user-circle personIcon' />
+								{user?.avatar ? (
+									<img className='avatar-img'
+											 style={{width: '24px', height: '24px'}}
+											 src={user.avatar ? `http://localhost:5000/${user.avatar}` : noUserPhoto}
+											 alt='avatar' />
+								) : (
+									<i className='fas fa-user-circle personIcon' />
+								)}
 								<ul>
 									{isAuth &&
-										<div>
-											<div className="d-flex accDropBlock">
+									<div>
+										<div className='d-flex accDropBlock'>
+											{user?.avatar ? (
+												<img className='avatar-img'
+														 style={{width: '48px', height: '48px'}}
+														 src={user.avatar ? `http://localhost:5000/${user.avatar}` : noUserPhoto}
+														 alt='avatar' />
+											) : (
 												<i className='fas fa-user-circle accDropIcon' />
-												<div className="ml-3 lh-1">
-													<p className="mb-1 accDropTitle">{user?.name}</p>
-													<p className="mb-0 text-muted">{user?.email}</p>
-												</div>
+											)}
+											<div className='ml-3 lh-1'>
+												<p className='mb-1 accDropTitle'>{user?.name}</p>
+												<p className='mb-0 text-muted'>{user?.email}</p>
 											</div>
-											<div className="dropdown-divider"/>
 										</div>
+										<div className='dropdown-divider' />
+									</div>
 									}
 									<li>
 										{!isAuth ? (
 											<Link to='/login'>Вхід</Link>
 										) : (
 											<>
-												<Link to={`/account/${user.id}`}>Акаунт</Link>
-												<Link to={`/myprof/${user.id}`}>Мої Професії</Link>
-												<div className="dropdown-divider"></div>
+												<Link to={`/account/${user._id}`}>Акаунт</Link>
+												<Link to={`/myprof/${user._id}`}>Мої Професії</Link>
+												<Link to={`/settings/${user._id}`}>Налаштування</Link>
+												<div className='dropdown-divider'></div>
 												<Link to={'/main'} onClick={onLogout}>Вихід</Link>
 											</>
 										)}
