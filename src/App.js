@@ -16,6 +16,7 @@ import LessonPage from './components/LessonPage/LessonPage'
 import Blog from './components/Blog/Blog'
 import MainPlates from './components/MainPlates/MainPlates'
 import Error404 from "./components/Error404/error404";
+import CoursePreview from "./components/CoursePreview/CoursePreview";
 
 function App() {
 	const dispatch = useDispatch()
@@ -47,7 +48,9 @@ function App() {
 				<Route path={'/lesson/'} component={LessonPage} />
 				{/*<Route path={'/lesson/:id/'} />*/}
 
+
 				<Route path={'/error'} component={Error404} />
+				<Route path={'/coursePreview'} component={CoursePreview} />
 
 				<Redirect to={'/error'} />
 			</Switch>

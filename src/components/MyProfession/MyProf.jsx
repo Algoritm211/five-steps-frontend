@@ -46,7 +46,7 @@ const MyProf = () => {
                         </div>
                     </div>
 
-                    <div className="col">
+                    <div className="row">
 
                         <div className="row1">
                             <div className="col mb-3">
