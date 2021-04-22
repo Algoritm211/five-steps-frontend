@@ -43,16 +43,6 @@ body {
   line-height: 48px;
 }
 
-.acc-title {
-  color: #384046;
-  font-size: 20px;
-  font-weight: 600;
-  width: 330px;
-  height: 48px;
-  line-height: 48px;
-  align-items: center;
-}
-
 .acc-join-title {
   font-size: 10px;
   color: #384046;

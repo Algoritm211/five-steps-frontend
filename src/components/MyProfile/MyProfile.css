@@ -1,5 +1,4 @@
 body{
-    margin-top:20px;
     background:#f8f8f8
 }
 
@@ -114,4 +113,22 @@ body{
 }
 .select-wrap{
     width: 380px;
+}
+@media (min-width: 768px) {
+    .acc-sidebar{
+        width: 200px;
+    }
+}
+@media (max-width: 768px) {
+    .acc-sidebar{
+        display: none;
+    }
+    .e-profile{
+        max-width: 428px;
+        margin: auto;
+    }
+    .acc-title{
+        width: 150px;
+        margin-right: auto;
+    }
 }

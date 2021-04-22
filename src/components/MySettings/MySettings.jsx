@@ -13,7 +13,7 @@ const MySettings = () => {
 		<MainLayout>
 			<div className='container mt-5'>
 				<div className='row flex-lg-nowrap'>
-					<div className='col-12 col-lg-auto' style={{ width: '200px' }}>
+					<div className='col-12 col-lg-auto acc-sidebar'>
 						<div className='cardAcc'>
 							<div className='e-navlist'>
 								<ProfileNavbar />

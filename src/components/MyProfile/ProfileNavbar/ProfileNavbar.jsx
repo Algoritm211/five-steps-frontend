@@ -7,7 +7,7 @@ const ProfileNavbar = () => {
 	const user = useSelector(getUserData)
 
 	return (
-		<ul className='nav d-block'>
+		<ul className='nav'>
 			<li className='nav-item side-accElem'>
 				<NavLink className='nav-link side-elem' activeClassName={'side-elem-active'} to={`/account/${user.id}`}>
 					<div className='sidebar-l'>
