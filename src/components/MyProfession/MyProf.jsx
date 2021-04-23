@@ -39,19 +39,10 @@ const MyProf = () => {
             <div className="container mt-5">
                 <div className="row flex-lg-nowrap">
                     <div className="col-12 col-lg-auto acc-sidebar">
-                        <div className="cardAcc">
-                            <div className="e-navlist">
                                 <ProfileNavbar/>
-                            </div>
-                        </div>
                     </div>
 
-                    <div className="row">
-
-                        <div className="row1">
-                            <div className="col mb-3">
-                                <div className="cardAcc">
-                                    <div className="cardAcc-body">
+                    <div className="col mb-3">
                                         <div className="row">
                                             <div className="d-flex">
                                                 <h1 className="acc-title">Мої професії</h1>
@@ -68,12 +59,6 @@ const MyProf = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
             {/*<div className={'container d-flex myProfTitle'}>*/}
             {/*	<h1>Мої професії</h1>*/}
             {/*</div>*/}

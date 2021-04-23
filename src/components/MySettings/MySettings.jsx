@@ -15,21 +15,16 @@ const MySettings = () => {
 			<div className='container mt-5'>
 				<div className='row flex-lg-nowrap'>
 					<div className='col-12 col-lg-auto acc-sidebar'>
-						<div className='cardAcc'>
-							<div className='e-navlist'>
+
+
 								<ProfileNavbar />
-							</div>
-						</div>
+
+
 					</div>
 
-					<div className='col'>
+					<div className='col mb-3 e-profile'>
 
-						<div className='row1'>
-							<div className='col mb-3'>
-								<div className='cardAcc'>
-									<div className='cardAcc-body'>
-										<div className='e-profile'>
-											<div className='row'>
+															<div className='row'>
 												<div className='d-flex'>
 													<h1 className='acc-title'>Налаштування</h1>
 												</div>
@@ -135,13 +130,7 @@ const MySettings = () => {
 										</div>
 									</div>
 								</div>
-							</div>
-						</div>
 
-					</div>
-				</div>
-
-			</div>
 		</MainLayout>
 	)
 
