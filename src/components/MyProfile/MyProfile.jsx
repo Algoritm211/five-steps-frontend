@@ -55,12 +55,11 @@ const MyProfile = () => {
 				birthdayDate: [values.dayBirth, values.monthBirth, values.yearBirth].join('-'),
 				gender: values.gender,
 			}
-			// dispatch(updateUserInfo(userData))
-			alert(JSON.stringify(userData, null, 2))
+			dispatch(updateUserInfo(userData))
+			// alert(JSON.stringify(userData, null, 2))
 		},
 	})
 
-	console.log(formik.errors)
 	const onHandleImage = (event) => {
 		dispatch(uploadAvatar(event.target.files[0]))
 		console.log()
@@ -152,7 +151,7 @@ const MyProfile = () => {
 										<span className='info-title'>Посада</span>
 									</div>
 									<div className='col-12 col-md-9'>
-														<textarea readonly={true}
+														<textarea
 																			value={formik.values.description}
 																			onChange={formik.handleChange}
 																			className='form-control inputAcc'

@@ -13,7 +13,6 @@ export const getAllCourses = (page, filters) => async (dispatch) => {
 export const getUserCourses = () => async (dispatch) => {
 	dispatch(toggleIsLoading(true))
 	const data = await coursesAPI.getUserCourses()
-	console.log(data)
 	dispatch(setUserCourses(data))
 	dispatch(toggleIsLoading(false))
 }
