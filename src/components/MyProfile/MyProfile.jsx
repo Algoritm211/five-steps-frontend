@@ -154,15 +154,6 @@ const MyProfile = () => {
 													</div>
 												)}
 
-												{/*<input*/}
-												{/*			 className={'textArea'}*/}
-												{/*			 value={formik.values.role}*/}
-												{/*			 onChange={formik.handleChange}*/}
-												{/*			 type='role'*/}
-												{/*			 name='role'*/}
-												{/*			 id='role' />*/}
-
-
 												<div className='row acc-info d-flex'>
 													<div className='col-12 col-md-3'>
 														<span className='info-title'>Місто</span>

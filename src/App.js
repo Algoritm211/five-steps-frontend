@@ -46,13 +46,13 @@ function App() {
 
 
 				<Route path={'/lesson/'} component={LessonPage} />
-				{/*<Route path={'/lesson/:id/'} />*/}
+				<Route path={'/course/:id/'} component={CoursePreview}/>
 
 
 				<Route path={'/error'} component={Error404} />
-				<Route path={'/coursePreview'} component={CoursePreview} />
+				{/*<Route path={'/coursePreview'} component={CoursePreview} />*/}
 
-				<Redirect to={'/error'} />
+				<Redirect to={'/main'} />
 			</Switch>
 		</div>
 	)

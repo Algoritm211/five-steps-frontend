@@ -10,6 +10,7 @@ const coursesReducer = createSlice({
 		page: 1,
 		coursesCount: 0,
 		filters: [],
+		currentCourse: null
 	},
 	reducers: {
 		toggleIsLoading: (state, action) => {
@@ -25,6 +26,9 @@ const coursesReducer = createSlice({
 		setFilters: (state, action) => {
 			state.filters = [...action.payload]
 		},
+		setCurrentCourse: (state, action) => {
+			state.currentCourse = action.payload
+		}
 	},
 
 })

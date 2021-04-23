@@ -5,6 +5,7 @@ import './CoursePreview.css'
 import {Link} from "react-router-dom";
 
 const CoursePreview = () => {
+
     return (
         <React.Fragment>
             <div className={styles.header}>

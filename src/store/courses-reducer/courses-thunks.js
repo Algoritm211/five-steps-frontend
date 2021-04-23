@@ -16,3 +16,7 @@ export const getUserCourses = () => async (dispatch) => {
 	dispatch(setUserCourses(data))
 	dispatch(toggleIsLoading(false))
 }
+
+export const loadCurrentCourse = () => async (dispatch) => {
+
+}
