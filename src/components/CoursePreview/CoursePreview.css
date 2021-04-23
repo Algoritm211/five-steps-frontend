@@ -90,9 +90,7 @@
     }
     .preview-container{
         height: auto;
-    }
-    .preview-row{
-        width: auto;
+        justify-content: center;
     }
 }
 @media (max-width: 768px){

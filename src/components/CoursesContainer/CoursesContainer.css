@@ -87,6 +87,9 @@
   font-size: 24px;
   color: #f26c4f;
 }
+.mobile-pagination{
+  display: none;
+}
 @media (max-width: 1200px) {
   .courseContainer {
     grid-template-columns: 1fr 1fr;
@@ -99,6 +102,10 @@
   }
   .mobile-filter-toggle{
     visibility: visible;
+  }
+  .mobile-pagination{
+    display: flex;
+    margin-bottom: 1rem!important;
   }
 }
 

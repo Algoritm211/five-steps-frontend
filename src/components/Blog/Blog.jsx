@@ -95,6 +95,25 @@ const Blog = () => {
 						</div>
 					</div>
 					<div className='d-flex row'>
+						<div className='pagination-wrap mobile-pagination mb-5'>
+							<ReactPaginate
+								onPageChange={onPageChange}
+								pageCount={Math.ceil(articlesCount / 6)}
+								pageRangeDisplayed={5}
+								marginPagesDisplayed={5}
+								pageClassName={'pagination-page'}
+								pageLinkClassName={'pagination-link'}
+								containerClassName={'pagination-container'}
+								previousClassName={'pagination-prev'}
+								previousLabel={<i className='fas fa-long-arrow-alt-left' />}
+								nextLabel={<i className='fas fa-long-arrow-alt-right' />}
+								breakLabel={<i className='fas fa-ellipsis-h pagination-break' />}
+								nextClassName={'pagination-next'}
+								previousLinkClassName={'pagination-arrow'}
+								nextLinkClassName={'pagination-arrow'}
+								disabledClassName={'pagination-disabled'}
+								activeClassName={'pagination-active'} />
+						</div>
 						{articlesBlock}
 						{/*{(articlesCount !== articles.length && Math.ceil(articlesCount / 6) !== page) && (*/}
 						{/*	<div className='d-flex justify-content-center mb-5'>*/}
