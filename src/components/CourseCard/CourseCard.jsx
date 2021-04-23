@@ -25,7 +25,7 @@ const CourseCard = (props) => {
 	const course = props.course
 	const { category, title, rating, author } = course
 	const userInfo = useSelector(getUserData)
-	let courseCompletePercent = 0
+	let courseCompletePercent = -1
 	if (userInfo.lessonsCompleted) {
 		courseCompletePercent = countEntries(userInfo.lessonsCompleted, course.lessons) * 20
 	}
@@ -35,7 +35,7 @@ const CourseCard = (props) => {
 		<Link to={`/course/${course._id}`}>
 			<div className='container card '>
 				<div className='row mb-3 ms-0 me-0'>
-					<div className={`col-5 text-center rounded card-tag`} style={{backgroundColor: colors[category]}}>
+					<div className={`col-5 text-center rounded card-tag`} style={{ backgroundColor: colors[category] }}>
 						<p className='text-center m-auto card-tag-text'>{categoryToUkr[category].toUpperCase()}</p>
 					</div>
 				</div>
@@ -50,22 +50,24 @@ const CourseCard = (props) => {
 						<img src='https://pngimg.com/uploads/like/like_PNG39.png' className='' alt='' width='11%' />
 					</div>
 				</div>
-				{courseCompletePercent !== 0 &&
+				{courseCompletePercent !== -1 && userInfo?.courses?.includes(course._id) &&
 
-				<div className='row ms-0 me-0' >
-					<span className="progress-text">{`${courseCompletePercent}%`}</span>
-					<div className="progress">
-						<div className="progress-bar" style={{ width: `${courseCompletePercent}%`}} role="progressbar" aria-valuenow={`${courseCompletePercent}`} aria-valuemin="0"
-							 aria-valuemax="100"></div>
+				<div className='row ms-0 me-0'>
+					<span className='progress-text'>{`${courseCompletePercent}%`}</span>
+					<div className='progress'>
+						<div className='progress-bar' style={{ width: `${courseCompletePercent}%` }} role='progressbar'
+								 aria-valuenow={`${courseCompletePercent}`} aria-valuemin='0'
+								 aria-valuemax='100'></div>
 					</div>
-
 				</div>
 				}
-				<div className='row ms-0 me-0'>
-					<div className='col-12 p-0'>
-						<hr />
+				{!userInfo?.courses?.includes(course._id) && (
+					<div className='row ms-0 me-0'>
+						<div className='col-12 p-0'>
+							<hr />
+						</div>
 					</div>
-				</div>
+				)}
 				<div className='row ms-0 me-0'>
 					<div className='col-2 pe-0 ps-0'>
 						<img src={author?.avatar || 'https://image.flaticon.com/icons/png/512/147/147144.png'} className='img-fluid'
