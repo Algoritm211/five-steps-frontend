@@ -21,3 +21,7 @@ export const getCoursesCount = (state) => {
 export const getFilters = (state) => {
 	return state.coursesReducer.filters
 }
+
+export const getCurrentCourse = (state) => {
+	return state.coursesReducer.currentCourse
+}

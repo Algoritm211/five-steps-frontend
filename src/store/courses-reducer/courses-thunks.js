@@ -1,5 +1,6 @@
 import { coursesAPI } from '../../api/courses-api'
-import { setAllCourses, setUserCourses, toggleIsLoading } from './courses-reducer'
+import { setAllCourses, setCurrentCourse, setUserCourses, toggleIsLoading } from './courses-reducer'
+import { setUserData } from '../auth-reducer/auth-reducer'
 
 
 export const getAllCourses = (page, filters) => async (dispatch) => {
@@ -17,6 +18,13 @@ export const getUserCourses = () => async (dispatch) => {
 	dispatch(toggleIsLoading(false))
 }
 
-export const loadCurrentCourse = () => async (dispatch) => {
+export const loadCurrentCourse = (courseId) => async (dispatch) => {
+	const data = await coursesAPI.getCourse(courseId)
+	dispatch(setCurrentCourse(data.course))
+}
 
+export const subscribeToCourse = (courseId) => async (dispatch) => {
+	const data = await coursesAPI.subscribeToCourse(courseId)
+	dispatch(setUserData(data.user))
+	dispatch(setCurrentCourse(data.course))
 }

@@ -37,6 +37,7 @@ export const {
 	setAllCourses,
 	toggleIsLoading,
 	setUserCourses,
+	setCurrentCourse,
 	setFilters } = coursesReducer.actions
 
 export default coursesReducer.reducer

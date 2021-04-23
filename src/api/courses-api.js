@@ -10,6 +10,15 @@ export const coursesAPI = {
 	getUserCourses: () => {
 		return instanceAxios.get('course/user')
 			.then((data) => data.data)
-	}
+	},
 
+	getCourse: (courseId) => {
+		return instanceAxios.get(`course/one?courseId=${courseId}`)
+			.then(data => data.data)
+	},
+
+	subscribeToCourse: (courseId) => {
+		return instanceAxios(`course/subscribe?courseId=${courseId}`)
+			.then(data => data.data)
+	}
 }

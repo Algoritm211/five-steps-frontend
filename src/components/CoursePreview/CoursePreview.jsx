@@ -1,101 +1,121 @@
-import React from 'react';
-import styles from "../MainLayout/MainPage.module.css";
-import Header from "../Header/Header";
+import React, { useEffect } from 'react'
+import styles from '../MainLayout/MainPage.module.css'
+import Header from '../Header/Header'
 import './CoursePreview.css'
-import {Link} from "react-router-dom";
+import { Link, useHistory, useParams } from 'react-router-dom'
+import { StringParam, useQueryParams } from 'use-query-params'
+import { loadCurrentCourse, subscribeToCourse } from '../../store/courses-reducer/courses-thunks'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCurrentCourse } from '../../store/courses-reducer/courses-selector'
+import Loader from '../Loader/Loader'
+import { getUserData } from '../../store/auth-reducer/auth-selector'
+
 
 const CoursePreview = () => {
+	const dispatch = useDispatch()
+	const params = useParams()
+	const user = useSelector(getUserData)
 
-    return (
-        <React.Fragment>
-            <div className={styles.header}>
-                <Header/>
-            </div>
-            <div className='d-flex container preview-container'>
-                <div className="row">
-                    <div className="preview-block col-12 col-md-6">
-                        <h1 className="preview-title mb-3">Графічний дизайнер</h1>
-                        <h3 className="preview-subtitle mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididuntut labore et dolore magna aliqua</h3>
-                        <div className='d-flex preview-button-block mt-5'>
-                            <Link to="/main">
-                                <button className='preview-button mb-1'>
-                                    Зареєструватися
-                                </button>
-                            </Link>
-                        </div>
-                    </div>
-                    <div className="d-flex m-auto col-12 col-md-6 justify-content-center">
-                        <div className="preview-button-block">
-                            <img className="preview-image"
-                                 src='https://cdn.mos.cms.futurecdn.net/6bxva8DmZvNj8kaVrQZZMP.jpg'
-                                 alt="graphic-design"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className='d-flex container preview-container2'>
-                <div className="row">
-                    <div className="col-12 col-sm-6 col-md-6">
-                        <h1 className='courses-title'>Про професію</h1>
-                        <h3 className='courses-subtitle mb-5'>Кілька слів</h3>
-                        <p className='course-text  mt-3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                            anim id est laborum.</p>
-                    </div>
-                    <div className="col-12 col-sm-6 col-md-6 m-auto">
-                        <div className="d-block advantage-block">
-                            <div className="d-flex advantage-plate">
-                                <i className="advantage-image fas fa-shoe-prints"/>
-                                <p className="advantage-text">5 кроків до освоєння професії!</p>
-                            </div>
-                            <div className="d-flex advantage-plate">
-                                <i className="advantage-image far fa-thumbs-up"/>
-                                <p className="advantage-text">20 людей вважають цей курс крутим!</p>
-                            </div>
-                            <div className="d-flex advantage-plate">
-                                <i className="advantage-image fas fa-laptop-house"/>
-                                <p className="advantage-text">Домашні завдання після кожної лекції!</p>
-                            </div>
-                            <div className="d-flex advantage-plate">
-                                <i className="advantage-image fas fa-comments"/>
-                                <p className="advantage-text">Розмови з профі своєї справи!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="preview-color">
-                <div className='d-flex container'>
-                    <div className="row">
-                        <div className="col-12 col-sm-6 col-md-6 m-auto">
-                            <img
-                                className="d-flex lector-image"
-                                src="https://s4.cdn.teleprogramma.pro/wp-content/uploads/2020/09/d480c7ac75a1c74402a36da002f08638.jpg"
-                                alt="lector-image"/>
-                        </div>
-                        <div className="col-12 col-sm-6 col-md-6 m-auto">
-                            <h1 className='courses-title'>Про лектора</h1>
-                            <h3 className='courses-subtitle mb-5'>Кілька слів</h3>
-                            <p className='course-text mt-3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed do
-                                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis
-                                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                pariatur.
-                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                mollit
-                                anim id est laborum.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </React.Fragment>
-    );
-};
+	const course = useSelector(getCurrentCourse)
 
-export default CoursePreview;
+	useEffect(() => {
+		dispatch(loadCurrentCourse(params.id))
+	}, [])
+
+	if (!course) {
+		return <Loader />
+	}
+
+	const subscribeCourseHandler = () => {
+		dispatch(subscribeToCourse(course._id))
+	}
+
+	return (
+		<React.Fragment>
+			<div className={styles.header}>
+				<Header />
+			</div>
+			<div className='d-flex container preview-container'>
+				<div className='row d-flex justify-content-between' style={{ width: '100%' }}>
+					<div className='preview-block col-12 col-md-6'>
+						<h1 className='preview-title mb-3'>{course.title}</h1>
+						<h3 className='preview-subtitle mt-3'>{course.description}</h3>
+						<div className='d-flex preview-button-block mt-5'>
+							{user?.courses?.includes(course._id) ? (
+								<Link to={`/lesson?courseId=${course._id}&lessonNumber=1`}>
+									<button className='preview-button mb-1'
+													style={{backgroundColor: 'white', color: '#384046', border: '1px solid #f26c4f'}}>
+										Перейти до курсу
+									</button>
+								</Link>
+							) : (
+								<button className='preview-button mb-1' onClick={subscribeCourseHandler}>
+									Зареєструватися
+								</button>
+							)}
+						</div>
+					</div>
+					<div className='d-flex m-auto col-12 col-md-6 justify-content-center'>
+						<div className='preview-button-block'>
+							<img className='preview-image'
+									 src='https://cdn.mos.cms.futurecdn.net/6bxva8DmZvNj8kaVrQZZMP.jpg'
+									 alt='graphic-design' />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div className='d-flex container preview-container2 '>
+				<div className='row d-flex justify-content-between' style={{ width: '100%' }}>
+					<div className='col-12 col-sm-6 col-md-6'>
+						<h1 className='courses-title'>Про професію</h1>
+						<h3 className='courses-subtitle mb-5'>Best course on this platform</h3>
+						<p className='course-text  mt-3'>Лучший курс</p>
+					</div>
+					<div className='col-12 col-sm-6 col-md-6 m-auto'>
+						<div className='d-block advantage-block'>
+							<div className='d-flex advantage-plate'>
+								<i className='advantage-image fas fa-shoe-prints' />
+								<p className='advantage-text'>5 кроків до освоєння професії!</p>
+							</div>
+							<div className='d-flex advantage-plate'>
+								<i className='advantage-image far fa-thumbs-up' />
+								<p className='advantage-text'>20 людей вважають цей курс крутим!</p>
+							</div>
+							<div className='d-flex advantage-plate'>
+								<i className='advantage-image fas fa-laptop-house' />
+								<p className='advantage-text'>Домашні завдання після кожної лекції!</p>
+							</div>
+							<div className='d-flex advantage-plate'>
+								<i className='advantage-image fas fa-comments' />
+								<p className='advantage-text'>Розмови з профі своєї справи!</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div className='preview-color'>
+				<div className='d-flex container'>
+					<div className='row'>
+						<div className='col-12 col-sm-6 col-md-6 m-auto'>
+							<img
+								className='d-flex lector-image'
+								src='https://s4.cdn.teleprogramma.pro/wp-content/uploads/2020/09/d480c7ac75a1c74402a36da002f08638.jpg'
+								alt='lector-image' />
+						</div>
+						<div className='col-12 col-sm-6 col-md-6 m-auto'>
+							<h1 className='courses-title'>Про лектора</h1>
+							<h3 className='courses-subtitle mb-5'>Кілька слів</h3>
+							<p className='course-text mt-3'>
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. At earum fugit itaque possimus quae sint
+								soluta ut. Consequatur dolores eaque libero nihil vel? Asperiores debitis eligendi, placeat provident
+								quasi ratione.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</React.Fragment>
+	)
+}
+
+export default CoursePreview
