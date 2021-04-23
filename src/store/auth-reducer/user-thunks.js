@@ -1,5 +1,5 @@
 import { userAPI } from '../../api/user-api'
-import { setUserData, toggleIsLoading } from './auth-reducer'
+import { logout, setUserData, toggleIsLoading } from './auth-reducer'
 
 export const uploadAvatar = (photoFile) => async (dispatch) => {
 	const data = await userAPI.uploadAvatar(photoFile)
@@ -23,6 +23,14 @@ export const updateUserInfo = (updateObj) => async (dispatch) => {
 	} finally {
 		dispatch(toggleIsLoading(false))
 	}
+}
 
+export const deleteAccount = () => async (dispatch) => {
+	try {
+		const data = await userAPI.deleteAccount()
+		dispatch(logout())
+	} catch (error) {
+		console.log(error)
+	}
 }
 

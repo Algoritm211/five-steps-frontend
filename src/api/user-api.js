@@ -15,5 +15,9 @@ export const userAPI = {
 	updateUser: (updateObj) => {
 		return instanceAxios.patch('user/update/', updateObj)
 			.then(data => data.data)
+	},
+	deleteAccount: () => {
+		return instanceAxios.delete('user/')
+			.then(data => data.data)
 	}
 }
