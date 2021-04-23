@@ -44,7 +44,19 @@
     text-decoration: underline;
     cursor: pointer;
 }
+.form-select{
+    width: auto;
+    display: inline-block;
+}
+.form-select:active, .form-select:focus{
+    border-color: #f26c4f;
+}
+.inputAcc:active, .inputAcc:focus {
+    box-shadow: 0 0 10px rgb(242 108 79 / 80%);
+    outline:none;
+}
 .inputAcc{
+    outline:none;
     width: 380px;
     border: solid 2px #dadce0;
     box-sizing: border-box;
@@ -56,10 +68,6 @@
 .form-control{
     border-radius: 0;
     height: 100px;
-}
-.form-select{
-    width: auto;
-    display: inline-block;
 }
 .select-wrap{
     width: 380px;
