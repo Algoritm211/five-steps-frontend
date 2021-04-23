@@ -35,7 +35,7 @@ const CourseCard = (props) => {
 		<Link to={`/course/${course._id}`}>
 			<div className='container card '>
 				<div className='row mb-3 ms-0 me-0'>
-					<div className={`col-5 text-center rounded card-tag`} style={{backgroundColor: colors[category]}}>
+					<div className={`col-5 text-center card-tag`} style={{backgroundColor: colors[category]}}>
 						<p className='text-center m-auto card-tag-text'>{categoryToUkr[category].toUpperCase()}</p>
 					</div>
 				</div>
@@ -51,16 +51,18 @@ const CourseCard = (props) => {
 					</div>
 				</div>
 				{courseCompletePercent !== 0 &&
-				<div className='row ms-0 me-0 progressLine' style={{ width: `${courseCompletePercent}%` }}>
-					{`${courseCompletePercent}%`}
+
+				<div className='row ms-0 me-0' >
+					<span className="progress-text">{`${courseCompletePercent}%`}</span>
+					<div className="progress">
+						<div className="progress-bar" style={{ width: `${courseCompletePercent}%`}} role="progressbar" aria-valuenow={`${courseCompletePercent}`} aria-valuemin="0"
+							 aria-valuemax="100"></div>
+					</div>
+
 				</div>
 				}
-				<div className='row ms-0 me-0'>
-					<div className='col-12 p-0'>
-						<hr />
-					</div>
-				</div>
-				<div className='row ms-0 me-0'>
+
+				<div className='row ms-0 me-0 mt-3'>
 					<div className='col-2 pe-0 ps-0'>
 						<img src={author?.avatar || 'https://image.flaticon.com/icons/png/512/147/147144.png'} className='img-fluid'
 								 alt='' />

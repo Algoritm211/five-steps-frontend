@@ -3,7 +3,7 @@
 */
 .card{
   padding: 25px;
-  height: auto;
+  height: 100%;
   border-radius: 15px;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -20,6 +20,7 @@
 
 .card-tag{
   background-color: #0d8502;
+  border-radius: 999px;
 }
 .card-tag-text{
   font-weight: 700;
@@ -62,9 +63,11 @@
   }
 }
 
-.progressLine {
-  background: #0d8502;
-  border-radius: 10px;
+.progress{
+  padding: 0;
   height: 5px;
-  width: 20%;
+}
+
+.progress-text{
+  padding: 0;
 }
