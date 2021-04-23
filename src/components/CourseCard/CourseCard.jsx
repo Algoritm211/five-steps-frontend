@@ -13,6 +13,14 @@ const categoryToUkr = {
 	marketing: 'Маркетинг',
 }
 
+const colors = {
+	it: '#39B065',
+	design: '#CE437E',
+	business: '#F2A44F',
+	education: '#367D98',
+	marketing: '#f26c4f',
+}
+
 const CourseCard = (props) => {
 	const course = props.course
 	const { category, title, rating, author } = course
@@ -27,7 +35,7 @@ const CourseCard = (props) => {
 		<Link to={`/course/${course._id}`}>
 			<div className='container card '>
 				<div className='row mb-3 ms-0 me-0'>
-					<div className={`col-5 text-center rounded card-tag`}>
+					<div className={`col-5 text-center rounded card-tag`} style={{backgroundColor: colors[category]}}>
 						<p className='text-center m-auto card-tag-text'>{categoryToUkr[category].toUpperCase()}</p>
 					</div>
 				</div>
