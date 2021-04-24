@@ -80,6 +80,10 @@
 .lector-about{
     margin: auto;
 }
+.preview-button-block{
+    justify-content: center;
+    display: flex;
+}
 @media (max-width: 767px){
     .preview-block{
         margin-top: 5.5rem;
@@ -95,7 +99,8 @@
 }
 @media (max-width: 768px){
     .preview-button-block{
-        justify-content: center;
+        text-align: center;
+        display: block;
     }
     .preview-title{
         font-size: 48px;

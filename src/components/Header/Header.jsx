@@ -79,19 +79,31 @@ const Header = () => {
 									}
 									<li>
 										{!isAuth ? (
-											<Link to='/login'>Вхід</Link>
+											<Link to='/login'>
+												<i className='far fa-user-circle' style={{marginRight: '10px'}}/>
+												Вхід</Link>
 										) : (
 											<>
-												<Link to={`/account/${user._id}`}>Акаунт</Link>
-												<Link to={`/myprof/${user._id}`}>Мої Професії</Link>
-												<Link to={`/settings/${user._id}`}>Налаштування</Link>
-												<div className='dropdown-divider'></div>
-												<Link to={'/main'} onClick={onLogout}>Вихід</Link>
+												<Link to={`/account/${user._id}`}>
+													<i className='far fa-user-circle' style={{marginRight: '10px'}} />
+													Акаунт</Link>
+												<Link to={`/myprof/${user._id}`}>
+													<i className='fas fa-briefcase' style={{marginRight: '10px'}} />
+													Мої Професії</Link>
+												<Link to={`/settings/${user._id}`}>
+													<i className='fas fa-cog' style={{marginRight: '10px'}}/>
+													Налаштування</Link>
+												<div className='dropdown-divider'/>
+												<Link to={'/main'} onClick={onLogout}>
+													<i className="fas fa-power-off" style={{marginRight: '10px'}}/>
+													Вихід</Link>
 											</>
 										)}
 									</li>
 									<li>
-										{!isAuth && <Link to={'/registration'}>Реєстрація</Link>}
+										{!isAuth && <Link to={'/registration'}>
+											<i className="fas fa-sign-in-alt" style={{marginRight: '10px'}}/>
+											Реєстрація</Link>}
 									</li>
 
 								</ul>

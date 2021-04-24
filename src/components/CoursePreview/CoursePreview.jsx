@@ -120,6 +120,30 @@ const CoursePreview = () => {
                     </div>
                 </div>
             </div>
+            <div className="preview-button-block justify-content-center mb-5">
+                <Link to="/lesson?courseId=6080275877983ea632d9d9fd&amp;lessonNumber=1">
+                    <button className='preview-button mb-3'
+                            style={{
+                                backgroundColor: 'white',
+                                color: '#384046',
+                                border: '1px solid #f26c4f',
+                                marginLeft: '20px',
+                                marginRight: '20px'
+                            }}>
+                        Перейти до курсу
+                    </button>
+                </Link>
+                <Link to="#">
+                    <button className="preview-button mb-3"
+                            style={{
+                                backgroundColor: 'crimson',
+                                marginLeft: '20px',
+                                marginRight: '20px'
+                            }}>
+                        Відписатися від курсу
+                    </button>
+                </Link>
+            </div>
         </React.Fragment>
     )
 }
