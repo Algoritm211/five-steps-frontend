@@ -26,7 +26,7 @@
     object-fit: cover;
     justify-content: center;
     align-items: center;
-    margin-right: 26px;
+    margin-right: 15px;
     border-radius: 999px;
 }
 
@@ -35,6 +35,7 @@
     font-weight: 600;
     cursor: pointer;
     margin-right: 26px;
+    margin-left: 26px;
     color: #f26c4f;
     text-decoration: underline;
 }
