@@ -120,7 +120,7 @@ const CoursePreview = () => {
                     </div>
                 </div>
             </div>
-            <div className="preview-button-block justify-content-center mb-5">
+            <div className="preview-button-block2 justify-content-center mb-5">
                 <Link to="/lesson?courseId=6080275877983ea632d9d9fd&amp;lessonNumber=1">
                     <button className='preview-button mb-3'
                             style={{

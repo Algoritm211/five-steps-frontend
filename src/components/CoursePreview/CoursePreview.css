@@ -81,6 +81,10 @@
     margin: auto;
 }
 .preview-button-block{
+    justify-content: start;
+    display: flex;
+}
+.preview-button-block2{
     justify-content: center;
     display: flex;
 }
@@ -99,6 +103,11 @@
 }
 @media (max-width: 768px){
     .preview-button-block{
+        text-align: center;
+        justify-content: center;
+        display: flex;
+    }
+    .preview-button-block2{
         text-align: center;
         display: block;
     }
