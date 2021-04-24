@@ -23,6 +23,7 @@
 .avatar-img{
     height: 80px;
     width: 80px;
+    object-fit: cover;
     justify-content: center;
     align-items: center;
     margin-right: 26px;

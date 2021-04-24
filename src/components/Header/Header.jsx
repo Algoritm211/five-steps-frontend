@@ -63,7 +63,7 @@ const Header = () => {
 										<div className='d-flex accDropBlock'>
 											{user?.avatar ? (
 												<img className='avatar-img'
-														 style={{width: '48px', height: '48px'}}
+														 style={{width: '48px', height: '48px', marginRight: '15px'}}
 														 src={user.avatar ? `${process.env.REACT_APP_URL}/${user.avatar}` : noUserPhoto}
 														 alt='avatar' />
 											) : (
