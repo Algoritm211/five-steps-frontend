@@ -32,7 +32,7 @@ const CourseCard = (props) => {
 
 
 	return (
-		<Link to={`/course/${course._id}`}>
+		<Link to={`/course/${course._id}`} style={{ color: 'black' }}>
 			<div className='container card '>
 				<div className='row mb-3 ms-0 me-0'>
 					<div className={`col-5 text-center rounded card-tag`} style={{ backgroundColor: colors[category] }}>
@@ -47,7 +47,7 @@ const CourseCard = (props) => {
 				<div className='row ms-0 me-0' style={{ bottom: '40%', right: '5%' }}>
 					<div className='container d-flex flex-row-reverse col-12 align-items-end'>
 						<span className='like-text align-text-bottom'>{rating}</span>
-						<img src='https://pngimg.com/uploads/like/like_PNG39.png' className='' alt='' width='11%' />
+						<i className="fas fa-thumbs-up me-2"></i>
 					</div>
 				</div>
 				{courseCompletePercent !== -1 && userInfo?.courses?.includes(course._id) &&
@@ -55,7 +55,7 @@ const CourseCard = (props) => {
 				<div className='row ms-0 me-0'>
 					<span className='progress-text'>{`${courseCompletePercent}%`}</span>
 					<div className='progress'>
-						<div className='progress-bar' style={{ width: `${courseCompletePercent}%` }} role='progressbar'
+						<div className='progress-bar' style={{ width: `${courseCompletePercent}%` , backgroundColor: '#39b54a'}} role='progressbar'
 								 aria-valuenow={`${courseCompletePercent}`} aria-valuemin='0'
 								 aria-valuemax='100'></div>
 					</div>
@@ -64,7 +64,8 @@ const CourseCard = (props) => {
 				{!userInfo?.courses?.includes(course._id) && (
 					<div className='row ms-0 me-0'>
 						<div className='col-12 p-0'>
-							<hr />
+
+							<hr className='card-hr mt-4' />
 						</div>
 					</div>
 				)}

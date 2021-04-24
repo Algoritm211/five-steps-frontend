@@ -95,13 +95,13 @@ const MyProfile = () => {
 									className='acc-join-title'>Приєднався {(date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear()}</span>
 							</div>
 						</div>
-						<form onSubmit={formik.handleSubmit} className='row pt-3'>
+						<form onSubmit={formik.handleSubmit} className='row pt-3 bootstrap-fix'>
 							<h3 className='acc-subtitle'>Особисті дані</h3>
 							<div className='row acc-info d-flex'>
 								<div className='col-12 col-md-3'>
 									<span className='info-title'>Аватар</span>
 								</div>
-								<div className='col-12 col-md-9'>
+								<div className='col-12 col-md-8 col-lg-6 col-xl-5'>
 									<img className='avatar-img'
 											 src={user.avatar ? `${process.env.REACT_APP_URL}/${user.avatar}` : noUserPhoto}
 											 alt='avatar' />
@@ -117,7 +117,7 @@ const MyProfile = () => {
 									<span className='info-title'>Ім'я</span>
 								</div>
 
-								<div className='col-12 col-md-9'>
+								<div className='col-12 col-md-8 col-lg-6 col-xl-5'>
 									<input
 										className={'inputAcc'}
 										value={formik.values.name}
@@ -132,7 +132,7 @@ const MyProfile = () => {
 								<div className='col-12 col-md-3'>
 									<span className='info-title'>Прізвище</span>
 								</div>
-								<div className='col-12 col-md-9'>
+								<div className='col-12 col-md-8 col-lg-6 col-xl-5'>
 									<input
 										className={'inputAcc'}
 										value={formik.values.surName}
@@ -150,7 +150,7 @@ const MyProfile = () => {
 									<div className='col-12 col-md-3'>
 										<span className='info-title'>Посада</span>
 									</div>
-									<div className='col-12 col-md-9'>
+									<div className='col-12 col-md-8 col-lg-6 col-xl-5'>
 														<textarea
 																			value={formik.values.description}
 																			onChange={formik.handleChange}
@@ -166,7 +166,7 @@ const MyProfile = () => {
 								<div className='col-12 col-md-3'>
 									<span className='info-title'>Місто</span>
 								</div>
-								<div className='col-12 col-md-9'>
+								<div className='col-12 col-md-8 col-lg-6 col-xl-5'>
 									<input
 										className={'inputAcc'}
 										value={formik.values.city}
@@ -181,7 +181,7 @@ const MyProfile = () => {
 								<div className='col-12 col-md-3'>
 									<span className='info-title'>Дата народження</span>
 								</div>
-								<div className='col-12 col-md-9 justify-content-center'>
+								<div className='col-12 col-md-8 col-lg-6 col-xl-5 justify-content-center'>
 									<div className='select-wrap'>
 										<select
 											value={formik.values.dayBirth}
@@ -359,7 +359,7 @@ const MyProfile = () => {
 								<div className='col-12 col-md-3'>
 									<span className='info-title'>Ваша стать</span>
 								</div>
-								<div className='col-12 col-md-9'>
+								<div className='col-12  col-md-8 col-lg-6 col-xl-5'>
 									<div className='custom-controls-stacked px-2'>
 														<span className='form-check'>
 														<input className='form-check-input' type='radio'

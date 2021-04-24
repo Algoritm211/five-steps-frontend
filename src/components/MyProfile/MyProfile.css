@@ -49,6 +49,7 @@
 .form-select{
     width: auto;
     display: inline-block;
+    font-size: 16px;
 }
 .form-select:active, .form-select:focus{
     border-color: #f26c4f;
@@ -59,7 +60,7 @@
 }
 .inputAcc{
     outline:none;
-    width: 380px;
+    width: 100%;
     border: solid 2px #dadce0;
     box-sizing: border-box;
     border-radius: 999px;
@@ -72,8 +73,9 @@
     max-height: 300px;
 }
 .select-wrap{
-    width: 380px;
+    width: 100%;
 }
+
 @media (min-width: 768px) {
     .acc-sidebar{
         width: 200px;
@@ -91,4 +93,23 @@
         width: 150px;
         margin-right: auto;
     }
+}
+@media (max-width: 992px) {
+    .form-select{
+        font-size: 13.5px;
+    }
+}
+@media (max-width: 768px) {
+    .form-select{
+        font-size: 17px;
+    }
+}
+@media (max-width: 383px) {
+.form-select{
+    font-size: calc(10vw/2.8);
+}
+}
+
+.bootstrap-fix{
+    --bs-gutter-x:0 !important;
 }

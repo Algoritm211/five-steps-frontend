@@ -63,12 +63,12 @@ const CoursePreview = () => {
 							)}
 						</div>
 					</div>
-					<div className='d-flex m-auto col-12 col-md-6 justify-content-center'>
-						<div className='preview-button-block'>
+					<div className='d-flex m-auto col-12 col-md-6 justify-content-center' style={{padding: '0 25%'}}>
+
 							<img className='preview-image'
 									 src='https://cdn.mos.cms.futurecdn.net/6bxva8DmZvNj8kaVrQZZMP.jpg'
-									 alt='graphic-design' />
-						</div>
+									 alt='graphic-design' width="100%"/>
+
 					</div>
 				</div>
 			</div>

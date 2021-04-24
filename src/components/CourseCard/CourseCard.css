@@ -3,6 +3,7 @@
 */
 .card{
   padding: 25px;
+  min-height: 209px;
   height: 100%;
   border-radius: 15px;
   transition: all 0.3s ease;
@@ -16,6 +17,7 @@
 .card-title {
   font-size: 16px;
   font-weight: 600;
+  height: 50px;
 }
 
 .card-tag{
@@ -66,8 +68,21 @@
 .progress{
   padding: 0;
   height: 5px;
+  margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .progress-text{
   padding: 0;
+  font-size: 17px;
+  line-height: 17px;
+  margin-bottom: 5px;
+  color: #000000;
+  font-weight: bold;
+  font-family: "Open Sans";
+  text-align: left;
+}
+
+.card-hr{
+  margin-bottom: 12px;
 }
