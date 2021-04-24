@@ -17,7 +17,7 @@ const Login = () => {
 
 	const onGoogleLogIn = () => {
 		const win = window.open(
-			'http://localhost:5000/api/auth/google',
+			`${process.env.REACT_APP_URL}/api/auth/google`,
 			'Auth',
 			'width=500,height=500,status=yes,toolbar=no,menubar=no,location=no',
 		)
@@ -30,7 +30,7 @@ const Login = () => {
 	}
 
 	const onCatchGoogleAuth = (messageEvent) => {
-		if (messageEvent.origin === 'http://localhost:5000') {
+		if (messageEvent.origin === process.env.REACT_APP_URL) {
 			const parsedData = JSON.parse(messageEvent.data)
 			if (parsedData.error && parsedData.error === 404) {
 				history.push('/registration')

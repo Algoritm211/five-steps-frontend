@@ -7,6 +7,8 @@ import { Provider } from 'react-redux'
 import store from './store/store'
 import { BrowserRouter, Route } from 'react-router-dom'
 import { QueryParamProvider } from 'use-query-params'
+import dotenv from 'dotenv'
+dotenv.config()
 
 ReactDOM.render(
 	<BrowserRouter>

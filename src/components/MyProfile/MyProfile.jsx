@@ -103,7 +103,7 @@ const MyProfile = () => {
 								</div>
 								<div className='col-12 col-md-9'>
 									<img className='avatar-img'
-											 src={user.avatar ? `http://localhost:5000/${user.avatar}` : noUserPhoto}
+											 src={user.avatar ? `${process.env.REACT_APP_URL}/${user.avatar}` : noUserPhoto}
 											 alt='avatar' />
 									<input type={'file'} id={'avatar'} name={'avatar'} onChange={onHandleImage}
 												 multiple={false}
