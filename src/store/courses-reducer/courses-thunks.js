@@ -8,6 +8,7 @@ export const getAllCourses = (page, filters) => async (dispatch) => {
 	const data = await coursesAPI.getAllCourses(page, filters)
 	dispatch(setAllCourses(data))
 	dispatch(toggleIsLoading(false))
+	dispatch(setCurrentCourse(null))
 }
 
 export const getUserCourses = () => async (dispatch) => {

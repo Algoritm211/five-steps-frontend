@@ -10,7 +10,6 @@ import ReactPaginate from 'react-paginate'
 import { StringParam, useQueryParams } from 'use-query-params'
 import { setFilters } from '../../store/courses-reducer/courses-reducer'
 import { setPage } from '../../store/articles-reducer/articles-reducer'
-import withMainPageHOC from '../MainLayout/MainLayout'
 import MainLayout from '../MainLayout/MainLayout'
 
 const allFiltersOnPage = ['design', 'all', 'business', 'education', 'marketing', 'it']
@@ -23,13 +22,14 @@ const CoursesContainer = () => {
 	const filters = useSelector(getFilters)
 	const coursesCount = useSelector(getCoursesCount)
 	const page = useSelector(getPage)
-
+	const [currentPage, setCurrentPage] = useState(1)
 	const [query, setQuery] = useQueryParams({ all: StringParam, filters: StringParam })
 
 	useEffect(() => {
 		const page = query.page || 1
 		const filters = query.filters ? query.filters.split(',') : allFiltersOnPage
 		dispatch(setFilters(filters))
+		setCurrentPage(page)
 		dispatch(getAllCourses(page, filters))
 	}, [])
 
@@ -67,6 +67,7 @@ const CoursesContainer = () => {
 				newFilters.push('all')
 			}
 		}
+
 		dispatch(setFilters(newFilters))
 		dispatch(getAllCourses(page, newFilters))
 	}
@@ -77,6 +78,7 @@ const CoursesContainer = () => {
 	}
 
 	const onPageChange = (pageInfo) => {
+		setCurrentPage(pageInfo.selected)
 		dispatch(setPage(pageInfo.selected + 1))
 		dispatch(getAllCourses(pageInfo.selected + 1, filters))
 	}
@@ -164,6 +166,7 @@ const CoursesContainer = () => {
 						</div>
 						<div className='pagination-wrap mobile-pagination mb-5'>
 							<ReactPaginate
+								forcePage={currentPage}
 								onPageChange={onPageChange}
 								pageCount={Math.ceil(coursesCount / 6)}
 								pageRangeDisplayed={5}
@@ -182,17 +185,11 @@ const CoursesContainer = () => {
 								activeClassName={'pagination-active'} />
 						</div>
 						<div className={'courseContainer mb-5'}>
-							{/*<CourseCard course={course} />*/}
-							{/*<CourseCard course={course} />*/}
-							{/*<CourseCard course={course} />*/}
-							{/*<CourseCard course={course} />*/}
-							{/*<CourseCard course={course} />*/}
-							{/*<CourseCard course={course} />*/}
-							{/*<CourseCard course={course} />*/}
 							{allCoursesBlock}
 						</div>
 						<div className='d-flex pagination-wrap mb-5'>
 							<ReactPaginate
+								forcePage={currentPage}
 								onPageChange={onPageChange}
 								pageCount={Math.ceil(coursesCount / 6)}
 								pageRangeDisplayed={5}
