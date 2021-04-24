@@ -18,7 +18,12 @@ export const coursesAPI = {
 	},
 
 	subscribeToCourse: (courseId) => {
-		return instanceAxios(`course/subscribe?courseId=${courseId}`)
+		return instanceAxios.get(`course/subscribe?courseId=${courseId}`)
+			.then(data => data.data)
+	},
+
+	unsubscribeCourse: (courseId) => {
+		return instanceAxios.delete(`course/subscribe?courseId=${courseId}`)
 			.then(data => data.data)
 	}
 }

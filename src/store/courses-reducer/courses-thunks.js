@@ -27,3 +27,9 @@ export const subscribeToCourse = (courseId) => async (dispatch) => {
 	dispatch(setUserData(data.user))
 	dispatch(setCurrentCourse(data.course))
 }
+
+export const unsubscribeCourse = (courseId) => async (dispatch) => {
+	const data = await coursesAPI.unsubscribeCourse(courseId)
+	dispatch(setUserData(data.user))
+	dispatch(setCurrentCourse(data.course))
+}
