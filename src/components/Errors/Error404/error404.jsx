@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from "../MainLayout/MainPage.module.css";
-import Header from "../Header/Header";
-import './error404.css'
+import styles from "../../MainLayout/MainPage.module.css";
+import Header from "../../Header/Header";
+import '../error.css'
 import {Link} from "react-router-dom";
 
 const Error404 = () => {

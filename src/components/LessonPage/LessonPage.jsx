@@ -15,7 +15,7 @@ import {
 } from '../../store/lesson-reducer/lesson-selector'
 import { setLessonPage } from '../../store/lesson-reducer/lesson-reducer'
 import { loadLesson } from '../../store/lesson-reducer/lesson-thunks'
-import Error404 from '../Error404/error404'
+import Error404 from '../Errors/Error404/error404'
 
 
 const LessonPage = () => {

@@ -1,19 +1,16 @@
 import React from 'react'
 import './MyProfile.css'
 import '../MyProfile/MyRootStyles.css'
-import Header from '../Header/Header'
-import { Link } from 'react-router-dom'
-import styles from '../MainLayout/MainPage.module.css'
 import MainLayout from '../MainLayout/MainLayout'
 import ProfileNavbar from './ProfileNavbar/ProfileNavbar'
 import { useDispatch, useSelector } from 'react-redux'
-import { getIsLoading, getUserData } from '../../store/auth-reducer/auth-selector'
+import { getIsAuth, getIsLoading, getUserData } from '../../store/auth-reducer/auth-selector'
 import { useFormik } from 'formik'
 import { deleteAvatar, updateUserInfo, uploadAvatar } from '../../store/auth-reducer/user-thunks'
 import noUserPhoto from '../../assets/user/nouserphoto.png'
 import Loader from '../Loader/Loader'
-import Error404 from '../Error404/error404'
 import * as Yup from 'yup'
+import Error403 from '../Errors/Error403/Error403'
 
 const editProfileSchema = Yup.object().shape({
 	name: Yup.string()
@@ -30,6 +27,7 @@ const MyProfile = () => {
 	const user = useSelector(getUserData)
 	const dispatch = useDispatch()
 	const isLoading = useSelector(getIsLoading)
+	const isAuth = useSelector(getIsAuth)
 
 	const formik = useFormik({
 		enableReinitialize: true,
@@ -69,13 +67,15 @@ const MyProfile = () => {
 		dispatch(deleteAvatar())
 	}
 
-	if (!localStorage.getItem('authToken')) {
-		return <Error404 />
-	}
-
-	if (!user || Object.entries(user).length === 0) {
+	if (isLoading) {
 		return <Loader />
 	}
+
+	if (!isAuth) {
+		return <Error403 />
+	}
+
+
 
 
 	const date = new Date(user.dateRegistration)

@@ -5,7 +5,7 @@ import {
 	setAuthError,
 	setIsAuth,
 	setRegistrationError,
-	setUserAuthData, setUserData,
+	setUserAuthData, setUserData, toggleIsLoading,
 } from './auth-reducer'
 import { userAPI } from '../../api/user-api'
 
@@ -36,6 +36,7 @@ export const loginUser = (email, password) => async (dispatch) => {
 }
 
 export const authUser = () => async (dispatch) => {
+	dispatch(toggleIsLoading(true))
 	dispatch(setAppReady(false))
 	const data = await authAPI.auth()
 	if (data.message) {
@@ -43,10 +44,12 @@ export const authUser = () => async (dispatch) => {
 		dispatch(setAppReady(true))
 		localStorage.removeItem('authToken')
 		setIsAuth({ isAuth: false })
+		dispatch(toggleIsLoading(false))
 	} else {
 		dispatch(setUserAuthData(data.user))
 		localStorage.setItem('authToken', data.token)
 		dispatch(setAppReady(true))
+		dispatch(toggleIsLoading(false))
 	}
 }
 

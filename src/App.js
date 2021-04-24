@@ -15,7 +15,7 @@ import MySettings from './components/MySettings/MySettings'
 import LessonPage from './components/LessonPage/LessonPage'
 import Blog from './components/Blog/Blog'
 import MainPlates from './components/MainPlates/MainPlates'
-import Error404 from "./components/Error404/error404";
+import Error404 from "./components/Errors/Error404/error404";
 import CoursePreview from "./components/CoursePreview/CoursePreview";
 
 function App() {
