@@ -1,5 +1,5 @@
 import { coursesAPI } from '../../api/courses-api'
-import { setAllCourses, setCurrentCourse, setUserCourses, toggleIsLoading } from './courses-reducer'
+import { setAllCourses, setCurrentCourse, setUserCourses, toggleIsLoading, updateCourse } from './courses-reducer'
 import { setUserData } from '../auth-reducer/auth-reducer'
 
 
@@ -33,4 +33,10 @@ export const unsubscribeCourse = (courseId) => async (dispatch) => {
 	const data = await coursesAPI.unsubscribeCourse(courseId)
 	dispatch(setUserData(data.user))
 	dispatch(setCurrentCourse(data.course))
+}
+
+export const toggleLikeCourse = (courseId) => async (dispatch) => {
+	const data = await coursesAPI.toggleLikeCourse(courseId)
+	dispatch(setUserData(data.user))
+	dispatch(updateCourse(data.course))
 }

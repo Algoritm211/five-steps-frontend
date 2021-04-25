@@ -1,10 +1,11 @@
 import React from 'react'
 import './CourseCard.css'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getUserData } from '../../store/auth-reducer/auth-selector'
 import { countEntries } from '../util-funcs/entries-two-arr-counter'
 import { Link } from 'react-router-dom'
 import noUserPhoto from '../../assets/user/nouserphoto.png'
+import { toggleLikeCourse } from '../../store/courses-reducer/courses-thunks'
 
 const categoryToUkr = {
 	it: 'IT',
@@ -23,6 +24,7 @@ const colors = {
 }
 
 const CourseCard = (props) => {
+	const dispatch = useDispatch()
 	const course = props.course
 	const { category, title, rating, author } = course
 	const userInfo = useSelector(getUserData)
@@ -31,6 +33,11 @@ const CourseCard = (props) => {
 		courseCompletePercent = countEntries(userInfo.lessonsCompleted, course.lessons) * 20
 	}
 
+	const onLikeHandler = (event) => {
+		event.stopPropagation()
+		event.preventDefault()
+		dispatch(toggleLikeCourse(course._id))
+	}
 
 	return (
 		<Link to={`/course/${course._id}`} style={{ color: 'black' }}>
@@ -46,9 +53,12 @@ const CourseCard = (props) => {
 					</div>
 				</div>
 				<div className='row ms-0 me-0' style={{ bottom: '40%', right: '5%' }}>
-					<div className='container d-flex flex-row-reverse col-12 align-items-end'>
+					<div className='container d-flex flex-row-reverse col-12 align-items-end'
+							 onClick={onLikeHandler}
+							 style={{color: userInfo.likedCourses.includes(course._id) && '#f26c4f'}}
+					>
 						<span className='like-text align-text-bottom'>{rating}</span>
-						<i className="fas fa-thumbs-up me-2"></i>
+						<i className='fas fa-thumbs-up me-2'></i>
 					</div>
 				</div>
 				{courseCompletePercent !== -1 && userInfo?.courses?.includes(course._id) &&
@@ -56,9 +66,10 @@ const CourseCard = (props) => {
 				<div className='row ms-0 me-0'>
 					<span className='progress-text'>{`${courseCompletePercent}%`}</span>
 					<div className='progress'>
-						<div className='progress-bar' style={{ width: `${courseCompletePercent}%` , backgroundColor: '#39b54a'}} role='progressbar'
+						<div className='progress-bar' style={{ width: `${courseCompletePercent}%`, backgroundColor: '#39b54a' }}
+								 role='progressbar'
 								 aria-valuenow={`${courseCompletePercent}`} aria-valuemin='0'
-								 aria-valuemax='100'></div>
+								 aria-valuemax='100' />
 					</div>
 				</div>
 				}
@@ -72,8 +83,9 @@ const CourseCard = (props) => {
 				)}
 				<div className='row ms-0 me-0'>
 					<div className='col-2 pe-0 ps-0'>
-						<img src={author?.avatar ? `${process.env.REACT_APP_URL}/${author.avatar}` : noUserPhoto} className='img-fluid'
-								 alt='' style={{borderRadius: '50%'}}/>
+						<img src={author?.avatar ? `${process.env.REACT_APP_URL}/${author.avatar}` : noUserPhoto}
+								 className='img-fluid'
+								 alt='' style={{ borderRadius: '50%' }} />
 					</div>
 					<div className='col-10 d-flex' style={{ alignItems: 'center' }}>
 						<h6 className={'author-info mb-0'}>{author?.name}

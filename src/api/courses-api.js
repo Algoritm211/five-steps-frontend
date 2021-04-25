@@ -25,5 +25,10 @@ export const coursesAPI = {
 	unsubscribeCourse: (courseId) => {
 		return instanceAxios.delete(`course/subscribe?courseId=${courseId}`)
 			.then(data => data.data)
+	},
+
+	toggleLikeCourse: (courseId) => {
+		return instanceAxios.get(`course/like?courseId=${courseId}`)
+			.then(data => data.data)
 	}
 }
