@@ -33,7 +33,7 @@ function App() {
 			<Switch>
 				<Route path={'/profile'} component={() => <div>Profile</div>} />
 				<Route path={'/main'} component={MainPlates} />
-				<Route path={'/'} component={MainPlates} />
+				<Route path={'/'} exact component={MainPlates} />
 				<Route path={'/login'} component={Login} />
 				<Route path={'/registration'} component={Registration} />
 
