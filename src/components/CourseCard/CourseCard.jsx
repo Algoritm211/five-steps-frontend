@@ -55,10 +55,10 @@ const CourseCard = (props) => {
 				<div className='row ms-0 me-0' style={{ bottom: '40%', right: '5%' }}>
 					<div className='container d-flex flex-row-reverse col-12 align-items-end'
 							 onClick={onLikeHandler}
-							 style={{color: userInfo.likedCourses.includes(course._id) && '#f26c4f'}}
+							 style={{color: userInfo?.likedCourses?.includes(course._id) && '#f26c4f'}}
 					>
 						<span className='like-text align-text-bottom'>{rating}</span>
-						<i className='fas fa-thumbs-up me-2'></i>
+						<i className='fas fa-thumbs-up me-2'/>
 					</div>
 				</div>
 				{courseCompletePercent !== -1 && userInfo?.courses?.includes(course._id) &&
