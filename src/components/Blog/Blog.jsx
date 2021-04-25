@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Blog.css'
 import Header from '../Header/Header'
 import styles from '../MainLayout/MainPage.module.css'
@@ -21,6 +21,7 @@ const Blog = () => {
 	let articles = useSelector(getArticles)
 	const articlesCount = useSelector(getArticlesCount)
 	const filter = useSelector(getArticlesFilter)
+	const [currentPage, setCurrentPage] = useState(1)
 
 	const [query, setQuery] = useQueryParams({
 		page: NumberParam,
@@ -33,18 +34,18 @@ const Blog = () => {
 		const queryParams = query
 		const page = queryParams.page || 1
 		dispatch(setPage(page))
+		setCurrentPage(page)
 		dispatch(setFilter({
 			article: queryParams.article !== undefined ? Boolean(queryParams.article) : true,
 			video: queryParams.video !== undefined ? Boolean(queryParams.video) : true,
 			podcast: queryParams.podcast !== undefined ? Boolean(queryParams.podcast) : true,
 		}))
-		// console.log(query)
 		dispatch(loadPageArticles(filter, page))
 	}, [])
 
 	useEffect(() => {
-		setQuery({ ...filter, page: page })
-	}, [page, filter])
+		setQuery({ ...filter, page: currentPage })
+	}, [page, filter, currentPage])
 
 	const onLoadMore = () => {
 		dispatch(addNewArticles(page + 1))
@@ -52,6 +53,7 @@ const Blog = () => {
 
 	const onPageChange = (pageInfo) => {
 		dispatch(loadPageArticles(filter, pageInfo.selected + 1))
+		setCurrentPage(pageInfo.selected + 1)
 	}
 
 	const onFilterChange = (event) => {
@@ -60,6 +62,7 @@ const Blog = () => {
 		newFilter[filterParam] = event.target.checked
 		dispatch(setFilter(newFilter))
 		dispatch(loadPageArticles(newFilter, 1))
+		setCurrentPage(1)
 	}
 
 	articles = filterArticles(articles, filter)
@@ -97,6 +100,7 @@ const Blog = () => {
 					<div className='d-flex row'>
 						<div className='pagination-wrap mobile-pagination mb-5'>
 							<ReactPaginate
+								forcePage={currentPage - 1}
 								onPageChange={onPageChange}
 								pageCount={Math.ceil(articlesCount / 6)}
 								pageRangeDisplayed={5}
@@ -115,16 +119,10 @@ const Blog = () => {
 								activeClassName={'pagination-active'} />
 						</div>
 						{articlesBlock}
-						{/*{(articlesCount !== articles.length && Math.ceil(articlesCount / 6) !== page) && (*/}
-						{/*	<div className='d-flex justify-content-center mb-5'>*/}
-						{/*		<button className='guid-button' onClick={onLoadMore}>*/}
-						{/*			Показати більше*/}
-						{/*		</button>*/}
-						{/*	</div>*/}
-						{/*)}*/}
 					</div>
 					<div className='d-flex pagination-wrap mb-5'>
 						<ReactPaginate
+							forcePage={currentPage - 1}
 							onPageChange={onPageChange}
 							pageCount={Math.ceil(articlesCount / 6)}
 							pageRangeDisplayed={5}
