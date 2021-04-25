@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { getUserData } from '../../store/auth-reducer/auth-selector'
 import { countEntries } from '../util-funcs/entries-two-arr-counter'
 import { Link } from 'react-router-dom'
+import noUserPhoto from '../../assets/user/nouserphoto.png'
 
 const categoryToUkr = {
 	it: 'IT',
@@ -71,8 +72,8 @@ const CourseCard = (props) => {
 				)}
 				<div className='row ms-0 me-0'>
 					<div className='col-2 pe-0 ps-0'>
-						<img src={author?.avatar || 'https://image.flaticon.com/icons/png/512/147/147144.png'} className='img-fluid'
-								 alt='' />
+						<img src={author?.avatar ? `${process.env.REACT_APP_URL}/${author.avatar}` : noUserPhoto} className='img-fluid'
+								 alt='' style={{borderRadius: '50%'}}/>
 					</div>
 					<div className='col-10 d-flex' style={{ alignItems: 'center' }}>
 						<h6 className={'author-info mb-0'}>{author?.name}
