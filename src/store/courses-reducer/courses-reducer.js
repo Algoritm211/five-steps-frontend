@@ -30,12 +30,14 @@ const coursesReducer = createSlice({
 			state.currentCourse = action.payload
 		},
 		updateCourse: (state, action) => {
-			state.allCourses = state.allCourses.map(course => {
+			const updateCallback = (course) => {
 				if (course._id === action.payload._id) {
 					return action.payload
 				}
 				return course
-			})
+			}
+			state.allCourses = state.allCourses.map(course => updateCallback(course))
+			state.usersCourses = state.usersCourses.map(course => updateCallback(course))
 		}
 	},
 
