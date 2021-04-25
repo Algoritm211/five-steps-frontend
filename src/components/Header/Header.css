@@ -173,7 +173,7 @@
   }
   .navbar-right .dropdown:hover > ul {
     opacity: 1;
-    top: 55px;
+    top: 48px;
     float: right;
     right: -40px;
     visibility: visible;
