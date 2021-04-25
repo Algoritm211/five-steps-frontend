@@ -10,7 +10,7 @@ const coursesReducer = createSlice({
 		page: 1,
 		coursesCount: 0,
 		filters: [],
-		currentCourse: null
+		currentCourse: null,
 	},
 	reducers: {
 		toggleIsLoading: (state, action) => {
@@ -28,6 +28,16 @@ const coursesReducer = createSlice({
 		},
 		setCurrentCourse: (state, action) => {
 			state.currentCourse = action.payload
+		},
+		updateCourse: (state, action) => {
+			const updateCallback = (course) => {
+				if (course._id === action.payload._id) {
+					return action.payload
+				}
+				return course
+			}
+			state.allCourses = state.allCourses.map(course => updateCallback(course))
+			state.usersCourses = state.usersCourses.map(course => updateCallback(course))
 		}
 	},
 
@@ -38,6 +48,7 @@ export const {
 	toggleIsLoading,
 	setUserCourses,
 	setCurrentCourse,
+	updateCourse,
 	setFilters } = coursesReducer.actions
 
 export default coursesReducer.reducer
