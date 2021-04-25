@@ -17,6 +17,7 @@ import Blog from './components/Blog/Blog'
 import MainPlates from './components/MainPlates/MainPlates'
 import Error404 from "./components/Errors/Error404/error404";
 import CoursePreview from "./components/CoursePreview/CoursePreview";
+import CourseEditor from "./components/Editor/Editor";
 
 function App() {
 	const dispatch = useDispatch()
@@ -39,6 +40,7 @@ function App() {
 
 				<Route path={'/professions'} component={CoursesContainer} />
 				<Route path={'/blog'} component={Blog} />
+				<Route path={'/editor'} component={CourseEditor} />
 
 
 				<Route path={'/account/:id/'} component={MyProfile} />

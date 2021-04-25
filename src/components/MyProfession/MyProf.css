@@ -6,3 +6,17 @@
   color: #4f5a62;
   padding: 50px 0 0 0;
 }
+.add-course{
+  padding: 25px;
+  height: 100%;
+}
+.add-course-ill{
+  height: 60px;
+  width: 60px;
+  font-size: 60px;
+  margin: 50px auto 20px;
+}
+.add-course-text{
+  font-size: 16px;
+  font-weight: 600;
+}
