@@ -86,7 +86,7 @@ const LessonPage = () => {
 				<div className='col-12 col-sm-12 col-md-3 me-auto ms-auto course-info'>
 					<h3 className='courses-subtitle'>Крок номер {lessonNumber}</h3>
 					<h1 className='courses-title mb-5'>{currentCourse.title}</h1>
-					<p className='course-description mb-5'>{currentCourse.author.name} - Автор курсу, та еще чертила, сеньор выносить мозги девелопер</p>
+					<p className='course-description mb-5'>{currentCourse?.author?.name} - Автор курсу, та еще чертила, сеньор выносить мозги девелопер</p>
 					{/*<audio*/}
 					{/*    controls*/}
 					{/*    className="course-audio"*/}

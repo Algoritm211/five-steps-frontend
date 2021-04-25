@@ -33,6 +33,7 @@ function App() {
 			<Switch>
 				<Route path={'/profile'} component={() => <div>Profile</div>} />
 				<Route path={'/main'} component={MainPlates} />
+				<Route path={'/'} component={MainPlates} />
 				<Route path={'/login'} component={Login} />
 				<Route path={'/registration'} component={Registration} />
 
@@ -52,7 +53,7 @@ function App() {
 				<Route path={'/error'} component={Error404} />
 				{/*<Route path={'/coursePreview'} component={CoursePreview} />*/}
 
-				<Redirect to={'/main'} />
+				<Redirect to={'/error'} />
 			</Switch>
 		</div>
 	)
