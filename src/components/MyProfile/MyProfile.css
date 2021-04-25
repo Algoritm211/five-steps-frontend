@@ -96,7 +96,7 @@
 }
 @media (max-width: 992px) {
     .form-select{
-        font-size: 13.5px;
+        font-size: 12px;
     }
 }
 @media (max-width: 768px) {
@@ -104,12 +104,8 @@
         font-size: 17px;
     }
 }
-@media (max-width: 383px) {
-.form-select{
-    font-size: calc(10vw/2.8);
-}
-}
-
-.bootstrap-fix{
-    --bs-gutter-x:0 !important;
+@media (max-width: 407px) {
+    .select-wrap {
+        display: block;
+    }
 }

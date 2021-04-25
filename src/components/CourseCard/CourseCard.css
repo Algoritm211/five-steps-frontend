@@ -3,7 +3,7 @@
 */
 .card{
   padding: 25px;
-  min-height: 209px;
+  min-height: 254px;
   height: 100%;
   border-radius: 15px;
   transition: all 0.3s ease;
@@ -85,4 +85,38 @@
 
 .card-hr{
   margin-bottom: 12px;
+}
+
+.img-avatar{
+  height: 41.78px;
+  object-fit: cover;
+}
+
+
+@media (min-width: 768px){
+  .img-avatar{
+    width: 48px;
+    height: 48px;
+  }
+}
+@media (max-width: 767px){
+  .img-avatar{
+    width: 30px;
+    height: 30px;
+  }
+  .media-padding{
+    padding: 0px;
+  }
+}
+@media (max-width: 992px){
+  .img-avatar{
+    width: 36px;
+    height: 36px;
+  }
+}
+@media (min-width: 510px) and (max-width: 620px){
+  .media-padding{
+    padding-left: 0.75rem;
+  }
+
 }

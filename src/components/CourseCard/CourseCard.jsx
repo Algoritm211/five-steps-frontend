@@ -36,7 +36,7 @@ const CourseCard = (props) => {
 		<Link to={`/course/${course._id}`} style={{ color: 'black' }}>
 			<div className='container card '>
 				<div className='row mb-3 ms-0 me-0'>
-					<div className={`col-5 text-center rounded card-tag`} style={{ backgroundColor: colors[category] }}>
+					<div className={`col-7 col-sm-6 col-lg-5 text-center rounded card-tag`} style={{ backgroundColor: colors[category] }}>
 						<p className='text-center m-auto card-tag-text'>{categoryToUkr[category].toUpperCase()}</p>
 					</div>
 				</div>
@@ -72,10 +72,10 @@ const CourseCard = (props) => {
 				)}
 				<div className='row ms-0 me-0'>
 					<div className='col-2 pe-0 ps-0'>
-						<img src={author?.avatar ? `${process.env.REACT_APP_URL}/${author.avatar}` : noUserPhoto} className='img-fluid'
+						<img src={author?.avatar ? `${process.env.REACT_APP_URL}/${author.avatar}` : noUserPhoto} className='img-avatar'
 								 alt='' style={{borderRadius: '50%'}}/>
 					</div>
-					<div className='col-10 d-flex' style={{ alignItems: 'center' }}>
+					<div className='col-10 d-flex media-padding' style={{ alignItems: 'center' }}>
 						<h6 className={'author-info mb-0'}>{author?.name}
 							, <br /> {author?.description || ''}</h6>
 					</div>

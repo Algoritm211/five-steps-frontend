@@ -95,7 +95,7 @@ const MyProfile = () => {
 									className='acc-join-title'>Приєднався {(date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear()}</span>
 							</div>
 						</div>
-						<form onSubmit={formik.handleSubmit} className='row pt-3 bootstrap-fix'>
+						<form onSubmit={formik.handleSubmit} className='pt-3'>
 							<h3 className='acc-subtitle'>Особисті дані</h3>
 							<div className='row acc-info d-flex'>
 								<div className='col-12 col-md-3'>

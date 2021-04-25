@@ -50,7 +50,7 @@ const MyProf = () => {
 							</div>
 						</div>
 						<div className='row pt-3'>
-							<div className='acc-info d-flex'>
+							<div className='acc-info d-flex' style={{marginTop: '0'}}>
 
 								<div className={'courseContainer'}>
 									{userCoursesBlock}
