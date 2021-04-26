@@ -55,10 +55,12 @@ const MySettings = () => {
 							</div>
 							{/*Сюда вставить переменную почты*/}
 							<span className=''>{user.email}</span>
-							<div className='acc-info d-flex'>
-								<button className='btn btn-secondary' type='submit'>Змінити пароль
-								</button>
-							</div>
+							{!user.fromGoogleAuth && (
+								<div className='acc-info d-flex'>
+									<button className='btn btn-secondary' type='submit'>Змінити пароль
+									</button>
+								</div>
+							)}
 							<div className='row acc-info d-flex'>
 								<div className='col-12 col-sm-5 col-lg-3'>
 									<span className='info-title'>Мова інтерфейсу</span>

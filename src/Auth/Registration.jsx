@@ -69,6 +69,7 @@ const Registration = () => {
 		if (messageEvent.origin === process.env.REACT_APP_URL) {
 			const parsedData = JSON.parse(messageEvent.data)
 			parsedData['role'] = localStorage.getItem('isExpert') === 'true' ? 'expert' : 'student'
+			parsedData['fromGoogleAuth'] = true
 			dispatch(registerUser(parsedData))
 			history.push('/main')
 		}
