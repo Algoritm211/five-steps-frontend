@@ -88,9 +88,9 @@ const MyProf = () => {
 										<h1 className='acc-title' style={{ width: '100%' }}>Створені мною професії</h1>
 									</div>
 								</div>
-								<div className='row pt-3'>
-									<div className='acc-info d-flex mt-0'>
-										<div className={'courseContainer'}>
+								<div className='row pt-3' >
+									<div className='acc-info d-flex mt-0' >
+										<div className={'courseContainer'} style={{width: "100%"}}>
 											{userAuthorCoursesBlock}
 											<Link to='#'>
 												<div className='container add-course' onClick={() => setIsModalOpen(true)}>

@@ -58,7 +58,18 @@ const CourseEditor = () => {
 	return (
 		<MainLayout>
 			<div className='row m-0'>
-				<div className='col-12 col-md-9 d-flex mb-3'>
+				<div className='col-12 col-md-9 mb-3'>
+					<div className='mt-3'>
+						<span className='info-title d-block'>Назва уроку</span>
+						<input className={'inputAcc d-block mb-3'}
+							    // value={formik.values.title}
+							    // onChange={formik.handleChange}
+							    type='text'
+							    name='title'
+								id='title' />
+					</div>
+					<span className='info-title d-block'>Контент уроку</span>
+					<div className=''>
 					<Editor
 						apiKey={'j2rcg8qaqco0x9y81b1jn5dc0ze3phyfbapmnra5q59deqml'}
 						value={lessonBody}
@@ -79,6 +90,7 @@ const CourseEditor = () => {
 						}}
 						onEditorChange={handleEditorChange}
 					/>
+					</div>
 				</div>
 				<div className='col-12 col-md-3 d-block pe-0'>
 					<div className='container'>

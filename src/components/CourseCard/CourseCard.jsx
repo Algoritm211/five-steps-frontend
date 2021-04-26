@@ -46,6 +46,7 @@ const CourseCard = (props) => {
                 <div className='row mb-3 ms-0 me-0'>
                     <div className={`col-7 col-sm-6 col-lg-5 text-center rounded card-tag`}
                          style={{backgroundColor: colors[category]}}>
+                         {/*style={{backgroundColor: '#7e919f' }}>*/}
                         <p className='text-center m-auto card-tag-text'>{categoryToUkr[category]?.toUpperCase() || ''}</p>
                     </div>
                 </div>
@@ -58,7 +59,9 @@ const CourseCard = (props) => {
                     <div className='container d-flex flex-row-reverse col-12 align-items-end'
                          style={{color: userInfo?.likedCourses?.includes(course._id) && '#f26c4f'}}>
                         <span className='like-text align-text-bottom' onClick={onLikeHandler}>{rating}</span>
-                        <i className='fas fa-thumbs-up pe-2' onClick={onLikeHandler}/>
+                        <i title="Лайкнути кроки" className='fas fa-thumbs-up pe-2' onClick={onLikeHandler}/>
+                        <i title="Редагувати створений курс" className="fas fa-edit pe-2"/>
+                        <i title="Видалити створений курс" className="fas fa-trash-alt pe-2"/>
                     </div>
                 </div>
                 {courseCompletePercent !== -1 && userInfo?.courses?.includes(course._id) &&
@@ -82,6 +85,15 @@ const CourseCard = (props) => {
                         </div>
                     </div>
                 )}
+
+                {/*<div className='row ms-0 me-0'>*/}
+                {/*    <div className='col-12 pe-0 ps-0'>*/}
+                {/*        <div className="markerInProcess">*/}
+                {/*            <p className="titleCourseState">Курс прийнято</p>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
+
                 <div className='row ms-0 me-0'>
                     <div className='col-2 pe-0 ps-0'>
                         <img src={author?.avatar ? `${process.env.REACT_APP_URL}/${author.avatar}` : noUserPhoto}

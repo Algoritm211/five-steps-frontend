@@ -118,5 +118,17 @@
   .media-padding{
     padding-left: 0.75rem;
   }
-
+}
+.markerInProcess{
+  background-color: rgb(57, 176, 101);
+  border-radius: 999px;
+  display: flex;
+  height: 40px;
+  width: 100%;
+}
+.titleCourseState{
+  color: white;
+  font-size: 12px;
+  margin: auto;
+  line-height: inherit;
 }
