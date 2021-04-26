@@ -118,7 +118,7 @@ const MySettings = () => {
 								<span className='delete-text' id='modalDelete'>Видалити акаунт</span>
 							</div>
 
-							<div id='exampleModal' className={`modal ${isModalOpen ? 'active' : ''}`} tabIndex='-1'>
+							<div id='exampleModal' className={`modal deleteAccount ${isModalOpen ? 'active' : ''}`} tabIndex='-1'>
 								<div className='modal-dialog'>
 									<div className='modal-content'>
 										<div className='modal-header'>

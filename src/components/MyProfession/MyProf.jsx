@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import './MyProf.css'
 import Header from '../Header/Header'
 import styles from '../MainLayout/MainPage.module.css'
@@ -8,17 +8,18 @@ import {getUserCourses} from '../../store/courses-reducer/courses-thunks'
 import {getUserCourses as userCoursesSelector} from '../../store/courses-reducer/courses-selector'
 import MainLayout from '../MainLayout/MainLayout'
 import ProfileNavbar from '../MyProfile/ProfileNavbar/ProfileNavbar'
-import {getIsAuth, getIsLoading} from '../../store/auth-reducer/auth-selector'
+import {getIsAuth, getIsLoading, getUserData} from '../../store/auth-reducer/auth-selector'
 import Error403 from '../Errors/Error403/Error403'
 import Loader from '../Loader/Loader'
 import {Link} from "react-router-dom";
 
 const MyProf = () => {
-
+    const user = useSelector(getUserData)
     const dispatch = useDispatch()
     const courses = useSelector(userCoursesSelector)
     const isAuth = useSelector(getIsAuth)
     const isLoading = useSelector(getIsLoading)
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     useEffect(() => {
         dispatch(getUserCourses())
@@ -70,6 +71,7 @@ const MyProf = () => {
                                 </div>
                             </div>
                         </div>
+                        {user.role === 'expert' && (
                         <div className='col mb-5'>
                             <div className='row'>
                                 <div className='d-flex'>
@@ -81,11 +83,11 @@ const MyProf = () => {
                                     <div className={'courseContainer'}>
                                         {userCoursesBlock}
                                         <Link to="#">
-                                            <div className="container add-course">
+                                            <div className="container add-course" onClick={() => setIsModalOpen(true)}>
                                                 <div className="d-flex justify-content-center add-course-ill">
                                                     <i className="fas fa-plus-circle"/>
                                                 </div>
-                                                <div className="d-flex justify-content-center add-course-text">
+                                                <div className="d-flex justify-content-center add-course-text" >
                                                     <p>Створити курс</p>
                                                 </div>
                                             </div>
@@ -94,11 +96,73 @@ const MyProf = () => {
                                 </div>
                             </div>
                         </div>
+                        )}
 
                     </div>
                 </div>
 
 
+            </div>
+
+            <div id='exampleModal' className={`modal addNewCourse ${isModalOpen ? 'active' : ''}`} tabIndex='-1'>
+                <div className='modal-dialog'>
+                    <div className='modal-content'>
+                        <div className='modal-header'>
+                            <h5 className='modal-title'>Створення нового курсу</h5>
+                            <button type='button' className='btn-close'
+                                    data-bs-dismiss='modal'
+                                    aria-label='Close' onClick={() => setIsModalOpen(false)}></button>
+                        </div>
+                        <div className='modal-body'>
+                            <p>Будь ласка, введіть назву та опис вашого курсу. <br/>Оберіть його категорію.</p>
+                            <div className='row d-flex mb-3'>
+                                <div className='col-12'>
+                                    <span className='info-title'>Назва курсу</span>
+                                    <input
+                                        className={'inputAcc'}
+                                        type='nameCourse'
+                                        name='nameCourse'
+                                        id='nameCourse' />
+                                </div>
+                            </div>
+                            <div className='row d-flex mb-3'>
+                                <div className='col-12'>
+                                    <span className='info-title'>Опис курсу</span>
+                                    <textarea maxlength="150"
+                                              className='form-control inputAcc'
+                                        placeholder='Розкажіть про курс в декілька рядків'
+                                        id='descriptionCourse' />
+                                </div>
+                            </div>
+                            <div className='row d-flex mb-3'>
+                                <div className='col-12'>
+                                    <div className='info-title'>Оберіть категорію курсу</div>
+                                    <select
+                                        name={'themeCourse'}
+                                        className='form-select mr-1 me-2'
+                                        aria-label='Default select example'>
+                                        <option defaultValue>Категорія</option>
+                                        <option value='design'>Дизайн</option>
+                                        <option value='business'>Бізнес</option>
+                                        <option value='education'>Освіта</option>
+                                        <option value='marketing'>Маркетинг</option>
+                                        <option value='IT'>IT</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='modal-footer'>
+                            <button type='button' className='btn btn-primary'
+                                    onClick={() => setIsModalOpen(false)}>Створити курс
+                            </button>
+                            <button type='button' className='btn btn-danger'
+                                    data-bs-dismiss='modal' onClick={() => setIsModalOpen(false)}>Скасувати
+                            </button>
+
+                        </div>
+
+                    </div>
+                </div>
             </div>
             {/*<div className={'container d-flex myProfTitle'}>*/}
             {/*	<h1>Мої професії</h1>*/}
