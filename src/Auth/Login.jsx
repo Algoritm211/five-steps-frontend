@@ -1,19 +1,39 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { authGoogle, loginUser } from '../store/auth-reducer/auth-thunks'
 import { Link, useHistory } from 'react-router-dom'
 import './Auth.css'
+import * as Yup from 'yup'
+import { useFormik } from 'formik'
+import { getAuthError } from '../store/auth-reducer/auth-selector'
+
+const loginValidationSchema = Yup.object().shape({
+	email: Yup.string()
+		.email('Введіть дійсну email-адресу')
+		.matches(/[^<>%$]/i, 'Присутні заборонені символи'),
+	password: Yup.string()
+		.required('Пароль треба вказати обов`язково')
+		.min(8, 'Пароль має бути мінімум 8 символів')
+		.matches(/[^<>%$]/i, 'Присутні заборонені символи'),
+})
 
 const Login = () => {
 	const history = useHistory()
 	const dispatch = useDispatch()
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
+	const authError = useSelector(getAuthError)
 
-	const onSubmit = () => {
-		dispatch(loginUser(email, password))
-		history.push('/main')
-	}
+	const formik = useFormik({
+		enableReinitialize: true,
+		validationSchema: loginValidationSchema,
+		initialValues: {
+			email: '',
+			password: '',
+		},
+		onSubmit: values => {
+			dispatch(loginUser(values.email, values.password))
+		},
+	})
+
 
 	const onGoogleLogIn = () => {
 		const win = window.open(
@@ -58,47 +78,40 @@ const Login = () => {
 						<h1><Link to={'/main'} style={{ lineHeight: '40px', fontWeight: '600' }}>Logo</Link></h1>
 					</div>
 					<div className='sign-up-content'>
-						<div method='POST' className='signup-form'>
-							{/*<h2 className='form-title'>What type of user are you ?</h2>*/}
-							{/*<div className='form-radio'>*/}
-							{/*	<input type='radio' name='member_level' value='newbie' id='newbie' checked='checked' />*/}
-							{/*	<label htmlFor='newbie'>Student</label>*/}
-
-							{/*	<input type='radio' name='member_level' value='average' id='average' />*/}
-							{/*	<label htmlFor='average'>Expert</label>*/}
-
-							{/*</div>*/}
+						<form onSubmit={formik.handleSubmit} className='signup-form'>
 							<h1 className='AuthTitle'>Увійдіть, щоб побачити більше</h1>
 							<div className='form-textbox'>
 								<label htmlFor='email'>Email</label>
 								<input
 									className={'inputAuth'}
-									value={email}
-									onChange={(event) => setEmail(event.target.value)}
+									value={formik.values.email}
+									onChange={formik.handleChange}
 									type='email'
 									name='email'
 									id='email' />
+								{formik.errors.email}
 							</div>
 
 							<div className='form-textbox'>
 								<label htmlFor='pass'>Password</label>
 								<input
 									className={'inputAuth'}
-									value={password}
-									onChange={(event) => setPassword(event.target.value)}
+									value={formik.values.password}
+									onChange={formik.handleChange}
 									type='password'
-									name='pass'
-									id='pass' />
+									name='password'
+									id='password' />
+								{formik.errors.password}
 							</div>
 
 							<div className='form-textbox'>
+								{authError && <div>{authError}</div>}
 								<button
-									onClick={onSubmit}
 									type='submit' name='submit' id='submit' className='submit' value='Log in' style={{ width: '100%' }}>
 									Log in
 								</button>
 							</div>
-						</div>
+						</form>
 
 						<div className='form-textbox' style={{ textAlign: 'center' }}>
 							<div className='or-container'>

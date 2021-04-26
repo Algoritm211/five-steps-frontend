@@ -1,42 +1,55 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { registerUser } from '../store/auth-reducer/auth-thunks'
+import { useDispatch, useSelector } from 'react-redux'
+import { loginUser, registerUser } from '../store/auth-reducer/auth-thunks'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+import { getAuthError, getRegistrationError } from '../store/auth-reducer/auth-selector'
+
+const registrationValidationSchema = Yup.object().shape({
+	name: Yup.string()
+		.required('Ім`я треба вказати обов`язково')
+		.matches(/[^<>%$]/i, 'Присутні заборонені символи'),
+	email: Yup.string()
+		.required('Email треба вказати обов`язково')
+		.email('Введіть дійсну email-адресу')
+		.matches(/[^<>%$]/i, 'Присутні заборонені символи'),
+	password: Yup.string()
+		.required('Пароль треба вказати обов`язково')
+		.min(8, 'Пароль має бути мінімум 8 символів')
+		.matches(/[^<>%$]/i, 'Присутні заборонені символи'),
+	repeatPassword: Yup.string()
+		.matches(/[^<>%$]/i, 'Присутні заборонені символи')
+		.oneOf([Yup.ref('password'), null], 'Паролі не співпадають')
+})
 
 
 const Registration = () => {
 	const history = useHistory()
 	const dispatch = useDispatch()
+	const regError = useSelector(getRegistrationError)
 	const [isExpert, setIsExpert] = useState(false)
-	const [userData, setUserData] = useState({
-		email: '',
-		password: '',
-		repeatPassword: '',
-		name: '',
+
+	const formik = useFormik({
+		enableReinitialize: true,
+		validationSchema: registrationValidationSchema,
+		initialValues: {
+			name: '',
+			email: '',
+			password: '',
+			repeatPassword: '',
+		},
+		onSubmit: values => {
+			const objToServer = {
+				name: values.name,
+				email: values.email,
+				password: values.password,
+				role: isExpert ? 'expert' : 'student'
+			}
+			dispatch(registerUser(objToServer))
+			// history.push('/main')
+		},
 	})
-	const [error, setError] = useState('')
-
-	const onInputChange = (event) => {
-		const newUserData = userData
-		const field = event.target.getAttribute('name')
-		newUserData[field] = event.target.value
-		setUserData(newUserData)
-	}
-
-	const onSubmitRegistration = () => {
-		if (Object.values(userData).includes('')) {
-			setError('Не всі поля заповнені')
-			return
-		}
-		if (userData.password !== userData.repeatPassword) {
-			setError('Паролі не співпадають')
-			return
-		}
-		const modifiedUserData = userData
-		modifiedUserData['role'] = isExpert ? 'expert' : 'student'
-		dispatch(registerUser(modifiedUserData))
-		history.push('/main')
-	}
 
 	const onGoogleAuth = () => {
 		const win = window.open(
@@ -61,7 +74,7 @@ const Registration = () => {
 		}
 	}
 
-	React.useEffect(() => {
+	useEffect(() => {
 		window.addEventListener('message', onCatchGoogleLogin)
 		return () => {
 			window.removeEventListener('message', onCatchGoogleLogin)
@@ -76,7 +89,7 @@ const Registration = () => {
 						<h1><Link to={'/main'} style={{ lineHeight: '40px', fontWeight: '600' }}>Logo</Link></h1>
 					</div>
 					<div className='sign-up-content'>
-						<div className='signup-form'>
+						<form onSubmit={formik.handleSubmit} className='signup-form'>
 							<h1 className='AuthTitle'>Реєструйтеся, щоб побачити більше</h1>
 							<div className='form-radio'>
 								<input className={`${isExpert ? 'inputRadio' : 'inputRadioChecked'}`} type='radio' name='member_level'
@@ -98,44 +111,46 @@ const Registration = () => {
 							<div className='form-textbox'>
 								<label htmlFor='name'>Full name</label>
 								<input
-									onChange={onInputChange}
+									value={formik.values.name}
+									onChange={formik.handleChange}
 									className={'inputAuth'}
 									type='text' name='name' id='name' />
+								{formik.errors.name}
 							</div>
 
 							<div className='form-textbox'>
 								<label htmlFor='email'>Email</label>
 								<input
-									onChange={onInputChange}
+									value={formik.values.email}
+									onChange={formik.handleChange}
 									className={'inputAuth'}
 									type='email' name='email' id='email' />
+								{formik.errors.email}
 							</div>
 
 							<div className='form-textbox'>
 								<label htmlFor='pass'>Password</label>
 								<input
-									onChange={onInputChange}
+									value={formik.values.password}
+									onChange={formik.handleChange}
 									className={'inputAuth'}
 									type='password' name='password' id='pass' />
+								{formik.errors.password}
 							</div>
 
 							<div className='form-textbox'>
 								<label htmlFor='confirm-pass'>Confirm Password</label>
 								<input
-									onChange={onInputChange}
+									value={formik.values.repeatPassword}
+									onChange={formik.handleChange}
 									className={'inputAuth'}
 									type='password' name='repeatPassword' id='confirm-pass' />
+								{formik.errors.repeatPassword}
 							</div>
 
-							{/*<div className="form-group">*/}
-							{/*	<input type="checkbox" name="agree-term" id="agree-term" className="agree-term" />*/}
-							{/*	<label htmlFor="agree-term" className="label-agree-term"><span><span></span></span>&nbsp;&nbsp;&nbsp; I agree all*/}
-							{/*		statements in <a href="#" className="term-service">Terms of service</a></label>*/}
-							{/*</div>*/}
-
 							<div className='form-textbox'>
+								{regError && <div>{regError}</div>}
 								<button
-									onClick={onSubmitRegistration}
 									name='submit' id='submit' className='submit' style={{ width: '100%' }}>
 									Sign Up
 								</button>
@@ -163,7 +178,7 @@ const Registration = () => {
 								</div>
 							</div>
 
-						</div>
+						</form>
 
 						<p className='loginhere'>
 							Already have an account?&nbsp;

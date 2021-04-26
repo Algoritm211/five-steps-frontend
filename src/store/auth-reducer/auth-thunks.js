@@ -13,10 +13,10 @@ export const registerUser = (userData) => async (dispatch) => {
 	try {
 		const data = await authAPI.registration(userData)
 
-		dispatch(registrationSuccess())
 		dispatch(loginUser(userData.email, userData.password))
+		dispatch(registrationSuccess())
 	} catch (error) {
-		console.log(error)
+		console.log(error.response.data.message)
 		dispatch(setRegistrationError(error.response.data.message))
 	}
 }
@@ -27,7 +27,8 @@ export const loginUser = (email, password) => async (dispatch) => {
 		const data = await authAPI.login(email, password)
 		await localStorage.setItem('authToken', data.token)
 		dispatch(setUserAuthData(data.user))
-		window.location.reload()
+		// window.location.reload()
+		window.location.assign('/main')
 		dispatch(setAppReady(true))
 	} catch (error) {
 		dispatch(setAuthError(error.response.data.message))
