@@ -17,6 +17,7 @@ const CourseEditor = () => {
 	const [lessonBody, setLessonBody] = useState('')
 
 	useEffect(() => {
+		setLessonBody('')
 		if (course?._id) {
 			dispatch(loadLesson(course?._id, lessonNumber))
 		}
@@ -27,20 +28,20 @@ const CourseEditor = () => {
 	}
 
 	const handleEditorChange = (content, editor) => {
-		console.log('Content was updated:', content)
+		// console.log('Content was updated:', content)
 		setLessonBody(content)
 	}
 
 	const onSaveLesson = () => {
 		if (!currentLesson) {
-			dispatch(createLesson({body: lessonBody, homeWork: 'Editor', courseId: course._id}))
+			dispatch(createLesson({ body: lessonBody, homeWork: 'Editor', courseId: course._id }))
 		}
-
 	}
+
 
 	const lessonBlock = [1, 2, 3, 4, 5].map((lNumber) => {
 		return (
-			<React.Fragment key={lNumber} >
+			<React.Fragment key={lNumber}>
 				<div className={`container ${lNumber === lessonNumber ? 'editor-select-active' : 'editor-select'}`}>
 					<NavLink to='#' onClick={() => setLessonNumber(lNumber)}>
 						<p className='editor-step'>Крок {lNumber}</p>
@@ -111,5 +112,6 @@ const CourseEditor = () => {
 		</MainLayout>
 	)
 }
+
 
 export default CourseEditor
