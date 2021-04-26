@@ -118,7 +118,7 @@ const MyProf = () => {
                             <div className='row d-flex mb-3'>
                                 <div className='col-12'>
                                     <span className='info-title'>Назва курсу</span>
-                                    <input
+                                    <input maxlength="39"
                                         className={'inputAcc'}
                                         type='nameCourse'
                                         name='nameCourse'
@@ -128,7 +128,7 @@ const MyProf = () => {
                             <div className='row d-flex mb-3'>
                                 <div className='col-12'>
                                     <span className='info-title'>Опис курсу</span>
-                                    <textarea maxlength="150"
+                                    <textarea maxlength="120" style={{resize: 'none', height: '100px'}}
                                               className='form-control inputAcc'
                                         placeholder='Розкажіть про курс в декілька рядків'
                                         id='descriptionCourse' />
