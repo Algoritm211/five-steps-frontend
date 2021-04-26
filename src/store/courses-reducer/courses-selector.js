@@ -25,3 +25,7 @@ export const getFilters = (state) => {
 export const getCurrentCourse = (state) => {
 	return state.coursesReducer.currentCourse
 }
+
+export const getUserAuthorCourses = (state) => {
+	return state.coursesReducer.usersAuthorCourses
+}

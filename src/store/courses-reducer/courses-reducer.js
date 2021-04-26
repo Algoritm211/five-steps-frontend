@@ -7,6 +7,7 @@ const coursesReducer = createSlice({
 		allCourses: [],
 		isLoading: false,
 		usersCourses: [],
+		usersAuthorCourses: [],
 		page: 1,
 		coursesCount: 0,
 		filters: [],
@@ -22,6 +23,9 @@ const coursesReducer = createSlice({
 		},
 		setUserCourses: (state, action) => {
 			state.usersCourses = action.payload.courses
+		},
+		setUserAuthorCourses: (state, action) => {
+			state.usersAuthorCourses = action.payload
 		},
 		setFilters: (state, action) => {
 			state.filters = [...action.payload]
@@ -49,6 +53,7 @@ export const {
 	setUserCourses,
 	setCurrentCourse,
 	updateCourse,
+	setUserAuthorCourses,
 	setFilters } = coursesReducer.actions
 
 export default coursesReducer.reducer

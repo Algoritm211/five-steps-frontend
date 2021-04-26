@@ -12,6 +12,11 @@ export const coursesAPI = {
 			.then((data) => data.data)
 	},
 
+	getUserAuthorCourses: () => {
+		return instanceAxios('course/expert')
+			.then(data => data.data)
+	},
+
 	getCourse: (courseId) => {
 		return instanceAxios.get(`course/one?courseId=${courseId}`)
 			.then(data => data.data)
