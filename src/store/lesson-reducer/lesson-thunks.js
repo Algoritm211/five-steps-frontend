@@ -1,6 +1,10 @@
 import { setCurrentCourse, setCurrentLesson, setError, setLessonPage } from './lesson-reducer'
 import { lessonAPI } from '../../api/lesson-api'
 
+export const createLesson = (lessonData) => async (dispatch) => {
+	const data = await lessonAPI.createLesson(lessonData)
+}
+
 export const loadLesson = (courseId, lessonNumber) => async (dispatch) => {
 	try {
 		dispatch(setError(null))
@@ -15,6 +19,5 @@ export const loadLesson = (courseId, lessonNumber) => async (dispatch) => {
 	} catch (error) {
 		dispatch(setError('Error'))
 	}
-
 
 }

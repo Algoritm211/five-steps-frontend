@@ -83,7 +83,9 @@ const CoursesContainer = () => {
 		dispatch(getAllCourses(pageInfo.selected + 1, filters))
 	}
 	const allCoursesBlock = allCourses.map((course, index) => {
-		return <CourseCard course={course} key={index} />
+		if (course.isReady !== false) {
+			return <CourseCard course={course} key={index} />
+		}
 	})
 
 	return (

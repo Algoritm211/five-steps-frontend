@@ -46,7 +46,7 @@ const CourseCard = (props) => {
                 <div className='row mb-3 ms-0 me-0'>
                     <div className={`col-7 col-sm-6 col-lg-5 text-center rounded card-tag`}
                          style={{backgroundColor: colors[category]}}>
-                        <p className='text-center m-auto card-tag-text'>{categoryToUkr[category].toUpperCase()}</p>
+                        <p className='text-center m-auto card-tag-text'>{categoryToUkr[category]?.toUpperCase() || ''}</p>
                     </div>
                 </div>
                 <div className='row mb-0 ms-0 me-0'>

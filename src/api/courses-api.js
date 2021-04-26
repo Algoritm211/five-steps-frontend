@@ -2,6 +2,11 @@ import { instanceAxios } from './api-config'
 
 
 export const coursesAPI = {
+	createCourse: (courseData) => {
+	return instanceAxios.post('course/create', courseData)
+		.then(data => data.data)
+	},
+
 	getAllCourses: (page, filters) => {
 		return instanceAxios.get(`course?page=${page}&filters=${filters.join(',')}`)
 			.then((data) => data.data)
