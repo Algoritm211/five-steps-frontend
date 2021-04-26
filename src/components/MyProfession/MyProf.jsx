@@ -4,8 +4,8 @@ import Header from '../Header/Header'
 import styles from '../MainLayout/MainPage.module.css'
 import CourseCard from '../CourseCard/CourseCard'
 import {useDispatch, useSelector} from 'react-redux'
-import {getUserCourses} from '../../store/courses-reducer/courses-thunks'
-import {getUserCourses as userCoursesSelector} from '../../store/courses-reducer/courses-selector'
+import {getUserAuthorCourses, getUserCourses} from '../../store/courses-reducer/courses-thunks'
+import {getUserAuthorCourses as getAuthorCourses, getUserCourses as userCoursesSelector} from '../../store/courses-reducer/courses-selector'
 import MainLayout from '../MainLayout/MainLayout'
 import ProfileNavbar from '../MyProfile/ProfileNavbar/ProfileNavbar'
 import {getIsAuth, getIsLoading, getUserData} from '../../store/auth-reducer/auth-selector'
@@ -17,12 +17,15 @@ const MyProf = () => {
     const user = useSelector(getUserData)
     const dispatch = useDispatch()
     const courses = useSelector(userCoursesSelector)
+    const authorCourses = useSelector(getAuthorCourses)
     const isAuth = useSelector(getIsAuth)
     const isLoading = useSelector(getIsLoading)
     const [isModalOpen, setIsModalOpen] = useState(false)
 
+    console.log(authorCourses)
     useEffect(() => {
         dispatch(getUserCourses())
+        dispatch(getUserAuthorCourses())
     }, [])
 
     if (isLoading) {
@@ -35,6 +38,10 @@ const MyProf = () => {
 
     const userCoursesBlock = courses.map((course) => {
         return <CourseCard course={course} key={course._id}/>
+    })
+
+    const userAuthorCoursesBlock = authorCourses.map((authorCourse) => {
+        return <CourseCard course={authorCourse} key={authorCourse._id}/>
     })
 
     return (
@@ -81,7 +88,7 @@ const MyProf = () => {
                             <div className='row pt-3'>
                                 <div className='acc-info d-flex mt-0'>
                                     <div className={'courseContainer'}>
-                                        {userCoursesBlock}
+                                        {userAuthorCoursesBlock}
                                         <Link to="#">
                                             <div className="container add-course" onClick={() => setIsModalOpen(true)}>
                                                 <div className="d-flex justify-content-center add-course-ill">

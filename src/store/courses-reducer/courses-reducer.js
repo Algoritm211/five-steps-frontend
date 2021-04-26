@@ -25,7 +25,7 @@ const coursesReducer = createSlice({
 			state.usersCourses = action.payload.courses
 		},
 		setUserAuthorCourses: (state, action) => {
-			state.usersAuthorCourses = action.payload
+			state.usersAuthorCourses = action.payload.coursesAuthor
 		},
 		setFilters: (state, action) => {
 			state.filters = [...action.payload]

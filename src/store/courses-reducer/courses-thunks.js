@@ -28,7 +28,7 @@ export const getUserCourses = () => async (dispatch) => {
 export const getUserAuthorCourses = () => async (dispatch) => {
 	dispatch(toggleIsLoading(true))
 	const data = await coursesAPI.getUserAuthorCourses()
-	dispatch(setUserAuthorCourses(data.coursesAuthor))
+	dispatch(setUserAuthorCourses(data))
 	dispatch(toggleIsLoading(false))
 }
 
