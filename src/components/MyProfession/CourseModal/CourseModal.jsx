@@ -5,6 +5,8 @@ import * as Yup from 'yup'
 import { useDispatch } from 'react-redux'
 import { createCourse } from '../../../store/courses-reducer/courses-thunks'
 import { Link, useHistory } from 'react-router-dom'
+import { coursesAPI } from '../../../api/courses-api'
+import { setCurrentCourse } from '../../../store/courses-reducer/courses-reducer'
 
 const createCourseValidationSchema = Yup.object().shape({
 	title: Yup.string()
@@ -31,8 +33,10 @@ const CourseModal = ({ isModalOpen, setIsModalOpen }) => {
 			description: '',
 			category: '',
 		},
-		onSubmit: values => {
-			dispatch(createCourse(values))
+		onSubmit: async (values) => {
+			// dispatch(createCourse(values))
+			const data = await coursesAPI.createCourse(values)
+			dispatch(setCurrentCourse(data.course))
 			history.push('/editor')
 		},
 	})

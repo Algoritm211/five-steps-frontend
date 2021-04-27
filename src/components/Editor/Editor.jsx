@@ -29,6 +29,7 @@ const CourseEditor = () => {
 	useEffect(() => {
 		setTitle(currentLesson ? currentLesson?.title : '')
 	}, [lessonNumber, currentLesson])
+
 	if (!course) {
 		return <Loader />
 	}
@@ -38,10 +39,11 @@ const CourseEditor = () => {
 	}
 
 	const onSaveLesson = () => {
-		debugger
 		if (!currentLesson && !isHomework) {
+			debugger
 			dispatch(createLesson({title: title, body: editorBody, homeWork: '', courseId: course._id }))
 		} else if (!currentLesson && isHomework) {
+			debugger
 			dispatch(createLesson({title: title, body: '', homeWork: editorBody, courseId: course._id }))
 		} else {
 			if (!isHomework) {
