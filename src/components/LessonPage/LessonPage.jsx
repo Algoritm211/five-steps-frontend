@@ -32,7 +32,6 @@ const LessonPage = () => {
 	useEffect(() => {
 		const courseId = query.courseId
 		const lessonNumber = query.lessonNumber
-		console.log(courseId, lessonNumber)
 		if (!courseId || !lessonNumber) {
 			history.push('/error')
 			return

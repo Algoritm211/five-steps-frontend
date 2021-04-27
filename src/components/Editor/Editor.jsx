@@ -38,6 +38,7 @@ const CourseEditor = () => {
 	}
 
 	const onSaveLesson = () => {
+		debugger
 		if (!currentLesson && !isHomework) {
 			dispatch(createLesson({title: title, body: editorBody, homeWork: '', courseId: course._id }))
 		} else if (!currentLesson && isHomework) {
