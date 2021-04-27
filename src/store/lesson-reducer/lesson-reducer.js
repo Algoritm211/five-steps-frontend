@@ -7,7 +7,6 @@ const lessonReducer = createSlice({
 		currentLesson: null,
 		lessonPage: 1,
 		error: null,
-		currentCourse: null
 	},
 	reducers: {
 		setCurrentLesson: (state, action) => {
@@ -19,11 +18,11 @@ const lessonReducer = createSlice({
 		setError: (state, action) => {
 			state.error = action.payload
 		},
-		setCurrentCourse: (state, action) => {
-			state.currentCourse = action.payload
+		clearCurrentLesson: (state, action) => {
+			state.currentLesson = null
 		}
 	}
 })
 
-export const {setCurrentLesson, setLessonPage, setError, setCurrentCourse} = lessonReducer.actions
+export const {setCurrentLesson, setLessonPage, setError, clearCurrentLesson} = lessonReducer.actions
 export default lessonReducer.reducer

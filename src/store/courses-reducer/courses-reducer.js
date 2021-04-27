@@ -33,6 +33,9 @@ const coursesReducer = createSlice({
 		setCurrentCourse: (state, action) => {
 			state.currentCourse = action.payload
 		},
+		clearCurrentCourse: (state, action) => {
+			state.currentCourse = null
+		},
 		updateCourse: (state, action) => {
 			const updateCallback = (course) => {
 				if (course._id === action.payload._id) {
@@ -61,6 +64,7 @@ export const {
 	setCurrentCourse,
 	updateCourse,
 	deleteCourse,
+	clearCurrentCourse,
 	setUserAuthorCourses,
 	setFilters } = coursesReducer.actions
 

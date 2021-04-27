@@ -8,14 +8,17 @@ import {
 	updateCourse,
 } from './courses-reducer'
 import { setUserData } from '../auth-reducer/auth-reducer'
-import { setCurrentCourse as setCourse, setCurrentLesson } from '../lesson-reducer/lesson-reducer'
+import {
+	clearCurrentLesson,
+	setCurrentLesson,
+} from '../lesson-reducer/lesson-reducer'
+
 
 export const createCourse = (courseData) => async (dispatch) => {
-	dispatch(setCurrentLesson(null))
-	dispatch(setCourse(null))
+	dispatch(clearCurrentLesson())
 	dispatch(toggleIsLoading(true))
 	const data = await coursesAPI.createCourse(courseData)
-	dispatch(setCourse(data.course))
+	dispatch(setCurrentCourse(data.course))
 	dispatch(toggleIsLoading(false))
 }
 
