@@ -63,7 +63,7 @@ const MyProf = () => {
 							</div>
 							<div className='row pt-3'>
 								<div className='acc-info d-flex mb-5 mt-0'>
-									<div className={'courseContainer'}>
+									<div className={'courseContainer'} style={{width: '100%'}}>
 										{userCoursesBlock}
 										{/*Если нет профессий, появляюется карточка ниже*/}
 										{/*Кстати, когда нажимаешь на кнопку, то нужно, чтобы страница загружалась сверху*/}
