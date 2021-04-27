@@ -8,6 +8,7 @@ import noUserPhoto from '../../assets/user/nouserphoto.png'
 import { loadCurrentCourse, toggleLikeCourse } from '../../store/courses-reducer/courses-thunks'
 import { clearCurrentLesson } from '../../store/lesson-reducer/lesson-reducer'
 import { clearCurrentCourse } from '../../store/courses-reducer/courses-reducer'
+import DeleteCourseModal from "./DeleteCourseModal/DeleteCourseModal";
 
 const categoryToUkr = {
 	it: 'IT',
