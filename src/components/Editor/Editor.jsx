@@ -5,7 +5,7 @@ import MainLayout from '../MainLayout/MainLayout'
 import { Link, NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCurrentCourse, getCurrentLesson } from '../../store/lesson-reducer/lesson-selector'
-import { createLesson, loadLesson } from '../../store/lesson-reducer/lesson-thunks'
+import { createLesson, loadLesson, updateLesson } from '../../store/lesson-reducer/lesson-thunks'
 import Loader from '../Loader/Loader'
 
 
@@ -14,27 +14,39 @@ const CourseEditor = () => {
 	const currentLesson = useSelector(getCurrentLesson)
 	const course = useSelector(getCurrentCourse)
 	const [lessonNumber, setLessonNumber] = useState(1)
-	const [lessonBody, setLessonBody] = useState('')
+	const [isHomework, setIsHomework] = useState(false)
+	const [editorBody, setEditorBody] = useState('')
+	const [title, setTitle] = useState('')
 
 	useEffect(() => {
-		setLessonBody('')
+		setEditorBody('')
 		if (course?._id) {
 			dispatch(loadLesson(course?._id, lessonNumber))
 		}
 	}, [lessonNumber])
 
+	useEffect(() => {
+		setTitle(currentLesson ? currentLesson?.title : '')
+	}, [lessonNumber, currentLesson])
 	if (!course) {
 		return <Loader />
 	}
 
 	const handleEditorChange = (content, editor) => {
-		// console.log('Content was updated:', content)
-		setLessonBody(content)
+		setEditorBody(content)
 	}
 
 	const onSaveLesson = () => {
-		if (!currentLesson) {
-			dispatch(createLesson({ body: lessonBody, homeWork: 'Editor', courseId: course._id }))
+		if (!currentLesson && !isHomework) {
+			dispatch(createLesson({title: title, body: editorBody, homeWork: '', courseId: course._id }))
+		} else if (!currentLesson && isHomework) {
+			dispatch(createLesson({title: title, body: '', homeWork: editorBody, courseId: course._id }))
+		} else {
+			if (!isHomework) {
+				dispatch(updateLesson({title: title, body: editorBody, homeWork: currentLesson.homeWork, lessonId: currentLesson._id}))
+			} else {
+				dispatch(updateLesson({title: title, body: currentLesson.body, homeWork: editorBody, lessonId: currentLesson._id}))
+			}
 		}
 	}
 
@@ -42,13 +54,20 @@ const CourseEditor = () => {
 	const lessonBlock = [1, 2, 3, 4, 5].map((lNumber) => {
 		return (
 			<React.Fragment key={lNumber}>
-				<div className={`container ${lNumber === lessonNumber ? 'editor-select-active' : 'editor-select'}`}>
-					<NavLink to='#' onClick={() => setLessonNumber(lNumber)}>
+				<div className={`container ${lNumber === lessonNumber && !isHomework ? 'editor-select-active' : 'editor-select'}`}>
+					<NavLink to='#' onClick={() => {
+						setIsHomework(false)
+						setLessonNumber(lNumber)
+					}}>
 						<p className='editor-step'>Крок {lNumber}</p>
 					</NavLink>
 				</div>
-				<div className='container editor-task'>
-					<NavLink to='#'>
+				<div className={`container editor-task ${lNumber === lessonNumber && isHomework ? 'editor-select-active' : 'editor-select'}`}
+						 data-lesson={lNumber}>
+					<NavLink to='#' onClick={() => {
+						setIsHomework(true)
+						setLessonNumber(lNumber)
+					}}>
 						<p className='editor-step' style={{ marginLeft: '20px' }}>Завдання</p>
 					</NavLink>
 				</div>
@@ -63,8 +82,8 @@ const CourseEditor = () => {
 					<div className='mt-3'>
 						<span className='info-title d-block'>Назва уроку</span>
 						<input className={'inputAcc d-block mb-3'}
-							    // value={formik.values.title}
-							    // onChange={formik.handleChange}
+							    value={title}
+							    onChange={(event) => setTitle(event.target.value)}
 							    type='text'
 							    name='title'
 								id='title' />
@@ -73,8 +92,8 @@ const CourseEditor = () => {
 					<div className=''>
 					<Editor
 						apiKey={'j2rcg8qaqco0x9y81b1jn5dc0ze3phyfbapmnra5q59deqml'}
-						value={lessonBody}
-						initialValue={currentLesson?.body || ''}
+						value={editorBody}
+						initialValue={!isHomework ? currentLesson?.body : currentLesson?.homeWork || ''}
 						init={{
 							height: 500,
 							width: '100%',

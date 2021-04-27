@@ -3,6 +3,12 @@ import { lessonAPI } from '../../api/lesson-api'
 
 export const createLesson = (lessonData) => async (dispatch) => {
 	const data = await lessonAPI.createLesson(lessonData)
+	dispatch(setCurrentLesson(data.lesson))
+}
+
+export const updateLesson = (lessonData) => async (dispatch) => {
+	const data = await lessonAPI.updateLesson(lessonData)
+	dispatch(setCurrentLesson(data.lesson))
 }
 
 export const loadLesson = (courseId, lessonNumber) => async (dispatch) => {
