@@ -40,5 +40,10 @@ export const coursesAPI = {
 	toggleLikeCourse: (courseId) => {
 		return instanceAxios.get(`course/like?courseId=${courseId}`)
 			.then(data => data.data)
+	},
+
+	toggleDeleteCourse: (courseId) => {
+		return instanceAxios.delete(`course/one?courseId=${courseId}`)
+			.then(data => data.data)
 	}
 }

@@ -1,5 +1,6 @@
 import { coursesAPI } from '../../api/courses-api'
 import {
+	deleteCourse,
 	setAllCourses, setCurrentCourse,
 	setUserAuthorCourses,
 	setUserCourses,
@@ -61,4 +62,10 @@ export const toggleLikeCourse = (courseId) => async (dispatch) => {
 	const data = await coursesAPI.toggleLikeCourse(courseId)
 	dispatch(setUserData(data.user))
 	dispatch(updateCourse(data.course))
+}
+
+export const toggleDeleteCourse = (courseId) => async (dispatch) => {
+	const data = await coursesAPI.toggleDeleteCourse(courseId)
+	dispatch(setUserData(data.user))
+	dispatch(deleteCourse(data.course))
 }

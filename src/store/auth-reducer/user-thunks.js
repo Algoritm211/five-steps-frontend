@@ -33,4 +33,3 @@ export const deleteAccount = () => async (dispatch) => {
 		console.log(error)
 	}
 }
-

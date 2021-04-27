@@ -42,6 +42,13 @@ const coursesReducer = createSlice({
 			}
 			state.allCourses = state.allCourses.map(course => updateCallback(course))
 			state.usersCourses = state.usersCourses.map(course => updateCallback(course))
+		},
+		deleteCourse: (state, action) => {
+			const deleteCallback = (course) => {
+				return course._id !== action.payload._id
+			}
+			state.allCourses = state.allCourses.filter(course => deleteCallback(course))
+			state.usersAuthorCourses = state.usersAuthorCourses.filter(course => deleteCallback(course))
 		}
 	},
 
@@ -53,6 +60,7 @@ export const {
 	setUserCourses,
 	setCurrentCourse,
 	updateCourse,
+	deleteCourse,
 	setUserAuthorCourses,
 	setFilters } = coursesReducer.actions
 

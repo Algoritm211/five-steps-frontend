@@ -5,7 +5,7 @@ import {getUserData} from '../../store/auth-reducer/auth-selector'
 import {countEntries} from '../util-funcs/entries-two-arr-counter'
 import {Link} from 'react-router-dom'
 import noUserPhoto from '../../assets/user/nouserphoto.png'
-import {toggleLikeCourse} from '../../store/courses-reducer/courses-thunks'
+import {toggleDeleteCourse, toggleLikeCourse} from '../../store/courses-reducer/courses-thunks'
 
 const categoryToUkr = {
     it: 'IT',
@@ -40,6 +40,12 @@ const CourseCard = (props) => {
         dispatch(toggleLikeCourse(course._id))
     }
 
+    const onDeleteHandler = (event) => {
+        event.stopPropagation()
+        event.preventDefault()
+        dispatch(toggleDeleteCourse(course._id))
+    }
+
     return (
         <Link to={`/course/${course._id}`} style={{color: 'black'}}>
             <div className='container card '>
@@ -56,12 +62,12 @@ const CourseCard = (props) => {
                     </div>
                 </div>
                 <div className='row ms-0 me-0'>
-                    <div className='container d-flex flex-row-reverse col-12 align-items-end'
-                         style={{color: userInfo?.likedCourses?.includes(course._id) && '#f26c4f'}}>
+                    <div className='container d-flex flex-row-reverse col-12 align-items-end'>
+                          {/*style={{color: userInfo?.likedCourses?.includes(course._id) && '#f26c4f'}}>*/}
                         <span className='like-text align-text-bottom' onClick={onLikeHandler}>{rating}</span>
-                        <i title="Лайкнути кроки" className='fas fa-thumbs-up pe-2' onClick={onLikeHandler}/>
-                        <i title="Редагувати створений курс" className="fas fa-edit pe-2"/>
-                        <i title="Видалити створений курс" className="fas fa-trash-alt pe-2"/>
+                        <i title="Лайкнути кроки" className='fas fa-thumbs-up pe-2' style={{color: userInfo?.likedCourses?.includes(course._id) && '#f26c4f'}} onClick={onLikeHandler}/>
+                        <i title="Редагувати створений курс" className="fas fa-edit pe-2" />
+                        <i title="Видалити створений курс" className="fas fa-trash-alt pe-2" onClick={onDeleteHandler}/>
                     </div>
                 </div>
                 {courseCompletePercent !== -1 && userInfo?.courses?.includes(course._id) &&
