@@ -4,9 +4,10 @@ import { Editor } from '@tinymce/tinymce-react'
 import MainLayout from '../MainLayout/MainLayout'
 import { Link, NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCurrentCourse, getCurrentLesson } from '../../store/lesson-reducer/lesson-selector'
+import { getCurrentLesson } from '../../store/lesson-reducer/lesson-selector'
 import { createLesson, loadLesson, updateLesson } from '../../store/lesson-reducer/lesson-thunks'
 import Loader from '../Loader/Loader'
+import { getCurrentCourse } from '../../store/courses-reducer/courses-selector'
 
 
 const CourseEditor = () => {

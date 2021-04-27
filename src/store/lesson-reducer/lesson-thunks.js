@@ -1,5 +1,10 @@
-import { setCurrentCourse, setCurrentLesson, setError, setLessonPage } from './lesson-reducer'
+import {
+	setCurrentLesson,
+	setError,
+	setLessonPage,
+} from './lesson-reducer'
 import { lessonAPI } from '../../api/lesson-api'
+import { setCurrentCourse } from '../courses-reducer/courses-reducer'
 
 export const createLesson = (lessonData) => async (dispatch) => {
 	const data = await lessonAPI.createLesson(lessonData)
@@ -13,6 +18,7 @@ export const updateLesson = (lessonData) => async (dispatch) => {
 
 export const loadLesson = (courseId, lessonNumber) => async (dispatch) => {
 	try {
+		dispatch(setCurrentLesson(null))
 		dispatch(setError(null))
 		const data = await lessonAPI.getLesson(courseId, lessonNumber)
 		// console.log(data)

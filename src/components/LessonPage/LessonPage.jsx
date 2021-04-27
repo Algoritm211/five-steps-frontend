@@ -8,7 +8,6 @@ import { NumberParam, StringParam, useQueryParams } from 'use-query-params'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-	getCurrentCourse,
 	getCurrentLesson,
 	getLessonError,
 	getLessonPage,
@@ -16,6 +15,8 @@ import {
 import { setLessonPage } from '../../store/lesson-reducer/lesson-reducer'
 import { loadLesson } from '../../store/lesson-reducer/lesson-thunks'
 import Error404 from '../Errors/Error404/error404'
+import { getCurrentCourse } from '../../store/courses-reducer/courses-selector'
+import Loader from '../Loader/Loader'
 
 
 const LessonPage = () => {
@@ -26,12 +27,12 @@ const LessonPage = () => {
 	const currentCourse = useSelector(getCurrentCourse)
 	const error = useSelector(getLessonError)
 
-	// console.log(lesson)
 	const [query, setQuery] = useQueryParams({courseId: StringParam, lessonNumber: NumberParam})
 
 	useEffect(() => {
 		const courseId = query.courseId
 		const lessonNumber = query.lessonNumber
+		console.log(courseId, lessonNumber)
 		if (!courseId || !lessonNumber) {
 			history.push('/error')
 			return
@@ -44,17 +45,19 @@ const LessonPage = () => {
 		return <Error404 />
 	}
 	if (!lesson || !currentCourse) {
-		return <span>loading</span>
+		return <Loader />
 	}
 
 	const onPageChange = (pageInfo) => {
 		dispatch(loadLesson(currentCourse._id, pageInfo.selected + 1))
+		setQuery({courseId: currentCourse._id, lessonNumber: pageInfo.selected + 1})
 	}
 
 	return (
 		<React.Fragment>
 			<div className='course-steps-pagination'>
 				<ReactPaginate
+					forcePage={lessonNumber - 1}
 					onPageChange={onPageChange}
 					pageCount={currentCourse.lessons.length}
 					// pageCount={5}
