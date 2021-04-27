@@ -96,4 +96,7 @@ h3{
     .subGrid{
         grid-template-columns: 1fr;
     }
+    .exception{
+        grid-template-columns: 1fr;
+    }
 }

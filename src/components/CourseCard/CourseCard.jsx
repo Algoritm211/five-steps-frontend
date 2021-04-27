@@ -1,11 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './CourseCard.css'
 import {useDispatch, useSelector} from 'react-redux'
 import {getUserData} from '../../store/auth-reducer/auth-selector'
 import {countEntries} from '../util-funcs/entries-two-arr-counter'
 import {Link} from 'react-router-dom'
 import noUserPhoto from '../../assets/user/nouserphoto.png'
-import {toggleDeleteCourse, toggleLikeCourse} from '../../store/courses-reducer/courses-thunks'
+import {toggleLikeCourse} from '../../store/courses-reducer/courses-thunks'
+import DeleteCourseModal from "./DeleteCourseModal/DeleteCourseModal";
+
 
 const categoryToUkr = {
     it: 'IT',
@@ -29,6 +31,8 @@ const CourseCard = (props) => {
     const course = props.course
     const {category, title, rating, author} = course
     const userInfo = useSelector(getUserData)
+    const [isModalOpen, setIsModalOpen] = useState(false)
+
     let courseCompletePercent = -1
     if (userInfo.lessonsCompleted) {
         courseCompletePercent = countEntries(userInfo.lessonsCompleted, course.lessons) * 20
@@ -40,11 +44,15 @@ const CourseCard = (props) => {
         dispatch(toggleLikeCourse(course._id))
     }
 
-    const onDeleteHandler = (event) => {
+    const enableModal = (event) =>{
         event.stopPropagation()
         event.preventDefault()
-        dispatch(toggleDeleteCourse(course._id))
+        setIsModalOpen(true)
     }
+
+
+
+
 
     return (
         <Link to={`/course/${course._id}`} style={{color: 'black'}}>
@@ -67,9 +75,12 @@ const CourseCard = (props) => {
                         <span className='like-text align-text-bottom' onClick={onLikeHandler}>{rating}</span>
                         <i title="Лайкнути кроки" className='fas fa-thumbs-up pe-2' style={{color: userInfo?.likedCourses?.includes(course._id) && '#f26c4f'}} onClick={onLikeHandler}/>
                         <i title="Редагувати створений курс" className="fas fa-edit pe-2" />
-                        <i title="Видалити створений курс" className="fas fa-trash-alt pe-2" onClick={onDeleteHandler}/>
+                        <i title="Видалити створений курс" className="fas fa-trash-alt pe-2" onClick={enableModal}/>
                     </div>
                 </div>
+
+                <DeleteCourseModal id={course._id} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+
                 {courseCompletePercent !== -1 && userInfo?.courses?.includes(course._id) &&
 
                 <div className='row ms-0 me-0'>

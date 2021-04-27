@@ -57,7 +57,7 @@ const MainPlates = () => {
 							<Link to='/professions'><h6 className='text-white'>Перейти</h6></Link>
 						</div>
 					</div>
-					<div className='smallGrid'>
+					<div className='smallGrid exception'>
 						<div className='item N7 d-flex align-items-center'>
 							<div>
 								<h6 className='text-white'>Дослідження</h6>

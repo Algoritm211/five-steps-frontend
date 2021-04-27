@@ -1,24 +1,20 @@
 import React, { useContext, useState } from 'react'
 import './Header.css'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { getIsAuth, getUserData } from '../../store/auth-reducer/auth-selector'
-import { logout } from '../../store/auth-reducer/auth-reducer'
 import { MainPageStepContext } from '../MainLayout/MainLayout'
 import noUserPhoto from '../../assets/user/nouserphoto.png'
+import LogoutModal from "./LogoutModal/LogoutModal";
 
 
 const Header = () => {
-	const dispatch = useDispatch()
 	const [searchText, setSearchText] = useState('')
 	const isAuth = useSelector(getIsAuth)
 	const user = useSelector(getUserData)
 	const [isMobile, setIsMobile] = useState(false)
 	const [isActiveSearch, setIsActiveSearch] = useState(false)
-
-	const onLogout = () => {
-		dispatch(logout())
-	}
+	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	return (
 		<header id='header' className='fixed-top d-flex align-items-center'>
@@ -94,7 +90,7 @@ const Header = () => {
 													<i className='fas fa-cog' style={{marginRight: '10px'}}/>
 													Налаштування</Link>
 												<div className='dropdown-divider'/>
-												<Link to={'/main'} onClick={onLogout}>
+												<Link onClick={() => setIsModalOpen(true)}>
 													<i className="fas fa-power-off" style={{marginRight: '10px'}}/>
 													Вихід</Link>
 											</>
@@ -116,6 +112,7 @@ const Header = () => {
 					</nav>
 				</div>
 			</div>
+			<LogoutModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
 		</header>
 	)
 }
