@@ -50,8 +50,8 @@ const coursesReducer = createSlice({
 			const deleteCallback = (course) => {
 				return course._id !== action.payload._id
 			}
-			state.allCourses = state.allCourses.filter(course => deleteCallback(course))
 			state.usersAuthorCourses = state.usersAuthorCourses.filter(course => deleteCallback(course))
+			state.usersCourses = state.usersCourses.filter(course => deleteCallback(course))
 		}
 	},
 

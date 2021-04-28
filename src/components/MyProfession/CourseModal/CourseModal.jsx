@@ -1,10 +1,8 @@
 import React from 'react'
 import { useFormik } from 'formik'
-import { loginUser } from '../../../store/auth-reducer/auth-thunks'
 import * as Yup from 'yup'
 import { useDispatch } from 'react-redux'
-import { createCourse } from '../../../store/courses-reducer/courses-thunks'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { coursesAPI } from '../../../api/courses-api'
 import { setCurrentCourse } from '../../../store/courses-reducer/courses-reducer'
 
@@ -18,7 +16,7 @@ const createCourseValidationSchema = Yup.object().shape({
 		.min(20, 'Опис має бути більш ніж 20 символів')
 		.matches(/[^<>%$]/i, 'Присутні заборонені символи'),
 	category: Yup.string()
-		.matches(/[^<>%$]/i, 'Присутні заборонені символи'),
+		.required('Обов`язково треба вибрати категорію'),
 })
 
 const CourseModal = ({ isModalOpen, setIsModalOpen }) => {
@@ -34,7 +32,6 @@ const CourseModal = ({ isModalOpen, setIsModalOpen }) => {
 			category: '',
 		},
 		onSubmit: async (values) => {
-			// dispatch(createCourse(values))
 			const data = await coursesAPI.createCourse(values)
 			dispatch(setCurrentCourse(data.course))
 			history.push('/editor')
@@ -49,7 +46,7 @@ const CourseModal = ({ isModalOpen, setIsModalOpen }) => {
 						<h5 className='modal-title'>Створення нового курсу</h5>
 						<button type='button' className='btn-close'
 										data-bs-dismiss='modal'
-										aria-label='Close' onClick={() => setIsModalOpen(false)}></button>
+										aria-label='Close' onClick={() => setIsModalOpen(false)}/>
 					</div>
 					<div className='modal-body'>
 						<p>Будь ласка, введіть назву та опис вашого курсу. <br />Оберіть його категорію.</p>
@@ -94,9 +91,10 @@ const CourseModal = ({ isModalOpen, setIsModalOpen }) => {
 									<option value='business'>Бізнес</option>
 									<option value='education'>Освіта</option>
 									<option value='marketing'>Маркетинг</option>
-									<option value='IT'>IT</option>
+									<option value='it'>IT</option>
 								</select>
 							</div>
+								{formik.errors.category}
 						</div>
 					</div>
 					<div className='modal-footer'>
