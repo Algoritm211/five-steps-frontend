@@ -18,7 +18,9 @@ body{
     color: #4f5a62;
 }
 .guid-card-img{
+    height: 230px;
     width: 100%;
+    object-fit: cover;
     border-radius: 5px;
 }
 .guid-card-ill{

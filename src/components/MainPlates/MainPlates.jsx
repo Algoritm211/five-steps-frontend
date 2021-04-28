@@ -48,7 +48,7 @@ const MainPlates = () => {
 							</div>
 						</div>
 						<div className='item N5 d-flex align-items-center'>
-							<img width='100%' src='https://www.meme-arsenal.com/memes/1a9a5693eca1ee26dfdcd4e96d03a52f.jpg' alt='' />
+							<img className='mainPlateImage' src='https://img.yakaboo.ua/media/catalog/product/cache/1/image/398x565/234c7c011ba026e66d29567e1be1d1f7/n/a/nachytysa_vchytysa_1000.jpg' alt='' />
 						</div>
 					</div>
 					<div className='item N6 d-flex align-items-center'>

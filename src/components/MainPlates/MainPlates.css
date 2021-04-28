@@ -81,6 +81,12 @@ h3{
     font-weight: bold;
     font-family: "Open Sans";
 }
+.mainPlateImage{
+    height: 280px;
+    width: auto;
+    margin-right: auto;
+    margin-left: auto;
+}
 @media (max-width: 1024px) {
     .mainContainer {
         grid-template-columns: 1fr;
@@ -98,5 +104,9 @@ h3{
     }
     .exception{
         grid-template-columns: 1fr;
+    }
+    .mainPlateImage{
+        width: 100%;
+        height: auto;
     }
 }
